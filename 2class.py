@@ -747,7 +747,7 @@ def soma(boundaries, dim, pop_size, migrations, step_size=0.11, path_length=3.0,
     fitness = []
     start_points = []
     leaders = []
-    points_to_draw = [[] for x in range(pop_size)]
+    points_to_draw = [[] for x in range(migrations)]
     end_points = []
     for i in range(pop_size):
         population.append(generate_identity(dim, boundaries=boundaries))
@@ -767,12 +767,13 @@ def soma(boundaries, dim, pop_size, migrations, step_size=0.11, path_length=3.0,
 
             for j in range(int(path_length/step_size)):
                 tmp = make_jump(leader, person.copy(), step_size*j, ptr_vec, boundaries)
-                points_to_draw[index].append(tmp)
+                #points_to_draw[index].append(tmp)
                 fitness_tmp = test_function(tmp)
                 if fitness_tmp < fitness_tmp_best:
                     best_tmp = tmp
                     fitness_tmp_best = fitness_tmp
             population[index] = best_tmp
+            points_to_draw[i].append(best_tmp)
             fitness[index] = fitness_tmp_best
 
         leader = population[fitness.index(min(fitness))]
@@ -870,7 +871,22 @@ def draw_graph_soma(minimum, maximum, test_function, start_points, points, end_p
     Z = zs.reshape(X.shape)
 
     ax.plot_surface(X, Y, Z, alpha=0.4, linewidth=0, antialiased=False)
-    colors = ['gray', 'rosybrown', 'firebrick', 'sienna', 'sandybrown', 'gold', 'darkkhaki', 'palegreen', 'darkgreen', 'mediumspringgreen', 'lightseagreen', 'royalblue'] #list(dict(mcolors.BASE_COLORS, **mcolors.CSS4_COLORS).values())[10:]
+    def update(num):
+        if num==len(points)-1:
+            anim.event_source.stop()
+        to_draw = points[num]
+        #ax.plot([i[0] for i in to_draw], [j[1] for j in to_draw], [test_function([i[0], i[1]]) for i in to_draw])
+        graph.set_data([i[0] for i in to_draw], [j[1] for j in to_draw])
+        graph.set_3d_properties([test_function([i[0], i[1]]) for i in to_draw])
+        return graph,
+
+    """for migration in points:
+        for p in migration:
+            ax.plot([p[0]], [p[1]], [test_function([p[0], p[1]])], color='k', marker='.', markersize=8, alpha=1)"""
+    data = points[0]
+    graph, = ax.plot([i[0] for i in data], [j[1] for j in data], [test_function([i[0], i[1]]) for i in data],color='k', marker='.', markersize=10, linestyle='')
+    anim = animation.FuncAnimation(fig,update, interval=250,blit=True)
+    """colors = ['gray', 'rosybrown', 'firebrick', 'sienna', 'sandybrown', 'gold', 'darkkhaki', 'palegreen', 'darkgreen', 'mediumspringgreen', 'lightseagreen', 'royalblue'] #list(dict(mcolors.BASE_COLORS, **mcolors.CSS4_COLORS).values())[10:]
     for index, population in enumerate(points):
         for p in population:
             if index%2==1:
@@ -893,10 +909,11 @@ def draw_graph_soma(minimum, maximum, test_function, start_points, points, end_p
         ax.plot([p[0]], [p[1]], [test_function([p[0], p[1]])], color='k',
                 marker='P', markersize=10, alpha=1)
 
-    ax.plot([res[0]], [res[1]], [test_function([res[0], res[1]])], markerfacecolor='r', markeredgecolor='r', marker='.', markersize=10, alpha=1)
+    ax.plot([res[0]], [res[1]], [test_function([res[0], res[1]])], markerfacecolor='r', markeredgecolor='r', marker='.', markersize=10, alpha=1)"""
     ax.set_xlabel('X Label')
     ax.set_ylabel('Y Label')
     ax.set_zlabel('Z Label')
+    ax.view_init(90,180)
 
     plt.show()
 
