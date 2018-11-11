@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bb618162-b00c-473b-ab6e-3e1e8b4d017b" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/2class.py" beforeDir="false" afterPath="$PROJECT_DIR$/2class.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -14,19 +15,19 @@
     <session id="-1283638348">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="28" />
-          <entry key="project.open.time.0" value="3" />
-          <entry key="project.open.time.1" value="2" />
+          <entry key="project.closed" value="35" />
+          <entry key="project.open.time.0" value="4" />
+          <entry key="project.open.time.1" value="3" />
           <entry key="project.open.time.19" value="1" />
           <entry key="project.open.time.20" value="2" />
           <entry key="project.open.time.21" value="1" />
           <entry key="project.open.time.22" value="3" />
-          <entry key="project.open.time.23" value="1" />
+          <entry key="project.open.time.23" value="2" />
           <entry key="project.open.time.24" value="2" />
           <entry key="project.open.time.25" value="1" />
-          <entry key="project.open.time.26" value="1" />
+          <entry key="project.open.time.26" value="2" />
           <entry key="project.open.time.27" value="1" />
-          <entry key="project.open.time.28" value="1" />
+          <entry key="project.open.time.28" value="2" />
           <entry key="project.open.time.30" value="2" />
           <entry key="project.open.time.32" value="2" />
           <entry key="project.open.time.35" value="1" />
@@ -34,19 +35,20 @@
           <entry key="project.open.time.4" value="1" />
           <entry key="project.open.time.41" value="1" />
           <entry key="project.open.time.43" value="1" />
-          <entry key="project.open.time.45" value="1" />
-          <entry key="project.opened" value="29" />
+          <entry key="project.open.time.45" value="2" />
+          <entry key="project.open.time.82" value="1" />
+          <entry key="project.opened" value="36" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="Python Console" value="34" />
-          <entry key="py" value="18684" />
+          <entry key="py" value="22623" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="18718" />
+          <entry key="Python" value="22657" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -80,16 +82,17 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/2class.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1197">
-              <caret line="869" column="8" lean-forward="true" selection-start-line="869" selection-start-column="8" selection-end-line="869" selection-end-column="8" />
+            <state relative-caret-position="189">
+              <caret line="1082" column="7" selection-start-line="1082" selection-start-column="7" selection-end-line="1082" selection-end-column="7" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
-                <marker date="1540847906462" expanded="true" signature="1368:26755" ph="..." />
-                <marker date="1540847906462" expanded="true" signature="4243:22873" ph="..." />
-                <marker date="1540847906462" expanded="true" signature="4390:4565" ph="..." />
-                <marker date="1540847906462" expanded="true" signature="4511:4565" ph="..." />
-                <marker date="1540847906462" expanded="true" signature="6636:22728" ph="..." />
-                <marker date="1540847906462" expanded="true" signature="27792:27794" ph="..." />
+                <marker date="1541975408736" expanded="true" signature="1368:30676" ph="..." />
+                <marker date="1541975408736" expanded="true" signature="4588:26083" ph="..." />
+                <marker date="1541975408736" expanded="true" signature="4735:4910" ph="..." />
+                <marker date="1541975408736" expanded="true" signature="4856:4910" ph="..." />
+                <marker date="1541975408736" expanded="true" signature="6753:25938" ph="..." />
+                <marker date="1541975408736" expanded="true" signature="31713:31715" ph="..." />
+                <marker date="1541975408736" expanded="true" signature="49117:49252" ph="..." />
               </folding>
             </state>
           </provider>
@@ -283,16 +286,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/2class.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1197">
-          <caret line="869" column="8" lean-forward="true" selection-start-line="869" selection-start-column="8" selection-end-line="869" selection-end-column="8" />
+        <state relative-caret-position="189">
+          <caret line="1082" column="7" selection-start-line="1082" selection-start-column="7" selection-end-line="1082" selection-end-column="7" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
-            <marker date="1540847906462" expanded="true" signature="1368:26755" ph="..." />
-            <marker date="1540847906462" expanded="true" signature="4243:22873" ph="..." />
-            <marker date="1540847906462" expanded="true" signature="4390:4565" ph="..." />
-            <marker date="1540847906462" expanded="true" signature="4511:4565" ph="..." />
-            <marker date="1540847906462" expanded="true" signature="6636:22728" ph="..." />
-            <marker date="1540847906462" expanded="true" signature="27792:27794" ph="..." />
+            <marker date="1541975408736" expanded="true" signature="1368:30676" ph="..." />
+            <marker date="1541975408736" expanded="true" signature="4588:26083" ph="..." />
+            <marker date="1541975408736" expanded="true" signature="4735:4910" ph="..." />
+            <marker date="1541975408736" expanded="true" signature="4856:4910" ph="..." />
+            <marker date="1541975408736" expanded="true" signature="6753:25938" ph="..." />
+            <marker date="1541975408736" expanded="true" signature="31713:31715" ph="..." />
+            <marker date="1541975408736" expanded="true" signature="49117:49252" ph="..." />
           </folding>
         </state>
       </provider>

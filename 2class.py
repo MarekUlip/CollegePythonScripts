@@ -55,12 +55,13 @@ class AlgorithmGUI:
         self.search_algorithm_menu.add_command(label="Simulated Annealing", command=partial(self.change_algorithm, 2))
         self.search_algorithm_menu.add_command(label="SOMA", command=partial(self.change_algorithm, 3))
         self.search_algorithm_menu.add_command(label="Particle Swarm", command=partial(self.change_algorithm, 4))
+        self.search_algorithm_menu.add_command(label="Differential Evolution", command=partial(self.change_algorithm, 5))
         main_menu.add_cascade(label="Search Algorithms", menu=self.search_algorithm_menu)
         test_algorithm_menu = Menu(main_menu, tearoff=0)
         test_algorithm_menu.add_command(label="Test Algorithms", command=self.show_test_gui)
         main_menu.add_cascade(label="Test Algorithms", menu=test_algorithm_menu)
         self.test_function_names = ["Sphere", "Ackley", "Rosenbrock", "Schwefel", "Styblinski-Tang"]
-        self.algorithm_names = ["Blind search", "Hill climbing", "Simulated Annealing", "SOMA", "Particle Swarm"]
+        self.algorithm_names = ["Blind search", "Hill climbing", "Simulated Annealing", "SOMA", "Particle Swarm", "Differential Evolution"]
         self.alg_params = {
             "minimum_var": StringVar(value="-500"),
             "maximum_var": StringVar(value="500"),
@@ -76,7 +77,12 @@ class AlgorithmGUI:
             "path_length": StringVar(value="3"),
             "step_size": StringVar(value="0.11"),
             "prt": StringVar(value="0.5"),
-            "color_pops": IntVar(value=0)
+            "color_pops": IntVar(value=0),
+            "np": StringVar(value="50"),
+            "cr": StringVar(value="0.9"),
+            "f": StringVar(value="0.5"),
+            "dif_method": StringVar(value="0"),
+
         }
         self.main_frame = Frame(self.gui)
         self.main_frame.pack(fill=BOTH)
@@ -88,7 +94,7 @@ class AlgorithmGUI:
         self.test_functions = [sphere_function, ackley_function, rosenbrock_function, schwefel_function, styblinski_tang_function]
 
         self.selected_algorithm = 0# StringVar(value=self.algorithm_names[0])
-        self.algorithms_gui = [self.show_blind_search_gui, self.show_hill_climging_gui, self.show_simulated_annealing_gui, self.show_soma_gui, self.show_particle_swarm_gui]
+        self.algorithms_gui = [self.show_blind_search_gui, self.show_hill_climging_gui, self.show_simulated_annealing_gui, self.show_soma_gui, self.show_particle_swarm_gui, self.show_dif_evo_gui]
         self.algorithms_gui[self.selected_algorithm]()
 
     def get_test_function(self):
@@ -129,11 +135,6 @@ class AlgorithmGUI:
         wrapper.pack(fill=X)
         Label(wrapper, text="Cycles", font=("Arial", font_size)).pack(side=LEFT)
         Entry(wrapper, textvariable=self.alg_params["num_of_cycles"], font=("Arial", font_size)).pack(side=RIGHT)
-
-        """wrapper = Frame(self.main_frame)
-        wrapper.pack(fill=X)
-        Label(wrapper, text="Algorithms").pack(side=LEFT)
-        OptionMenu(wrapper, self.selected_algorithm, *self.algorithm_names).pack(side=RIGHT)"""
 
         wrapper = Frame(self.main_frame)
         wrapper.pack(fill=X)
@@ -357,6 +358,74 @@ class AlgorithmGUI:
         wrapper.pack(fill=BOTH)
         Button(wrapper, command=self.start_alg, text="Start", font=("Arial", font_size)).pack()
 
+    def show_dif_evo_gui(self, clear_screen=True):
+        if clear_screen:
+            self.clear_screen()
+
+        font_size = 22
+
+        wrapper = Frame(self.main_frame)
+        wrapper.pack(fill=X)
+        Label(wrapper, text="Differential evolution", font=("Arial", 44)).pack(anchor='center')
+
+        wrapper = Frame(self.main_frame)
+        wrapper.pack(fill=X)
+        Label(wrapper, text="Minimum", font=("Arial", font_size)).pack(side=LEFT)
+        Entry(wrapper, textvariable=self.alg_params["minimum_var"], font=("Arial", font_size)).pack(side=RIGHT)
+
+        wrapper = Frame(self.main_frame)
+        wrapper.pack(fill=X)
+        Label(wrapper, text="Maximum", font=("Arial", font_size)).pack(side=LEFT)
+        Entry(wrapper, textvariable=self.alg_params["maximum_var"], font=("Arial", font_size)).pack(side=RIGHT)
+
+        wrapper = Frame(self.main_frame)
+        wrapper.pack(fill=X)
+        Label(wrapper, text="Dimension", font=("Arial", font_size)).pack(side=LEFT)
+        Entry(wrapper, textvariable=self.alg_params["dimension"], font=("Arial", font_size)).pack(side=RIGHT)
+
+        wrapper = Frame(self.main_frame)
+        wrapper.pack(fill=X)
+        Label(wrapper, text="NP", font=("Arial", font_size)).pack(side=LEFT)
+        Entry(wrapper, textvariable=self.alg_params["np"], font=("Arial", font_size)).pack(side=RIGHT)
+
+        wrapper = Frame(self.main_frame)
+        wrapper.pack(fill=X)
+        Label(wrapper, text="Generations", font=("Arial", font_size)).pack(side=LEFT)
+        Entry(wrapper, textvariable=self.alg_params["migrations"], font=("Arial", font_size)).pack(
+            side=RIGHT)
+
+        wrapper = Frame(self.main_frame)
+        wrapper.pack(fill=X)
+        Label(wrapper, text="F", font=("Arial", font_size)).pack(side=LEFT)
+        Entry(wrapper, textvariable=self.alg_params["f"], font=("Arial", font_size)).pack(
+            side=RIGHT)
+
+        wrapper = Frame(self.main_frame)
+        wrapper.pack(fill=X)
+        Label(wrapper, text="CR", font=("Arial", font_size)).pack(side=LEFT)
+        Entry(wrapper, textvariable=self.alg_params["cr"], font=("Arial", font_size)).pack(
+            side=RIGHT)
+
+        wrapper = Frame(self.main_frame)
+        wrapper.pack(fill=X)
+        Label(wrapper, text="Method", font=("Arial", font_size)).pack(side=LEFT)
+        Entry(wrapper, textvariable=self.alg_params["dif_method"], font=("Arial", font_size)).pack(
+            side=RIGHT)
+
+        wrapper = Frame(self.main_frame)
+        wrapper.pack(fill=X)
+        Label(wrapper, text="Test Functions", font=("Arial", font_size)).pack(side=LEFT)
+        OptionMenu(wrapper, self.alg_params["test_function"], *self.test_function_names).pack(side=RIGHT)
+
+        """wrapper = Frame(self.main_frame)
+        wrapper.pack(fill=X)
+        Checkbutton(wrapper, text="Color Populations", variable=self.alg_params["color_pops"], font=("Arial", font_size)).pack(
+            side=LEFT)"""
+
+        wrapper = Frame(self.main_frame)
+        wrapper.pack(fill=BOTH)
+        Button(wrapper, command=self.start_alg, text="Start", font=("Arial", font_size)).pack()
+
     def show_test_gui(self, clear_screen=True):
         if clear_screen:
             self.clear_screen()
@@ -508,6 +577,17 @@ class AlgorithmGUI:
                            int(self.alg_params["population"].get()),
                            int(self.alg_params["migrations"].get()),
                            self.get_test_function())
+
+        if self.selected_algorithm == 5:
+            differencial_evolution([float(self.alg_params["minimum_var"].get()), float(self.alg_params["maximum_var"].get())],
+                                   int(self.alg_params["dimension"].get()),
+                                   int(self.alg_params["np"].get()),
+                                   int(self.alg_params["migrations"].get()),
+                                   self.get_test_function(),
+                                   float(self.alg_params["cr"].get()),
+                                   float(self.alg_params["f"].get()),
+                                   int(self.alg_params["dif_method"].get()),
+                                   True)
 
     def start_alg_for_test(self, test_func, index, start):
         if index == 0:
@@ -669,7 +749,7 @@ def blind_search(minimum, maximum, dim, cycles, test_func, draw_res=True):
 def count_density(minimum, maximum):
     total = math.fabs(minimum) + math.fabs(maximum)
     res = 0.01
-    while total/res > 100:
+    while total/res > 200:
         res *= 10
     return res
 
@@ -742,20 +822,25 @@ Pri dvourozmernem muze byt prt 0.5
 50 generaci
 """
 
-def soma(boundaries, dim, pop_size, migrations, step_size=0.11, path_length=3.0, prt=0.5, test_function=sphere_function, draw=True, color_pops=False):
-    population = []
+def soma(boundaries, dim, pop_size, migrations, step_size=0.11, path_length=3.0, prt=0.5, test_function=sphere_function, draw=True, color_pops=False, population=None):
+    #population = []
     fitness = []
     start_points = []
     leaders = []
     points_to_draw = [[] for x in range(migrations)]
     end_points = []
-    for i in range(pop_size):
-        population.append(generate_identity(dim, boundaries=boundaries))
-        start_points.append(population[i].copy())
-        fitness.append(test_function(population[i]))
+    if population is None:
+        for i in range(pop_size):
+            population.append(generate_identity(dim, boundaries=boundaries))
+            start_points.append(population[i].copy())
+            fitness.append(test_function(population[i]))
+    else:
+        for i in range(pop_size):
+            start_points.append(population[i].copy())
+            fitness.append(test_function(population[i]))
 
     leader = population[fitness.index(min(fitness))]
-    leader_fitness = test_function(leader)
+    #leader_fitness = test_function(leader)
     for i in range(migrations):
         for index, person in enumerate(population):
             if leader == person:
@@ -788,6 +873,79 @@ def soma(boundaries, dim, pop_size, migrations, step_size=0.11, path_length=3.0,
 def make_jump(leader, person, t, ptr_vec, boundaries):
     for i in range(len(person)):
         person[i] += (leader[i] - person[i])*t*ptr_vec[i]
+        person[i] = check_boundaries(boundaries, person[i])
+    return person
+
+def generate_prt_vector(prt, dim):
+    prt_vec = []
+    for i in range(dim):
+        prt_vec.append(1 if random.random() < prt else 0)
+    return prt_vec
+
+def get_random_person(population, leader):
+    #print(population)
+    person = leader
+    while person == leader:
+        person = population[random.randint(0, len(population)-1)]
+    return person
+#NOTE generating ptr vector with every jump can improve SOMA accuracy
+def soma_enhanced(boundaries, dim, pop_size, migrations,step_size=0.11, path_length=3.0, prt=0.5, test_function=sphere_function, draw=True, color_pops=False, population=None):
+    #population = []
+    fitness = []
+    start_points = []
+    leaders = []
+    points_to_draw = [[] for x in range(migrations)]
+    end_points = []
+    if population is None:
+        for i in range(pop_size):
+            population.append(generate_identity(dim, boundaries=boundaries))
+            start_points.append(population[i].copy())
+            fitness.append(test_function(population[i]))
+    else:
+        for i in range(pop_size):
+            start_points.append(population[i].copy())
+            fitness.append(test_function(population[i]))
+
+    leader = population[fitness.index(min(fitness))]
+    for i in range(migrations):
+        for index, person in enumerate(population):
+            if leader == person:
+                continue
+            ptr_vec = generate_prt_vector(prt, dim)
+            tmp = []
+            best_tmp = person
+            fitness_tmp_best = test_function(person)
+            for j in range(int(path_length/step_size)):
+                tmp = make_jump(leader, person.copy(), step_size*j, ptr_vec, boundaries)
+                fitness_tmp = test_function(tmp)
+                if fitness_tmp < fitness_tmp_best:
+                    best_tmp = tmp
+                    fitness_tmp_best = fitness_tmp
+            population[index] = best_tmp
+            points_to_draw[i].append(best_tmp)
+            fitness[index] = fitness_tmp_best
+
+        leader = population[fitness.index(min(fitness))]
+        leaders.append(leader.copy())
+        leader_fitness = test_function(leader)
+        for index, p in enumerate(population):
+            if p == leader:
+                continue
+            res = math.fabs(leader_fitness-fitness[index])
+            if res > 0.0001:
+                #print("Convergent point BLAST HIM!")
+                population[index] = generate_identity(dim, boundaries=boundaries)
+    end_points = population.copy()
+    if dim == 2 and draw:
+        draw_graph_soma(boundaries[0], boundaries[1], test_function, start_points, points_to_draw, end_points, leader, leaders, color_pops)
+
+    #print(leader)
+    return leader
+
+
+"""def make_jump(leader, person, t, ptr_vec, boundaries):
+    for i in range(len(person)):
+        person[i] += (leader[i] - person[i])*t*ptr_vec[i]
         if person[i] > boundaries[1]:
             person[i] = boundaries[1]
         if person[i] < boundaries[0]:
@@ -798,7 +956,7 @@ def generate_prt_vector(prt, dim):
     prt_vec = []
     for i in range(dim):
         prt_vec.append(1 if random.random() < prt else 0)
-    return prt_vec
+    return prt_vec"""
 
 #Particle swarm s vnitrni vahou
 def particle_swarm(boundaries, dim, count_of_particles, iterations, test_function, c1=0.2, c2=0.2):
@@ -836,7 +994,7 @@ def particle_swarm(boundaries, dim, count_of_particles, iterations, test_functio
 
 
 def generate_speed(dim, boundaries):
-    max_speed = math.fabs(boundaries[0])+math.fabs(boundaries[1])/20
+    max_speed = (math.fabs(boundaries[0])+math.fabs(boundaries[1]))/20
     return generate_identity(dim,boundaries=[0,max_speed])
 
 def count_w(iteration, migration):
@@ -844,6 +1002,7 @@ def count_w(iteration, migration):
     w_end = 0.4
     return w_start - ((w_start-w_end)*iteration)/migration
 
+#TODO pokud rychlost prekroci vMax vygenerovat pro danou dimenzi nahodne novou
 def count_speed(dim, position, prev_speed, personal_best, global_best, c1, c2,w):
     next_speed = []
     for i in range(dim):
@@ -853,14 +1012,101 @@ def count_speed(dim, position, prev_speed, personal_best, global_best, c1, c2,w)
 def count_new_pos(dim, position, speed, boundaries):
     new_pos = []
     for i in range(dim):
-        new_pos.append(position[i] + speed[i])
-        #udelat to nahodne
-        if new_pos[i] > boundaries[1]:
-            new_pos[i] = random.randint(boundaries[0], boundaries[1])
-        if new_pos[i] < boundaries[0]:
-            new_pos[i] = random.randint(boundaries[0], boundaries[1])
+        value = position[i] + speed[i]
+        value = check_boundaries(boundaries,value)
+        new_pos.append(value)
     return new_pos
 
+def differencial_evolution(boundaries, dim, np, generations, test_func, cr=0.9, f=0.5, method_to_use = 0, draw=False):
+    population = []
+    fitnesses = []
+    points_to_draw = [[] for x in range(generations)]
+    for i in range(np):
+        population.append(generate_identity(dim, boundaries=boundaries))
+        points_to_draw[0].append(population[i])
+        fitnesses.append(test_func(population[i]))
+    for i in range(generations):
+        for j in range(np):
+            points_to_draw[i].append(population[j])
+            if method_to_use == 0:
+                trial_vector = de_rand_1_bin(boundaries, dim, j, population, f, cr)
+            elif method_to_use == 1:
+                trial_vector = de_current_to_pbest_1_bin(boundaries, dim, j, population, fitnesses, f, cr)
+            else:
+                trial_vector = []
+            trial_fitness = test_func(trial_vector)
+            if trial_fitness < fitnesses[j]:
+                population[j] = trial_vector
+                fitnesses[j] = trial_fitness
+    if draw and dim == 2:
+        draw_graph_pso(boundaries[0],boundaries[1],test_func,points_to_draw,0)
+    return population[fitnesses.index(min(fitnesses))]
+
+
+def de_rand_1_bin(boundaries,dim,working_index, population, f, cr):
+    current = population[working_index]
+    generated_indexes = []
+    others = []
+    noise_vector = []
+    for i in range(3):
+        rnd_index = random.randint(0,len(population)-1)
+        while rnd_index in generated_indexes or rnd_index == working_index:
+            rnd_index = random.randint(0, len(population)-1)
+        others.append(population[rnd_index])
+        generated_indexes.append(rnd_index)
+    for i in range(dim):
+        noise_vector_item = others[2][i] + f*(others[0][i]-others[1][i])
+        noise_vector_item = check_boundaries(boundaries,noise_vector_item)
+        #if noise_vector_item < boundaries[0] or noise_vector_item > boundaries[1]:
+        #    noise_vector_item = random.randint(boundaries[0], boundaries[1])
+        noise_vector.append(noise_vector_item)
+    trial_vector = []
+    for i in range(dim):
+        if random.random() < cr:
+            trial_vector.append(noise_vector[i])
+        else:
+            trial_vector.append(current[i])
+    return trial_vector
+
+def de_current_to_pbest_1_bin(boundaries,dim,working_index, population, fitnesses, f, cr):
+    top_five = []
+    sorted_fitnesses = sorted(fitnesses)
+    num_of_best = int(len(population)*0.2)
+    if num_of_best < 0:
+        num_of_best = 1
+    for i in range(num_of_best):
+        tmp = population[fitnesses.index(sorted_fitnesses[i])]
+        if tmp == population[working_index]:
+            tmp = population[fitnesses.index(sorted_fitnesses[5])]
+        top_five.append(tmp)
+    #Best 20% populace?
+    best = top_five[random.randint(0,num_of_best-1)]
+    generated_indexes = [population.index(best)]
+    others = []
+    for i in range(2):
+        rnd_index = random.randint(0,len(population)-1)
+        while rnd_index in generated_indexes or rnd_index == working_index:
+            rnd_index = random.randint(0, len(population)-1)
+        others.append(population[rnd_index])
+        generated_indexes.append(rnd_index)
+    current = population[working_index]
+    noise_vector = []
+    for i in range(dim):
+        noise_vector_item = current[i] + f*(best[i] - current[i]) + f*(others[0][i] - others[1][i])
+        noise_vector_item = check_boundaries(boundaries,noise_vector_item)
+        noise_vector.append(noise_vector_item)
+    trial_vector = []
+    for i in range(dim):
+        if random.random() < cr:
+            trial_vector.append(noise_vector[i])
+        else:
+            trial_vector.append(current[i])
+    return trial_vector
+
+def check_boundaries(boundaries, value):
+    if value < boundaries[0] or value > boundaries[1]:
+        value = random.randint(boundaries[0], boundaries[1])
+    return value
 
 def draw_graph_soma(minimum, maximum, test_function, start_points, points, end_points, res, leaders, color_pops=False):
     fig = plt.figure()
@@ -998,7 +1244,7 @@ def test_draw_graph():
 
     plt.show()
 
-def hill_climbing_vs_annealing():
+#def hill_climbing_vs_annealing():
 
     """fig = plt.figure()
     ax = fig.add_subplot(111, projection='3d')
@@ -1021,28 +1267,60 @@ def hill_climbing_vs_annealing():
 #[print(normal_distribution(50,20)) for x in range(10)]
 #hill_climbing(-500,500,2,5,20,1,styblinski_tang_function)
 
-root = tix.Tk()
-main_menu = Menu(root)
-root.wm_title("Algorithms")
-fc = AlgorithmGUI(root)
-root.config(menu=main_menu)
-root.mainloop()
+normal_run = True
+if normal_run:
+    root = tix.Tk()
+    main_menu = Menu(root)
+    root.wm_title("Algorithms")
+    fc = AlgorithmGUI(root)
+    root.config(menu=main_menu)
+    root.mainloop()
 
 def test_soma(dimension,test_func,num_of_tests):
+    results_enh = []
+    results_normal = []
     results = []
+    population =[]
+    pop_size = 10
+    boundaries = [-500,500]
+    for i in range(pop_size):
+        population.append(generate_identity(dimension, boundaries=[-500,0]))
+
     for x in range(num_of_tests):
-        results.append(soma([-500,500],dimension,10,50,test_function=test_func,draw=False))
-    [print(test_func(x)) for x in results]#print(sum([test_func(x) for x in results])/num_of_tests) #([print(test_func(x)) for x in results]
-    dimension = len(results[0])
+        res = soma_enhanced(boundaries,dimension,pop_size,25,test_function=test_func,draw=False,population=population.copy())
+        results.append(res)
+        results_enh.append(res)
+
+    for x in range(num_of_tests):
+        res = soma(boundaries, dimension, pop_size, 25, test_function=test_func, draw=False,population=population.copy())
+        results_normal.append(res)
+        results.append(res)
+
+    [print("{} = {}".format(test_func(x), x)) for x in results_enh]
     average = [0 for x in range(dimension)]
-    for item in results:
+    for item in results_enh:
+        for i in range(dimension):
+            average[i] += math.fabs(item[i])
+    for i in range(dimension):
+        average[i] /= len(results_enh)
+    print("Average of enhanced: {} = {}".format(test_func(average),average))
+    print("**********************")
+    [print("{} = {}".format(test_func(x),x)) for x in results_normal]#print(sum([test_func(x) for x in results])/num_of_tests) #([print(test_func(x)) for x in results]
+    average = [0 for x in range(dimension)]
+    for item in results_normal:
+        for i in range(dimension):
+            average[i] += math.fabs(item[i])
+    for i in range(dimension):
+        average[i] /= len(results_normal)
+    print("Average of normal: {} = {}".format(test_func(average),average))
+    """for item in results:
         for i in range(dimension):
             average[i] += math.fabs(item[i])
     for i in range(dimension):
         average[i] /= len(results)
-    print(average)
-#test_soma(2,schwefel_function,5)
-
+    print(average)"""
+#test_soma(2,schwefel_function,10)
+#print(differencial_evolution([-500,500],2,50,50,schwefel_function,method_to_use=0, draw=True))
 #soma([-500,500],5,50,100,test_function=schwefel_function)
 #simmulated_annealing(-500,500,2,reduce_temperature,500,100,schwefel_function)
 #hill_climbing_limited(-500,500,2,50,1,schwefel_function)
