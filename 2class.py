@@ -14,37 +14,6 @@ import time
 
 from matplotlib import cm
 from mpl_toolkits.mplot3d import Axes3D
-# naimplementovat blind a hill
-# srovnat na testovac9ch funckich jejich vzkonnost
-# vykonnost se testuje
-# algoritmy poustest 50
-
-# 5 funkci Hill climbing Blind Search
-# D = 2
-# D = 10
-# D = 30
-# Vyzualizovat
-# matplotlib
-# eckli and rosenbrock
-# jedinec( parametry) jako pole f(x) je z souradnice Normalni rozdeleni
-# vykreslit povrch a pak zakreslovat body
-# vyzkouset kolik iteraci potrebuje hill a kolik blind
-# vykreslit funkci a tam zakreslovat jedince
-
-# naimplementovat zihani
-# pro kazdou funkci vygenerovat 30 experimentu reseni. vzdy ulozit nejlepsi reseni. vysledky zprumerovat a porovnat, kdy je prumer reseni mensi jestli u hill nebo u zihani
-# porovnavani priste ukazat ktery algoritmus byl lepsi. Je potreba stejny pocet ohodnoceni ucelove funkce. V kazdem algoritmu musi byt pocet volani ucelove funkce stejny.
-# u dimenze 2 by melo stacit 2000 ohodnoceni.
-# Vysledna tabulka
-#       Hill climb      Sim Zih
-# f1
-# f2
-# f3
-# f4
-# f5
-
-#pole balancing problem pomoci hill algoritmu
-
 
 class AlgorithmGUI:
     def __init__(self, gui):
@@ -56,12 +25,14 @@ class AlgorithmGUI:
         self.search_algorithm_menu.add_command(label="SOMA", command=partial(self.change_algorithm, 3))
         self.search_algorithm_menu.add_command(label="Particle Swarm", command=partial(self.change_algorithm, 4))
         self.search_algorithm_menu.add_command(label="Differential Evolution", command=partial(self.change_algorithm, 5))
+        self.search_algorithm_menu.add_command(label="Evolution Strategy", command=partial(self.change_algorithm, 6))
         main_menu.add_cascade(label="Search Algorithms", menu=self.search_algorithm_menu)
         test_algorithm_menu = Menu(main_menu, tearoff=0)
         test_algorithm_menu.add_command(label="Test Algorithms", command=self.show_test_gui)
+        test_algorithm_menu.add_command(label="Test Differential", command=self.show_test_dif_evo_gui)
         main_menu.add_cascade(label="Test Algorithms", menu=test_algorithm_menu)
         self.test_function_names = ["Sphere", "Ackley", "Rosenbrock", "Schwefel", "Styblinski-Tang"]
-        self.algorithm_names = ["Blind search", "Hill climbing", "Simulated Annealing", "SOMA", "Particle Swarm", "Differential Evolution"]
+        self.algorithm_names = ["Blind search", "Hill climbing", "Simulated Annealing", "SOMA", "Particle Swarm", "Differential Evolution", "Evolution Strategy"]
         self.alg_params = {
             "minimum_var": StringVar(value="-500"),
             "maximum_var": StringVar(value="500"),
@@ -93,8 +64,8 @@ class AlgorithmGUI:
         self.test_function = sphere_function
         self.test_functions = [sphere_function, ackley_function, rosenbrock_function, schwefel_function, styblinski_tang_function]
 
-        self.selected_algorithm = 0# StringVar(value=self.algorithm_names[0])
-        self.algorithms_gui = [self.show_blind_search_gui, self.show_hill_climging_gui, self.show_simulated_annealing_gui, self.show_soma_gui, self.show_particle_swarm_gui, self.show_dif_evo_gui]
+        self.selected_algorithm = 0
+        self.algorithms_gui = [self.show_blind_search_gui, self.show_hill_climging_gui, self.show_simulated_annealing_gui, self.show_soma_gui, self.show_particle_swarm_gui, self.show_dif_evo_gui, self.show_evolution_strategy]
         self.algorithms_gui[self.selected_algorithm]()
 
     def get_test_function(self):
@@ -349,11 +320,6 @@ class AlgorithmGUI:
         Label(wrapper, text="Test Functions", font=("Arial", font_size)).pack(side=LEFT)
         OptionMenu(wrapper, self.alg_params["test_function"], *self.test_function_names).pack(side=RIGHT)
 
-        """wrapper = Frame(self.main_frame)
-        wrapper.pack(fill=X)
-        Checkbutton(wrapper, text="Color Populations", variable=self.alg_params["color_pops"], font=("Arial", font_size)).pack(
-            side=LEFT)"""
-
         wrapper = Frame(self.main_frame)
         wrapper.pack(fill=BOTH)
         Button(wrapper, command=self.start_alg, text="Start", font=("Arial", font_size)).pack()
@@ -417,10 +383,49 @@ class AlgorithmGUI:
         Label(wrapper, text="Test Functions", font=("Arial", font_size)).pack(side=LEFT)
         OptionMenu(wrapper, self.alg_params["test_function"], *self.test_function_names).pack(side=RIGHT)
 
-        """wrapper = Frame(self.main_frame)
+        wrapper = Frame(self.main_frame)
+        wrapper.pack(fill=BOTH)
+        Button(wrapper, command=self.start_alg, text="Start", font=("Arial", font_size)).pack()
+
+    def show_evolution_strategy(self, clear_screen=True):
+        if clear_screen:
+            self.clear_screen()
+
+        font_size = 22
+
+        wrapper = Frame(self.main_frame)
         wrapper.pack(fill=X)
-        Checkbutton(wrapper, text="Color Populations", variable=self.alg_params["color_pops"], font=("Arial", font_size)).pack(
-            side=LEFT)"""
+        Label(wrapper, text="Evolution strategy", font=("Arial", 44)).pack(anchor='center')
+
+        wrapper = Frame(self.main_frame)
+        wrapper.pack(fill=X)
+        Label(wrapper, text="Minimum", font=("Arial", font_size)).pack(side=LEFT)
+        Entry(wrapper, textvariable=self.alg_params["minimum_var"], font=("Arial", font_size)).pack(side=RIGHT)
+
+        wrapper = Frame(self.main_frame)
+        wrapper.pack(fill=X)
+        Label(wrapper, text="Maximum", font=("Arial", font_size)).pack(side=LEFT)
+        Entry(wrapper, textvariable=self.alg_params["maximum_var"], font=("Arial", font_size)).pack(side=RIGHT)
+
+        wrapper = Frame(self.main_frame)
+        wrapper.pack(fill=X)
+        Label(wrapper, text="Dimension", font=("Arial", font_size)).pack(side=LEFT)
+        Entry(wrapper, textvariable=self.alg_params["dimension"], font=("Arial", font_size)).pack(side=RIGHT)
+
+        wrapper = Frame(self.main_frame)
+        wrapper.pack(fill=X)
+        Label(wrapper, text="Generations", font=("Arial", font_size)).pack(side=LEFT)
+        Entry(wrapper, textvariable=self.alg_params["num_of_cycles"], font=("Arial", font_size)).pack(side=RIGHT)
+
+        wrapper = Frame(self.main_frame)
+        wrapper.pack(fill=X)
+        Label(wrapper, text="Population", font=("Arial", font_size)).pack(side=LEFT)
+        Entry(wrapper, textvariable=self.alg_params["population"], font=("Arial", font_size)).pack(side=RIGHT)
+
+        wrapper = Frame(self.main_frame)
+        wrapper.pack(fill=X)
+        Label(wrapper, text="Test Functions", font=("Arial", font_size)).pack(side=LEFT)
+        OptionMenu(wrapper, self.alg_params["test_function"], *self.test_function_names).pack(side=RIGHT)
 
         wrapper = Frame(self.main_frame)
         wrapper.pack(fill=BOTH)
@@ -483,8 +488,71 @@ class AlgorithmGUI:
         Button(wrapper, command=self.test_algorithms, text="Start", font=("Arial", font_size)).pack(side=LEFT)
         Button(wrapper, command=self.show_test_gui, text="Clear", font=("Arial", font_size)).pack(side=RIGHT)
 
+    def show_test_dif_evo_gui(self, clear_screen=True):
+        if clear_screen:
+            self.clear_screen()
+
+        font_size = 22
+
+        wrapper = Frame(self.main_frame)
+        wrapper.pack(fill=X)
+        Label(wrapper, text="Differential evolution", font=("Arial", 44)).pack(anchor='center')
+
+        wrapper = Frame(self.main_frame)
+        wrapper.pack(fill=X)
+        Label(wrapper, text="Minimum", font=("Arial", font_size)).pack(side=LEFT)
+        Entry(wrapper, textvariable=self.alg_params["minimum_var"], font=("Arial", font_size)).pack(side=RIGHT)
+
+        wrapper = Frame(self.main_frame)
+        wrapper.pack(fill=X)
+        Label(wrapper, text="Maximum", font=("Arial", font_size)).pack(side=LEFT)
+        Entry(wrapper, textvariable=self.alg_params["maximum_var"], font=("Arial", font_size)).pack(side=RIGHT)
+
+        wrapper = Frame(self.main_frame)
+        wrapper.pack(fill=X)
+        Label(wrapper, text="Dimension", font=("Arial", font_size)).pack(side=LEFT)
+        Entry(wrapper, textvariable=self.alg_params["dimension"], font=("Arial", font_size)).pack(side=RIGHT)
+
+        wrapper = Frame(self.main_frame)
+        wrapper.pack(fill=X)
+        Label(wrapper, text="NP", font=("Arial", font_size)).pack(side=LEFT)
+        Entry(wrapper, textvariable=self.alg_params["np"], font=("Arial", font_size)).pack(side=RIGHT)
+
+        wrapper = Frame(self.main_frame)
+        wrapper.pack(fill=X)
+        Label(wrapper, text="Generations", font=("Arial", font_size)).pack(side=LEFT)
+        Entry(wrapper, textvariable=self.alg_params["migrations"], font=("Arial", font_size)).pack(
+            side=RIGHT)
+
+        wrapper = Frame(self.main_frame)
+        wrapper.pack(fill=X)
+        Label(wrapper, text="F", font=("Arial", font_size)).pack(side=LEFT)
+        Entry(wrapper, textvariable=self.alg_params["f"], font=("Arial", font_size)).pack(
+            side=RIGHT)
+
+        wrapper = Frame(self.main_frame)
+        wrapper.pack(fill=X)
+        Label(wrapper, text="CR", font=("Arial", font_size)).pack(side=LEFT)
+        Entry(wrapper, textvariable=self.alg_params["cr"], font=("Arial", font_size)).pack(
+            side=RIGHT)
+
+        wrapper = Frame(self.main_frame)
+        wrapper.pack(fill=X)
+        Label(wrapper, text="Method", font=("Arial", font_size)).pack(side=LEFT)
+        Entry(wrapper, textvariable=self.alg_params["dif_method"], font=("Arial", font_size)).pack(
+            side=RIGHT)
+
+        wrapper = Frame(self.main_frame)
+        wrapper.pack(fill=X)
+        Label(wrapper, text="Test Functions", font=("Arial", font_size)).pack(side=LEFT)
+        OptionMenu(wrapper, self.alg_params["test_function"], *self.test_function_names).pack(side=RIGHT)
+
+        wrapper = Frame(self.main_frame)
+        wrapper.pack(fill=BOTH)
+        Button(wrapper, command=self.test_algorithms_dif_evo, text="Start", font=("Arial", font_size)).pack(side=LEFT)
+        Button(wrapper, command=self.show_test_dif_evo_gui, text="Clear", font=("Arial", font_size)).pack(side=RIGHT)
+
     def test_algorithms(self):
-        results = [[],[]]
         print("\nTest function\t {}\t {}".format(self.alg_params["test_algorithms"][0].get(), self.alg_params["test_algorithms"][1].get()))
         wrapper = Frame(self.main_frame)
         wrapper.pack(fill=X)
@@ -498,26 +566,44 @@ class AlgorithmGUI:
         tree.column('#0', stretch=YES)
 
         for index, test_func in enumerate(self.test_functions):
+            results = [[],[]]
             for i in range(int(self.alg_params["num_of_tests"].get())):
-                """results_annealing.append(simmulated_annealing(float(self.alg_params["minimum_var"].get()),
-                          float(self.alg_params["maximum_var"].get()),
-                          int(self.alg_params["dimension"].get()),
-                          reduce_temperature,
-                          int(self.alg_params["num_of_cycles"].get()),
-                          int(self.alg_params["bias"].get()),
-                          test_func,
-                          False))
-                results_hill.append(hill_climbing_limited(float(self.alg_params["minimum_var"].get()),
-                          float(self.alg_params["maximum_var"].get()),
-                          int(self.alg_params["dimension"].get()),
-                          int(self.alg_params["num_of_cycles"].get()),
-                          int(self.alg_params["bias"].get()),
-                          test_func))"""
                 start = generate_identity(int(self.alg_params["dimension"].get()), float(self.alg_params["minimum_var"].get()), float(self.alg_params["maximum_var"].get()))
                 results[0].append(self.start_alg_for_test(test_func,self.get_alg_index_by_name(self.alg_params["test_algorithms"][0].get()), start))
                 results[1].append(self.start_alg_for_test(test_func,self.get_alg_index_by_name(self.alg_params["test_algorithms"][1].get()), start))
             winner = self.alg_params["test_algorithms"][0].get() if test_func(self.count_average(results[0])) < test_func(self.count_average(results[1])) else self.alg_params["test_algorithms"][1].get()
             tree.insert('', 'end', text=self.test_function_names[index], values=(self.count_average(results[0]), self.count_average(results[1]), winner))
+            print(len(results[0]))
+            print("{}\t {}\t {}\t".format(self.test_function_names[index],self.count_average(results[0]), self.count_average(results[1])))
+            print("{}\t {}\t {}\t".format(self.test_function_names[index],test_func(self.count_average(results[0])), test_func(self.count_average(results[1]))))
+        tree.pack(fill=BOTH)
+
+    def test_algorithms_dif_evo(self):
+        print("Testing differential functions")
+        #print("\nTest function\t {}\t {}".format(self.alg_params["test_algorithms"][0].get(), self.alg_params["test_algorithms"][1].get()))
+        wrapper = Frame(self.main_frame)
+        wrapper.pack(fill=X)
+        tree = ttk.Treeview(wrapper, columns=('Tested function', self.alg_params["test_algorithms"][0].get(), self.alg_params["test_algorithms"][1].get(),"Winner"))
+        tree.heading('#0', text='Tested function')
+        tree.heading('#1', text="rnd/1/bin")
+        tree.heading('#2', text="rnd/curt-to-best/bin")
+        tree.heading('#3', text="Winner")
+        tree.column('#1', stretch=YES)
+        tree.column('#2', stretch=YES)
+        tree.column('#0', stretch=YES)
+
+        for index, test_func in enumerate(self.test_functions):
+            results = [[], []]
+            for i in range(int(self.alg_params["num_of_tests"].get())):
+                start = []
+                for i in range(int(self.alg_params["np"].get())):
+                    start.append(generate_identity(int(self.alg_params["dimension"].get()), boundaries=[int(self.alg_params["minimum_var"].get()), int(self.alg_params["maximum_var"].get())]))
+                #start = generate_identity(int(self.alg_params["dimension"].get()), float(self.alg_params["minimum_var"].get()), float(self.alg_params["maximum_var"].get()))
+                results[0].append(self.start_alg_for_test(test_func,5, start,0))
+                results[1].append(self.start_alg_for_test(test_func,5, start,1))
+            winner = "rnd/1/bin" if test_func(self.count_average(results[0])) < test_func(self.count_average(results[1])) else "rnd/curt-to-best/bin"
+            tree.insert('', 'end', text=self.test_function_names[index], values=(self.count_average(results[0]), self.count_average(results[1]), winner))
+            print(len(results[0]))
             print("{}\t {}\t {}\t".format(self.test_function_names[index],self.count_average(results[0]), self.count_average(results[1])))
             print("{}\t {}\t {}\t".format(self.test_function_names[index],test_func(self.count_average(results[0])), test_func(self.count_average(results[1]))))
         tree.pack(fill=BOTH)
@@ -588,8 +674,15 @@ class AlgorithmGUI:
                                    float(self.alg_params["f"].get()),
                                    int(self.alg_params["dif_method"].get()),
                                    True)
-
-    def start_alg_for_test(self, test_func, index, start):
+        if self.selected_algorithm == 6:
+            evolution_strategy([float(self.alg_params["minimum_var"].get()),
+                          float(self.alg_params["maximum_var"].get())],
+                          int(self.alg_params["dimension"].get()),
+                          int(self.alg_params["num_of_identities"].get()),
+                          int(self.alg_params["num_of_cycles"].get()),
+                          self.get_test_function()
+            )
+    def start_alg_for_test(self, test_func, index, start, spec_param=0):
         if index == 0:
             return blind_search(float(self.alg_params["minimum_var"].get()),
                          float(self.alg_params["maximum_var"].get()),
@@ -599,22 +692,35 @@ class AlgorithmGUI:
                          False)
         if index == 1:
             return hill_climbing_limited(float(self.alg_params["minimum_var"].get()),
-                          float(self.alg_params["maximum_var"].get()),
-                          int(self.alg_params["dimension"].get()),
-                          int(self.alg_params["num_of_cycles"].get()),
-                          int(self.alg_params["bias"].get()),
-                          test_func)
+                                          float(self.alg_params["maximum_var"].get()),
+                                          int(self.alg_params["dimension"].get()),
+                                          int(self.alg_params["num_of_cycles"].get()),
+                                          int(self.alg_params["bias"].get()),
+                                          test_func,
+                                          start)
         if index == 2:
             return simmulated_annealing(float(self.alg_params["minimum_var"].get()),
-                                 float(self.alg_params["maximum_var"].get()),
-                                 int(self.alg_params["dimension"].get()),
-                                 reduce_temperature,
-                                 int(self.alg_params["num_of_cycles"].get()),
-                                 int(self.alg_params["bias"].get()),
-                                 test_func,
-                                 False)
+                                         float(self.alg_params["maximum_var"].get()),
+                                         int(self.alg_params["dimension"].get()),
+                                         reduce_temperature,
+                                         int(self.alg_params["num_of_cycles"].get()),
+                                         int(self.alg_params["bias"].get()),
+                                         test_func,
+                                         False,
+                                         start)
 
-
+        if index == 5:
+            return differencial_evolution(
+                [float(self.alg_params["minimum_var"].get()), float(self.alg_params["maximum_var"].get())],
+                int(self.alg_params["dimension"].get()),
+                int(self.alg_params["np"].get()),
+                int(self.alg_params["migrations"].get()),
+                test_func,
+                float(self.alg_params["cr"].get()),
+                float(self.alg_params["f"].get()),
+                spec_param,
+                False,
+                population=start)
 
 
 def normal_distribution(mean, scale, min_max=None):
@@ -628,7 +734,6 @@ def normal_distribution(mean, scale, min_max=None):
                 element = np.random.normal(mean, scale)
 
     return element
-    # return 1/(margin*math.sqrt(2*math.pi))*math.e**(x-middle/margin)
 
 def generate_identity_with_normal(prev, scale, min_max=None):
     res = []
@@ -653,11 +758,6 @@ def generate_identity(dim, minimum=None, maximum=None, boundaries=None):
 
 
 def sphere_function(params):
-    # res = 0
-    """for i in range(len(params)+1):
-        res += params[i]**2"""
-    """for x in params:
-        res += x**2"""
     return sum(x**2 for x in params)
 
 
@@ -716,7 +816,6 @@ def hill_climbing_limited(minimum, maximum, dim, cycles, scale, test_func, start
     else:
         best = start
     fitness = test_func(best)
-    best_tmp = []
     for i in range(cycles):
         tmp = generate_identity_with_normal(best, scale, [minimum, maximum])
         all_res.append(tmp)
@@ -724,8 +823,6 @@ def hill_climbing_limited(minimum, maximum, dim, cycles, scale, test_func, start
         if fit_tmp < fitness:
             fitness = fit_tmp
             best = tmp
-    #if dim == 2:
-    #    draw_graph(minimum, maximum, test_func, all_res, best)
     return best
 
 
@@ -740,7 +837,6 @@ def blind_search(minimum, maximum, dim, cycles, test_func, draw_res=True):
         if fitness_p < fitness:
             fitness = fitness_p
             res = identity
-    #print(res)
     if dim == 2 and draw_res:
         draw_graph(minimum, maximum, test_func, all_res, res)
     return res
@@ -753,21 +849,11 @@ def count_density(minimum, maximum):
         res *= 10
     return res
 
+
 def reduce_temperature(temp, alpha = 0.99):
     return alpha*temp
 
-#zvolit teplotu napr. 2000
-# vygenerovat teplotu napr x0 = [3,3]
-# pak se to vlozi to funkce
-# pak vygenerovat pro x0 jedno x1 pomoci normalniho rozdeleni kde x0 a smerodatna odchylka je napr 0.5
-# x1 pouzit na funkcu
-# porovnat x0 s x1 pokud jsou lepsi, tak je automaticky prijmout.
-# x1 nahradi x0 a teplota se snizi.
-# pak se t0 ochladi
-# opakovani iterace
-# pokud je x1 horsi nez x0 tak vygeneruji nahodne cislo v uniformnim rozdeleni a je li mensi nez e na minus delta f/t ted e na -5/1980, pak jeji prijmeme jinak ne
-# je razen do lokalniho prohledavani spolu s hill climbing a tabu search - je to otazka ke zkousce
-# zkouska je jen z toho co se implementuje
+
 def simmulated_annealing(tf, t0, dim, temp_reduction, cycles, scale, test_func, draw=True, start=None):
     maximum = t0
     if start is None:
@@ -786,57 +872,25 @@ def simmulated_annealing(tf, t0, dim, temp_reduction, cycles, scale, test_func, 
             fitness0 = fitness1
         else:
             r = random.random()
-            #print(math.e**(-1*(delta_f)/t0))
             if r < math.e**(-1*(delta_f)/t0):
                 x0 = x1
                 fitness0 = fitness1
         t0 = temp_reduction(t0)
-        #if t0 < 0.1:
-        #    t0 = 0.1
-    #print(x0)
     if dim == 2 and draw:
         draw_graph(tf, maximum,test_func,results,x0)
     return x0
 
 
-#Make SOMA all to one
-#Na zacatku se urcuje nekolik parametru
-"""
-Path Length = 3.0
-Step size = 0.11
-PRT = 0.1
-Mene jedincu vice migracnich cyklu
-Na zacatku se populace vygeneruje nahodne. Nesmi byt sousedne. Fakt nahodne. A uniformne. Je dulezite zachovat diverzitu populace - jedinci se musi trochu lisit.
-Po vygenerovani jedincu je ohodnotime.
-Potom vybereme leadera - jedinec s nejlepsim fitness.
-Potom projdeme vsechny jedince.
-Vezmeme jedince a vygenerujeme perturbacni vektor. Vektor ma stejnou dimenzi jako jedinec. Pro kazdou dimenzi vygenerujeme nahodne cislo od 0 do 1. a pokud je to cislo mensi nez perturbacni
-parametr, pak tam jde jednicka, jinak tam jde 0. Je treba zajistit, aby alespon jeden parametr byl jedna.
-Potom skace k leaderovy. Pocet skoku je path length / step size. Po kazdem skoku vypocita a zapamatuje fitness.
-Vzorec je pro kazdy prvek z vektrou - x1ML1 = x1 + (xl-x1)*t*PRTVec, kde t je pocet skoku * delka skoku
-Napr pro vektor x1 = 2,0 a leader = 1,1, pri PRT = 0,1 je to 1l
-x1ML1 = 2 + (1-2)*0.11*0 = 0
-= 0+(1-0)*0.11*1 = 0.11
-nejlepsi pozici si zapamatujeme a na konci nahradime, pokud byla nejaka nalezena.
-Pri dvourozmernem muze byt prt 0.5
-50 generaci
-"""
-
 def soma(boundaries, dim, pop_size, migrations, step_size=0.11, path_length=3.0, prt=0.5, test_function=sphere_function, draw=True, color_pops=False, population=None):
-    #population = []
     fitness = []
-    start_points = []
-    leaders = []
     points_to_draw = [[] for x in range(migrations)]
-    end_points = []
     if population is None:
+        population = []
         for i in range(pop_size):
             population.append(generate_identity(dim, boundaries=boundaries))
-            start_points.append(population[i].copy())
             fitness.append(test_function(population[i]))
     else:
         for i in range(pop_size):
-            start_points.append(population[i].copy())
             fitness.append(test_function(population[i]))
 
     leader = population[fitness.index(min(fitness))]
@@ -846,7 +900,6 @@ def soma(boundaries, dim, pop_size, migrations, step_size=0.11, path_length=3.0,
             if leader == person:
                 continue
             ptr_vec = generate_prt_vector(prt, dim)
-            tmp = []
             best_tmp = person
             fitness_tmp_best = test_function(person)
 
@@ -862,11 +915,9 @@ def soma(boundaries, dim, pop_size, migrations, step_size=0.11, path_length=3.0,
             fitness[index] = fitness_tmp_best
 
         leader = population[fitness.index(min(fitness))]
-        leaders.append(leader.copy())
         leader_fitness = test_function(leader)
-    end_points = population.copy()
     if dim == 2 and draw:
-        draw_graph_soma(boundaries[0], boundaries[1], test_function, start_points, points_to_draw, end_points, leader, leaders, color_pops)
+        draw_graph_animated(boundaries[0], boundaries[1], test_function, points_to_draw, leader)
     return leader
 
 
@@ -883,27 +934,22 @@ def generate_prt_vector(prt, dim):
     return prt_vec
 
 def get_random_person(population, leader):
-    #print(population)
     person = leader
     while person == leader:
         person = population[random.randint(0, len(population)-1)]
     return person
+
 #NOTE generating ptr vector with every jump can improve SOMA accuracy
 def soma_enhanced(boundaries, dim, pop_size, migrations,step_size=0.11, path_length=3.0, prt=0.5, test_function=sphere_function, draw=True, color_pops=False, population=None):
-    #population = []
     fitness = []
-    start_points = []
-    leaders = []
     points_to_draw = [[] for x in range(migrations)]
-    end_points = []
     if population is None:
+        population = []
         for i in range(pop_size):
             population.append(generate_identity(dim, boundaries=boundaries))
-            start_points.append(population[i].copy())
             fitness.append(test_function(population[i]))
     else:
         for i in range(pop_size):
-            start_points.append(population[i].copy())
             fitness.append(test_function(population[i]))
 
     leader = population[fitness.index(min(fitness))]
@@ -912,7 +958,6 @@ def soma_enhanced(boundaries, dim, pop_size, migrations,step_size=0.11, path_len
             if leader == person:
                 continue
             ptr_vec = generate_prt_vector(prt, dim)
-            tmp = []
             best_tmp = person
             fitness_tmp_best = test_function(person)
             for j in range(int(path_length/step_size)):
@@ -926,52 +971,29 @@ def soma_enhanced(boundaries, dim, pop_size, migrations,step_size=0.11, path_len
             fitness[index] = fitness_tmp_best
 
         leader = population[fitness.index(min(fitness))]
-        leaders.append(leader.copy())
         leader_fitness = test_function(leader)
         for index, p in enumerate(population):
             if p == leader:
                 continue
             res = math.fabs(leader_fitness-fitness[index])
             if res > 0.0001:
-                #print("Convergent point BLAST HIM!")
                 population[index] = generate_identity(dim, boundaries=boundaries)
-    end_points = population.copy()
     if dim == 2 and draw:
-        draw_graph_soma(boundaries[0], boundaries[1], test_function, start_points, points_to_draw, end_points, leader, leaders, color_pops)
+        draw_graph_animated(boundaries[0], boundaries[1], test_function, points_to_draw, leader, 250)
 
-    #print(leader)
     return leader
 
 
-"""def make_jump(leader, person, t, ptr_vec, boundaries):
-    for i in range(len(person)):
-        person[i] += (leader[i] - person[i])*t*ptr_vec[i]
-        if person[i] > boundaries[1]:
-            person[i] = boundaries[1]
-        if person[i] < boundaries[0]:
-            person[i] = boundaries[0]
-    return person
-
-def generate_prt_vector(prt, dim):
-    prt_vec = []
-    for i in range(dim):
-        prt_vec.append(1 if random.random() < prt else 0)
-    return prt_vec"""
-
-#Particle swarm s vnitrni vahou
 def particle_swarm(boundaries, dim, count_of_particles, iterations, test_function, c1=0.2, c2=0.2):
     particles = []
     particle_speeds =[]
     fitness = []
     personal_best = []
-    start_points = []
     points_to_draw = [[] for x in range(iterations)]
-    end_points = []
     for i in range(count_of_particles):
         particles.append(generate_identity(dim, boundaries=boundaries))
         personal_best.append(particles[i].copy())
         particle_speeds.append(generate_speed(dim, boundaries=boundaries))
-        start_points.append(particles[i].copy())
         fitness.append(test_function(particles[i]))
     global_best = particles[fitness.index(min(fitness))]
 
@@ -989,13 +1011,14 @@ def particle_swarm(boundaries, dim, count_of_particles, iterations, test_functio
 
     print(global_best)
     if dim == 2:
-        draw_graph_pso(boundaries[0], boundaries[1], test_function, points_to_draw, global_best)
+        draw_graph_animated(boundaries[0], boundaries[1], test_function, points_to_draw, global_best)
     return global_best
 
 
 def generate_speed(dim, boundaries):
     max_speed = (math.fabs(boundaries[0])+math.fabs(boundaries[1]))/20
     return generate_identity(dim,boundaries=[0,max_speed])
+
 
 def count_w(iteration, migration):
     w_start = 0.9
@@ -1017,14 +1040,17 @@ def count_new_pos(dim, position, speed, boundaries):
         new_pos.append(value)
     return new_pos
 
-def differencial_evolution(boundaries, dim, np, generations, test_func, cr=0.9, f=0.5, method_to_use = 0, draw=False):
-    population = []
+def differencial_evolution(boundaries, dim, np, generations, test_func, cr=0.9, f=0.5, method_to_use = 0, draw=False, population=None):
     fitnesses = []
     points_to_draw = [[] for x in range(generations)]
-    for i in range(np):
-        population.append(generate_identity(dim, boundaries=boundaries))
-        points_to_draw[0].append(population[i])
-        fitnesses.append(test_func(population[i]))
+    if population is None:
+        population = []
+        for i in range(np):
+            population.append(generate_identity(dim, boundaries=boundaries))
+            fitnesses.append(test_func(population[i]))
+    else:
+        for i in range(np):
+            fitnesses.append(test_func(population[i]))
     for i in range(generations):
         for j in range(np):
             points_to_draw[i].append(population[j])
@@ -1039,7 +1065,8 @@ def differencial_evolution(boundaries, dim, np, generations, test_func, cr=0.9, 
                 population[j] = trial_vector
                 fitnesses[j] = trial_fitness
     if draw and dim == 2:
-        draw_graph_pso(boundaries[0],boundaries[1],test_func,points_to_draw,0)
+        draw_graph_animated(boundaries[0], boundaries[1], test_func, points_to_draw, 0)
+    #print(population[fitnesses.index(min(fitnesses))])
     return population[fitnesses.index(min(fitnesses))]
 
 
@@ -1057,8 +1084,6 @@ def de_rand_1_bin(boundaries,dim,working_index, population, f, cr):
     for i in range(dim):
         noise_vector_item = others[2][i] + f*(others[0][i]-others[1][i])
         noise_vector_item = check_boundaries(boundaries,noise_vector_item)
-        #if noise_vector_item < boundaries[0] or noise_vector_item > boundaries[1]:
-        #    noise_vector_item = random.randint(boundaries[0], boundaries[1])
         noise_vector.append(noise_vector_item)
     trial_vector = []
     for i in range(dim):
@@ -1103,12 +1128,61 @@ def de_current_to_pbest_1_bin(boundaries,dim,working_index, population, fitnesse
             trial_vector.append(current[i])
     return trial_vector
 
+
+def evolution_strategy(boundaries, dim, pop_size, generations, test_func, cp = 0.817, draw=True):
+    population = []
+    fitnesses = []
+    points_to_draw = [[] for x in range(generations)]
+    for i in range(pop_size):
+        population.append(generate_identity(dim, boundaries=boundaries))
+        fitnesses.append(test_func(population[i]))
+    sigma = 0.1
+    for i in range(generations):
+        new_population = population.copy()
+        for person in population:
+            points_to_draw[i].append(person)
+            offspring = generate_offspring(person, sigma)
+            new_population.append(offspring)
+            """ if tst_func(person) > tst_func(offspring):
+                person = offspring
+                better_count += 1"""
+        #list_to_sort = []
+        #for item in new_population:
+        #    list_to_sort.append((item, test_func(item)))
+        list_to_sort = [(item, test_func(item)) for item in new_population]
+        list_to_sort.sort(key=lambda pair: pair[1])
+        new_population = list_to_sort[:pop_size]
+        better_count = 0
+        for j in range(len(population)):
+            if new_population[j][1] < test_func(population[j]):
+                better_count += 1
+        better_count /= len(population)
+        if better_count < 0.2:
+            sigma *= cp
+        elif better_count > 0.2:
+            sigma /= cp
+        population = []
+        for item in new_population:
+            population.append(item[0])
+    print(population[0])
+    if draw and dim == 2:
+        draw_graph_animated(boundaries[0], boundaries[1], test_func, points_to_draw, 0)
+
+def generate_offspring(parent, sigma):
+    offspring = []
+    for item in parent:
+        N = random.normalvariate(0,sigma)
+        offspring.append(item+N)
+    return offspring
+
+
 def check_boundaries(boundaries, value):
     if value < boundaries[0] or value > boundaries[1]:
         value = random.randint(boundaries[0], boundaries[1])
     return value
 
-def draw_graph_soma(minimum, maximum, test_function, start_points, points, end_points, res, leaders, color_pops=False):
+
+def draw_graph_animated(minimum, maximum, test_function, points, res, interval=100):
     fig = plt.figure()
     ax = fig.add_subplot(111, projection='3d')
     x = y = np.arange(minimum, maximum, count_density(minimum, maximum))
@@ -1117,86 +1191,23 @@ def draw_graph_soma(minimum, maximum, test_function, start_points, points, end_p
     Z = zs.reshape(X.shape)
 
     ax.plot_surface(X, Y, Z, alpha=0.4, linewidth=0, antialiased=False)
+
     def update(num):
-        if num==len(points)-1:
+        if num == len(points)-1:
             anim.event_source.stop()
         to_draw = points[num]
-        #ax.plot([i[0] for i in to_draw], [j[1] for j in to_draw], [test_function([i[0], i[1]]) for i in to_draw])
         graph.set_data([i[0] for i in to_draw], [j[1] for j in to_draw])
         graph.set_3d_properties([test_function([i[0], i[1]]) for i in to_draw])
         return graph,
 
-    """for migration in points:
-        for p in migration:
-            ax.plot([p[0]], [p[1]], [test_function([p[0], p[1]])], color='k', marker='.', markersize=8, alpha=1)"""
     data = points[0]
     graph, = ax.plot([i[0] for i in data], [j[1] for j in data], [test_function([i[0], i[1]]) for i in data],color='k', marker='.', markersize=10, linestyle='')
-    anim = animation.FuncAnimation(fig,update, interval=250,blit=True)
-    """colors = ['gray', 'rosybrown', 'firebrick', 'sienna', 'sandybrown', 'gold', 'darkkhaki', 'palegreen', 'darkgreen', 'mediumspringgreen', 'lightseagreen', 'royalblue'] #list(dict(mcolors.BASE_COLORS, **mcolors.CSS4_COLORS).values())[10:]
-    for index, population in enumerate(points):
-        for p in population:
-            if index%2==1:
-                continue
-            if color_pops:
-                ax.plot([p[0]], [p[1]], [test_function([p[0], p[1]])], color=colors[index], marker='.', markersize=5, alpha=1)
-            else:
-                ax.plot([p[0]], [p[1]], [test_function([p[0], p[1]])], color='k', marker='.', markersize=5,
-                        alpha=1)
+    anim = animation.FuncAnimation(fig, update, interval=interval, blit=True)
 
-    for p in start_points:
-        ax.plot([p[0]], [p[1]], [test_function([p[0], p[1]])], markerfacecolor='b', markeredgecolor='b',
-                marker='.', markersize=10, alpha=1)
-
-    for p in end_points:
-        ax.plot([p[0]], [p[1]], [test_function([p[0], p[1]])], color='lime',
-                marker='.', markersize=10, alpha=1)
-
-    for p in leaders:
-        ax.plot([p[0]], [p[1]], [test_function([p[0], p[1]])], color='k',
-                marker='P', markersize=10, alpha=1)
-
-    ax.plot([res[0]], [res[1]], [test_function([res[0], res[1]])], markerfacecolor='r', markeredgecolor='r', marker='.', markersize=10, alpha=1)"""
     ax.set_xlabel('X Label')
     ax.set_ylabel('Y Label')
     ax.set_zlabel('Z Label')
     ax.view_init(90,180)
-
-    plt.show()
-
-def draw_graph_pso(minimum, maximum, test_function, points, res):
-    start = points[0]
-    fig = plt.figure()
-    ax = fig.add_subplot(111, projection='3d')
-    x = y = np.arange(minimum, maximum, count_density(minimum, maximum))
-    X, Y = np.meshgrid(x, y)
-    zs = np.array([test_function([x, y]) for x, y in zip(np.ravel(X), np.ravel(Y))])
-    Z = zs.reshape(X.shape)
-
-    ax.plot_surface(X, Y, Z, alpha=0.4, linewidth=0, antialiased=False)
-    def update(num):
-        if num==len(points)-1:
-            anim.event_source.stop()
-        to_draw = points[num]
-        #ax.plot([i[0] for i in to_draw], [j[1] for j in to_draw], [test_function([i[0], i[1]]) for i in to_draw])
-        graph.set_data([i[0] for i in to_draw], [j[1] for j in to_draw])
-        graph.set_3d_properties([test_function([i[0], i[1]]) for i in to_draw])
-        return graph,
-
-    """for migration in points:
-        for p in migration:
-            ax.plot([p[0]], [p[1]], [test_function([p[0], p[1]])], color='k', marker='.', markersize=8, alpha=1)"""
-    data = points[0]
-    graph, = ax.plot([i[0] for i in data], [j[1] for j in data], [test_function([i[0], i[1]]) for i in data],color='k', marker='.', markersize=10, linestyle='')
-    anim = animation.FuncAnimation(fig,update, interval=100,blit=True)
-
-    #ax.plot([res[0]], [res[1]], [test_function([res[0], res[1]])], markerfacecolor='r', markeredgecolor='r', marker='.', markersize=10, alpha=1)
-    #ax.plot([start[0]], [start[1]], [test_function([start[0], start[1]])], markerfacecolor='b', markeredgecolor='b', marker='.', markersize=10, alpha=1)
-    ax.set_xlabel('X Label')
-    ax.set_ylabel('Y Label')
-    ax.set_zlabel('Z Label')
-    ax.view_init(90,180)
-
-
 
     plt.show()
 
@@ -1223,50 +1234,6 @@ def draw_graph(minimum, maximum, test_function, points, res):
 
     plt.show()
 
-
-
-def test_draw_graph():
-    fig = plt.figure()
-    ax = fig.add_subplot(111, projection='3d')
-    #x = np.arange(-2.0, 2.0, 0.05)
-    #y = np.arange(-1.0,3.0,0.05)
-    x = y = np.arange(-400.0, 400.0, 0.5)
-    X, Y = np.meshgrid(x, y)
-    zs = np.array([rosenbrock_function([x, y]) for x, y in zip(np.ravel(X), np.ravel(Y))])
-    Z = zs.reshape(X.shape)
-
-    ax.plot_surface(X, Y, Z)
-
-    ax.set_xlabel('X Label')
-    ax.set_ylabel('Y Label')
-    ax.set_zlabel('Z Label')
-
-
-    plt.show()
-
-#def hill_climbing_vs_annealing():
-
-    """fig = plt.figure()
-    ax = fig.add_subplot(111, projection='3d')
-
-    u = np.linspace(0, 2 * np.pi, 100)
-    v = np.linspace(0, np.pi, 100)
-    x = 10 * np.outer(np.cos(u), np.sin(v))
-    y = 10 * np.outer(np.sin(u), np.sin(v))
-    z = 10 * np.outer(np.ones(np.size(u)), np.cos(v))
-
-    # Plot the surface
-    ax.plot_surface(x, y, z, color='b')
-
-    plt.show()"""
-
-
-#test_draw_graph()
-
-#blind_search(-50,50,2,500, rosenbrock_function)
-#[print(normal_distribution(50,20)) for x in range(10)]
-#hill_climbing(-500,500,2,5,20,1,styblinski_tang_function)
-
 normal_run = True
 if normal_run:
     root = tix.Tk()
@@ -1275,6 +1242,7 @@ if normal_run:
     fc = AlgorithmGUI(root)
     root.config(menu=main_menu)
     root.mainloop()
+
 
 def test_soma(dimension,test_func,num_of_tests):
     results_enh = []
@@ -1324,5 +1292,6 @@ def test_soma(dimension,test_func,num_of_tests):
 #soma([-500,500],5,50,100,test_function=schwefel_function)
 #simmulated_annealing(-500,500,2,reduce_temperature,500,100,schwefel_function)
 #hill_climbing_limited(-500,500,2,50,1,schwefel_function)
+#evolution_strategy(sphere_function,20,500,2,[-500,500])
 
 
