@@ -15,26 +15,6 @@ with open('1KarateClub.csv') as csvfile:
         matrix[col][row] = 1
         nodes.append(row)
 
-def keringhan_lin_edges():
-    print(len(nodes))
-    nds = nodes.copy()
-    group1 = []
-    group2 = []
-    for i in range(int(len(nodes)/2)):
-        rnd = random.randint(0,len(nds)-1)
-        print(len(nds))
-        group1.append(nds[rnd])
-        nds.pop(rnd)
-        rnd = random.randint(0,len(nds)-1)
-        group2.append(nds[rnd])
-        nds.pop(rnd)
-    if len(nds) > 0:
-        for item in nds:
-            group1.append(item)
-    print("1.: {} 2.: {}".format(len(group1), len(group2)))
-    print(group1)
-    print(group2)
-
 def keringhan_lin():
     group1 = []
     group2 = []
@@ -46,7 +26,7 @@ def keringhan_lin():
     init_cut_size = calculate_cut_size(0,0,group1, group2, False)
     new_cut_size = 0
     for i in range(10): #while init_cut_size > new_cut_size:
-        init_cut_size = new_cut_size#calculate_cut_size(0,0,group1, group2, False)
+        init_cut_size = new_cut_size
         restricted = 0#[]
         best_cuts = []
         group_1_for_pick = group1.copy()
@@ -58,17 +38,9 @@ def keringhan_lin():
                 i = group_1_for_pick.pop(random.randint(0,len(group_1_for_pick)-1))
                 j = group_2_for_pick.pop(random.randint(0,len(group_2_for_pick)-1)) 
                 cut_sizes.append([i,j, calculate_cut_size(i,j, group1.copy(), group2.copy())])
-            #for i in group1: # znahodnit
-                #for j in group2:
-                    #if i in restricted or j in restricted:
-                        #continue
-                    #cut_sizes.append([i,j, calculate_cut_size(i,j, group1.copy(), group2.copy())])
-            #print(len(cut_sizes))
             modified_c_sizes = [init_cut_size - item[2] for item in cut_sizes]
             best_cs_index = modified_c_sizes.index(max(modified_c_sizes))
-            #print(best_cut_size)
             best_cut = cut_sizes[best_cs_index]
-            #print(best_cut)
             best_cuts.append(best_cut)
             group1.remove(best_cut[0])
             group2.remove(best_cut[1])
@@ -96,11 +68,15 @@ def keringhan_lin():
     safe_matrix_as_csv()
 
 def cut_connecting_edges(group1, group2):
+    edges_cut = 0
     for row in group1:
         for col in group2:
             if matrix[row][col] == 1:
                 matrix[row][col] = 0
                 matrix[col][row] = 0
+                """edges_cut+=1
+                if edges_cut >=10:
+                    return"""
 
 def calculate_cut_size(v_i, v_j, group1, group2, switch_groups=True):
     if switch_groups:
@@ -116,7 +92,7 @@ def calculate_cut_size(v_i, v_j, group1, group2, switch_groups=True):
 
 def safe_matrix_as_csv():
     edges = []
-    print(sum([sum(row) for row in matrix]))
+    #print(sum([sum(row) for row in matrix]))
     for index, row in enumerate(matrix):
         for col_index, col in enumerate(row):
             if col == 1:
