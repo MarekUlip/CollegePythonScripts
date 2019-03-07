@@ -48,7 +48,7 @@ def get_true_res(x, y):
     return int((2*x+1) > y)
 
 def get_color(point, predicted):
-    print("True result: {}. Predicted {}".format(get_true_res(point[0], point[1]) , predicted))
+    print("True result: {}. Predicted {}".format(get_true_res(point[0], point[1]), predicted))
     if get_true_res(point[0], point[1]) == predicted:
         return 'g'
     else:
@@ -118,7 +118,7 @@ if True:
     main_frame.pack(fill=BOTH)
     wrapper = Frame(main_frame)
     wrapper.pack(fill=X)
-    Label(wrapper, text="Blind Search", font=("Arial", 44)).pack(anchor='center')
+    Label(wrapper, text="Perceptron", font=("Arial", 44)).pack(anchor='center')
     wrapper = Frame(main_frame)
     wrapper.pack(fill=X)
     Label(wrapper, text="Minimum", font=("Arial", font_size)).pack(side=LEFT)
