@@ -2,6 +2,7 @@ import random
 import math
 import matplotlib.pyplot as plt
 import os
+import csv
 def count_min_probabilty(n):
     return math.log(n)/n
 
@@ -61,7 +62,7 @@ def create_barabasi_albert_graph_dynamic(n,m,m0):
     #print("Vertice list: {} {}".format(vertice_list, vertice_count))
     return neighbour_matrix
 
-def random_node_sampling(matrix,p):
+def random_node_sampling(matrix,p, limit_on_p):
     n = len(matrix)
     edges = []
     nodes = []
@@ -71,7 +72,12 @@ def random_node_sampling(matrix,p):
             nodes.append(i)
             for index, item in enumerate(matrix[i]):
                 if item > 0:
+                    if index not in nodes:
+                        nodes.append(index)
                     edges.append([i,index])
+            if limit_on_p and len(nodes) > len(matrix)*p:
+                print("Limiting with count {}".format(len(nodes)))
+                return [edges, nodes]
     print(len(nodes))
     #print(len(edges))"""
     return [edges, nodes]
@@ -87,14 +93,16 @@ def degree_based_sampling(matrix, p, limit_on_p):
         if degree == 0:
             passed = p > rnd
         else:    
-            passed = p * degree < rnd#(p * degree) > rnd
+            passed = p / degree #p * degree < rnd#(p * degree) > rnd
         if passed:
             nodes.append(i)
             for index, item in enumerate(matrix[i]):
                 if item > 0:
+                    if index not in nodes: 
+                        nodes.append(index)
                     edges.append([i,index])
             if limit_on_p and len(nodes) > len(matrix)*p:
-             #   print("Limiting with count {}".format(len(nodes)))
+                print("Limiting with count {}".format(len(nodes)))
                 return [edges, nodes]
     print(len(nodes))
     #print(len(edges))"""
@@ -114,6 +122,7 @@ def cummulative_distribution(X, matrix, nodes, method_name, max_degree = 0):
         counts[key] /= len(nodes)
         cumm += counts[key]
         distribution.append([key/max_degree, cumm])
+    print("Dist len: {}".format(len(distribution)))
     
     #print(counts)
     #print(distribution)
@@ -135,6 +144,25 @@ def plot_chart(file_name):
 def get_max_degree(matrix, nodes):
     degrees = [sum(row) for index, row in enumerate(matrix) if index in nodes]
     return max(degrees)
+
+def safe_matrix_as_csv(matrix, name):
+    edges = []
+    #print(sum([sum(row) for row in matrix]))
+    for index, row in enumerate(matrix):
+        for col_index, col in enumerate(row):
+            if col == 1:
+                if [index, col_index] in edges or [col_index, index] in edges:
+                    #print("Yea")
+                    continue
+                edges.append([index, col_index])
+    #print(len(edges))
+    write_vertices_to_csv(edges,"{}.csv".format(name))
+
+def write_vertices_to_csv(edges,name):
+    with open(name, mode='w+', newline='') as stats_file:
+        csv_writer = csv.writer(stats_file, delimiter=';', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+        for item in edges:
+            csv_writer.writerow(item)
         
 
 node_count = 1000
@@ -150,11 +178,18 @@ limit_p = True
 mx_degree = get_max_degree(ba_matrix,range(1000))
 plt.clf()
 cummulative_distribution(5,ba_matrix, range(1000), "base", mx_degree)
-cummulative_distribution(5,ba_matrix, random_node_sampling(ba_matrix, prob)[1], "RNA", mx_degree)
+cummulative_distribution(5,ba_matrix, random_node_sampling(ba_matrix, prob, limit_p)[1], "RNA", mx_degree)
 cummulative_distribution(5,ba_matrix, degree_based_sampling(ba_matrix, prob, limit_p)[1], "dbs", mx_degree)
 plot_chart("\\barabasi-albert")
+write_vertices_to_csv(random_node_sampling(ba_matrix, prob, limit_p)[0], "barabasi-rnd.csv")
+write_vertices_to_csv(degree_based_sampling(ba_matrix, prob, limit_p)[0], "barabasi-dbs.csv")
 
 cummulative_distribution(5,rn_matrix, range(1000), "base", mx_degree)
-cummulative_distribution(5,rn_matrix, random_node_sampling(rn_matrix, prob)[1], "RNA", mx_degree)
+cummulative_distribution(5,rn_matrix, random_node_sampling(rn_matrix, prob, limit_p)[1], "RNA", mx_degree)
 cummulative_distribution(5,rn_matrix, degree_based_sampling(rn_matrix, prob, limit_p)[1], "dbs", mx_degree)
 plot_chart("\\random_chart")
+write_vertices_to_csv(random_node_sampling(rn_matrix, prob, limit_p)[0], "random-rnd.csv")
+write_vertices_to_csv(degree_based_sampling(rn_matrix, prob, limit_p)[0], "random-dbs.csv")
+
+safe_matrix_as_csv(rn_matrix,"cvic2RandomGraph")
+safe_matrix_as_csv(ba_matrix,"cvic2BarabasiGraph")
