@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bb618162-b00c-473b-ab6e-3e1e8b4d017b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/hopfield.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/navy_backpropag2.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/navy_backpropag_evolution.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/navy_backpropag.py" beforeDir="false" afterPath="$PROJECT_DIR$/navy_backpropag.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/navy_backpropag_evolution.py" beforeDir="false" afterPath="$PROJECT_DIR$/navy_backpropag_evolution.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,7 +16,7 @@
     <session id="-1283638348">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="62" />
+          <entry key="project.closed" value="63" />
           <entry key="project.open.time.0" value="7" />
           <entry key="project.open.time.1" value="7" />
           <entry key="project.open.time.19" value="1" />
@@ -34,7 +32,7 @@
           <entry key="project.open.time.28" value="3" />
           <entry key="project.open.time.29" value="3" />
           <entry key="project.open.time.30" value="3" />
-          <entry key="project.open.time.31" value="2" />
+          <entry key="project.open.time.31" value="3" />
           <entry key="project.open.time.32" value="3" />
           <entry key="project.open.time.34" value="1" />
           <entry key="project.open.time.35" value="1" />
@@ -46,20 +44,20 @@
           <entry key="project.open.time.56" value="1" />
           <entry key="project.open.time.65" value="1" />
           <entry key="project.open.time.82" value="1" />
-          <entry key="project.opened" value="63" />
+          <entry key="project.opened" value="64" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="Python Console" value="42" />
-          <entry key="py" value="39954" />
-          <entry key="txt" value="191" />
+          <entry key="py" value="40386" />
+          <entry key="txt" value="237" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PLAIN_TEXT" value="191" />
-          <entry key="Python" value="39996" />
+          <entry key="PLAIN_TEXT" value="237" />
+          <entry key="Python" value="40428" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -93,8 +91,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/2class.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4395">
-              <caret line="635" column="66" lean-forward="true" selection-start-line="635" selection-start-column="66" selection-end-line="635" selection-end-column="66" />
+            <state relative-caret-position="179">
+              <caret line="1178" selection-start-line="1178" selection-end-line="1181" selection-end-column="16" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
                 <marker date="1543917122871" expanded="true" signature="370:37161" ph="..." />
@@ -111,12 +109,12 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/navy_backpropag.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="302">
-              <caret line="72" selection-start-line="72" selection-end-line="72" />
+            <state relative-caret-position="75">
+              <caret line="65" column="21" selection-start-line="65" selection-start-column="21" selection-end-line="65" selection-end-column="21" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
-                <marker date="1552568339442" expanded="true" signature="45:50" ph="..." />
-                <marker date="1552568339442" expanded="true" signature="79:84" ph="..." />
+                <marker date="1552868918072" expanded="true" signature="45:50" ph="..." />
+                <marker date="1552868918072" expanded="true" signature="79:84" ph="..." />
               </folding>
             </state>
           </provider>
@@ -131,10 +129,10 @@
         <entry file="file://$PROJECT_DIR$/navy_backpropag_evolution.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="347">
-              <caret line="80" column="48" selection-start-line="80" selection-start-column="48" selection-end-line="80" selection-end-column="48" />
+              <caret line="148" column="117" selection-start-line="148" selection-start-column="117" selection-end-line="148" selection-end-column="117" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
-                <marker date="1552568414518" expanded="true" signature="2046:2343" ph="..." />
+                <marker date="1552869266672" expanded="true" signature="2378:5093" ph="..." />
               </folding>
             </state>
           </provider>
@@ -169,6 +167,10 @@
       <find>hill</find>
       <find>scale</find>
       <find>standar</find>
+      <find>generate_ident</find>
+      <find>check_bou</find>
+      <find>randint</find>
+      <find>rand</find>
     </findStrings>
     <replaceStrings>
       <replace>minimum</replace>
@@ -179,6 +181,7 @@
       <replace>data</replace>
       <replace>num_of_test_points</replace>
       <replace>max_val</replace>
+      <replace>uniform</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -211,6 +214,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -222,7 +226,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -497,7 +500,14 @@
       <option name="project" value="LOCAL" />
       <updated>1551963717340</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Non working solution from 3rd seminar and working solution from 2nd.">
+      <created>1552568466792</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1552568466792</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TodoView">
@@ -541,20 +551,26 @@
     <MESSAGE value="Non working solution from seminar." />
     <MESSAGE value="Working solution enhanced with GUI." />
     <MESSAGE value="Non working solution from 2nd seminar." />
-    <option name="LAST_COMMIT_MESSAGE" value="Non working solution from 2nd seminar." />
+    <MESSAGE value="Non working solution from 3rd seminar and working solution from 2nd." />
+    <option name="LAST_COMMIT_MESSAGE" value="Non working solution from 3rd seminar and working solution from 2nd." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/navy_backpropag.py</url>
-          <line>72</line>
+          <line>81</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/navy_backpropag_evolution.py</url>
-          <line>83</line>
+          <line>151</line>
           <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/navy_backpropag_evolution.py</url>
+          <line>117</line>
+          <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -579,12 +595,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3247">
           <caret line="207" column="32" selection-start-line="207" selection-start-column="32" selection-end-line="207" selection-end-column="32" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-            <marker date="1544488548730" expanded="true" signature="1696:1863" ph="..." />
-            <marker date="1544488548730" expanded="true" signature="2045:2050" ph="..." />
-            <marker date="1544488548730" expanded="true" signature="2669:2671" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -592,16 +602,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
           <caret line="36" column="22" selection-start-line="36" selection-start-column="22" selection-end-line="36" selection-end-column="25" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-            <marker date="1545117636670" expanded="true" signature="5125:5999" ph="..." />
-            <marker date="1545117636670" expanded="true" signature="6522:6527" ph="..." />
-            <marker date="1545117636670" expanded="true" signature="8877:9451" ph="..." />
-            <marker date="1545117636670" expanded="true" signature="9571:9572" ph="..." />
-            <marker date="1545117636670" expanded="true" signature="12203:12600" ph="..." />
-            <marker date="1545117636670" expanded="true" signature="16882:16887" ph="..." />
-            <marker date="1545117636670" expanded="true" signature="19603:19606" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -609,41 +609,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="612">
           <caret line="40" selection-start-line="40" selection-end-line="41" selection-end-column="37" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-            <marker date="1551961154380" expanded="true" signature="3299:3630" ph="..." />
-          </folding>
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hopfield.py">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/navy_backpropag2.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-17">
           <caret line="4" column="60" lean-forward="true" selection-start-line="4" selection-start-column="60" selection-end-line="4" selection-end-column="60" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-            <marker date="1552506954979" expanded="true" signature="615:993" ph="..." />
-            <marker date="1552506954979" expanded="true" signature="1016:1017" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/2class.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4395">
-          <caret line="635" column="66" lean-forward="true" selection-start-line="635" selection-start-column="66" selection-end-line="635" selection-end-column="66" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-            <marker date="1543917122871" expanded="true" signature="370:37161" ph="..." />
-            <marker date="1543917122871" expanded="true" signature="3821:31301" ph="..." />
-            <marker date="1543917122871" expanded="true" signature="3968:4143" ph="..." />
-            <marker date="1543917122871" expanded="true" signature="4089:4143" ph="..." />
-            <marker date="1543917122871" expanded="true" signature="5986:31156" ph="..." />
-            <marker date="1543917122871" expanded="true" signature="38127:38129" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -659,14 +631,33 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/navy_backpropag.py">
+    <entry file="file://$PROJECT_DIR$/hopfield.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/2class.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="302">
-          <caret line="72" selection-start-line="72" selection-end-line="72" />
+        <state relative-caret-position="179">
+          <caret line="1178" selection-start-line="1178" selection-end-line="1181" selection-end-column="16" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
-            <marker date="1552568339442" expanded="true" signature="45:50" ph="..." />
-            <marker date="1552568339442" expanded="true" signature="79:84" ph="..." />
+            <marker date="1543917122871" expanded="true" signature="370:37161" ph="..." />
+            <marker date="1543917122871" expanded="true" signature="3821:31301" ph="..." />
+            <marker date="1543917122871" expanded="true" signature="3968:4143" ph="..." />
+            <marker date="1543917122871" expanded="true" signature="4089:4143" ph="..." />
+            <marker date="1543917122871" expanded="true" signature="5986:31156" ph="..." />
+            <marker date="1543917122871" expanded="true" signature="38127:38129" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/navy_backpropag.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="65" column="21" selection-start-line="65" selection-start-column="21" selection-end-line="65" selection-end-column="21" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+            <marker date="1552868918072" expanded="true" signature="45:50" ph="..." />
+            <marker date="1552868918072" expanded="true" signature="79:84" ph="..." />
           </folding>
         </state>
       </provider>
@@ -674,10 +665,10 @@
     <entry file="file://$PROJECT_DIR$/navy_backpropag_evolution.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="347">
-          <caret line="80" column="48" selection-start-line="80" selection-start-column="48" selection-end-line="80" selection-end-column="48" />
+          <caret line="148" column="117" selection-start-line="148" selection-start-column="117" selection-end-line="148" selection-end-column="117" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
-            <marker date="1552568414518" expanded="true" signature="2046:2343" ph="..." />
+            <marker date="1552869266672" expanded="true" signature="2378:5093" ph="..." />
           </folding>
         </state>
       </provider>
