@@ -60,8 +60,6 @@ base_B = np.array([1,1,1,1,1,1,-1,-1,-1,-1,
 patterns = np.array([base_A, base_B])
 
 def convert(array_to_convert):
-    #array_to_convert = array_to_convert.ravel()
-    #print(array_to_convert)
     new_arr = []
     for _, item in enumerate(array_to_convert):
         if item == -1:
@@ -73,7 +71,7 @@ def convert(array_to_convert):
 def noisify(p, array_to_noisify):
     for i in range(len(array_to_noisify)):
         rnd = np.random.uniform()
-        if rnd > 0.7:
+        if rnd > p:
             array_to_noisify[i] *= -1
     return array_to_noisify
 
@@ -109,9 +107,7 @@ def create_weight_matrix():
     return base - np.identity(patterns.shape[1])
 
 def recover(pattern):
-    init_pattern = pattern.copy()
     weight_matrix = create_weight_matrix()
-    #print(weight_matrix)
     n = weight_matrix.shape[0]
     time_since_change = 0
     prev_random = np.random.randint(0,n)
@@ -134,66 +130,9 @@ def recover(pattern):
     #print("inpt: {}\noutput: {}".format(init_pattern,pattern))
     return pattern
 
-"""print("Input shape:")
-char_variable = convert(a_corrupted)
-#print(np.reshape(char_variable,(-1,10)))
-for row in np.reshape(char_variable,(-1,10)):
-    line = "".join(col for col in row)
-    print(line)
-print("expected shape:")
-char_variable = convert(base_A)
-#print(np.reshape(char_variable,(-1,10)))
-for row in np.reshape(char_variable,(-1,10)):
-    line = "".join(col for col in row)
-    print(line)
-print("Recovered shape:")
-char_variable = convert(recover(a_corrupted))
-for row in np.reshape(char_variable,(-1,10)):
-    line = "".join(col for col in row)
-    print(line)
-#print(np.reshape(char_variable,(-1,10)))
-print("-------------------------------------------------")
-print("Input shape:")
-char_variable = convert(a_corrupted_2)
-#print(np.reshape(char_variable,(-1,10)))
-for row in np.reshape(char_variable,(-1,10)):
-    line = "".join(col for col in row)
-    print(line)
-print("expected shape:")
-char_variable = convert(base_A)
-#print(np.reshape(char_variable,(-1,10)))
-for row in np.reshape(char_variable,(-1,10)):
-    line = "".join(col for col in row)
-    print(line)
-print("Recovered shape:")
-char_variable = convert(recover(a_corrupted_2))
-for row in np.reshape(char_variable,(-1,10)):
-    line = "".join(col for col in row)
-    print(line)
-#print(np.reshape(char_variable,(-1,10)))
-print("-------------------------------------------------")
-
-print("Input shape:")
-char_variable = convert(b_corrupted)
-#print(np.reshape(char_variable,(-1,10)))
-for row in np.reshape(char_variable,(-1,10)):
-    line = "".join(col for col in row)
-    print(line)
-print("expected shape:")
-char_variable = convert(base_B)
-#print(np.reshape(char_variable,(-1,10)))
-for row in np.reshape(char_variable,(-1,10)):
-    line = "".join(col for col in row)
-    print(line)
-print("Recovered shape:")
-char_variable = convert(recover(b_corrupted))
-#print(np.reshape(char_variable,(-1,10)))
-for row in np.reshape(char_variable,(-1,10)):
-    line = "".join(col for col in row)
-    print(line)"""
 test(base_A,a_corrupted)
 test(base_A,a_corrupted_2)
-test(base_A, noisify(0.6,base_A.copy()))
+test(base_A, noisify(0.7,base_A.copy()))
 test(base_B,b_corrupted)
 test(base_B,noisify(0.7,base_B.copy()))
 #recover(np.array([-1,-1,1,-1]))
