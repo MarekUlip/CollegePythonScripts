@@ -1,3 +1,4 @@
 *.png
 *.csv
+*.gdf
 !1*.csv
