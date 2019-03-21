@@ -16,9 +16,9 @@ def predict(point, weightsH, weightsO, bias=(1,1)):
     inpts = [[[point[0],weightsH[0]], [point[1],weightsH[1]]], [[point[0],weightsH[2]], [point[1],weightsH[3]]]]
     outsH = []
     outsH.append(sigm(dot_product(inpts[0], bias[0])))
-    outsH.append(sigm(dot_product(inpts[1],bias[0])))
+    outsH.append(sigm(dot_product(inpts[1],bias[1])))
     inpts = [[outsH[0],weightsO[0]], [outsH[1],weightsO[1]]]
-    out = sigm(dot_product(inpts,bias[1]))
+    out = sigm(dot_product(inpts,bias[2]))
     return outsH, out
 
 def normal_distribution(mean, scale, min_max=None):
@@ -146,7 +146,7 @@ def check_boundaries(boundaries, value):
 def start_prog():
     inputs = [[0, 0], [0, 1], [1, 0], [1, 1]]
     xored = [0, 1, 1, 0]
-    weights = particle_swarm([-30,30],8,100,100,test_function)#hill_climbing(-30.0,30.0,8,500,500,8.0, test_function)
+    weights = particle_swarm([-30,30],9,75,100,test_function)#hill_climbing(-30.0,30.0,8,500,500,8.0, test_function)
 
 
     for index, point in enumerate(inputs):

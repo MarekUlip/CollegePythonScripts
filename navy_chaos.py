@@ -86,3 +86,17 @@ def start_prog(epochs):
 
 start_prog(5000)
 
+
+
+def create_train_set(a, count, result=None):
+    base_x = np.random.uniform()
+    train_set = []
+    results = []
+    for i in range(count):
+        train_set.append([base_x,a])
+        if result is None:
+            results.append(a*base_x*(1-base_x))
+        else:
+            results.append(result)
+        base_x = np.random.uniform()
+    return train_set, results
