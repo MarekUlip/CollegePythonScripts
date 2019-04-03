@@ -9,7 +9,18 @@ def sigm(x):
     return 1/(1+np.exp(-x))
 
 def count_error(expected, predicted):
-    return expected - predicted
+    if type(expected) is list:
+       errors = [item-predicted for item in expected]
+       minimum = 999999
+       minimum_index = -1
+       for index, error in enumerate(errors):
+           if math.fabs(error) < minimum:
+               minimum_index = index
+               minimum = math.fabs(error)
+       return errors[minimum_index]
+    else:
+        return expected - predicted
+
 
 def dot_product(input, bias):
     # print(sum([item[0]*item[1] + bias for item in input]))
@@ -60,31 +71,66 @@ def adapt_bias(bias, error, leaning_const):
     return bias + error*leaning_const
 
 
-def start_prog(epochs):
-    inputs = [[0, 0], [0, 1], [1, 0], [1, 1]]
-    xored = [0, 1, 1, 0]
+def start_prog(epochs, a, forced=True, use_chaos=False):
+    #2.5 3.3 4.0
+    #a = 2.5
+    params = None
+    if a == 2.5:
+        if forced:
+            params = 0.6
+        """if use_chaos:
+            train_set, results = create_train_set_chaos(a, 1000, params)
+        
+        train_set, results = create_train_set(a, 1000, params)"""
+    elif a == 3.3:
+        if forced:
+            params = [0.4794270198242338, 0.823603283206069]
+        #train_set, results = create_train_set(a, 1000, params)  # 0.6)
+    else:
+        params = None
+        #train_set, results = create_train_set(a, 1000, params)  # 0.6)
+
+    if use_chaos:
+        train_set, results = create_train_set_chaos(a, 1000, params)
+    else:
+        train_set, results = create_train_set(a, 1000, params)
+    ##
+    #inputs = [[0, 0], [0, 1], [1, 0], [1, 1]]
+    #xored = [0, 1, 1, 0]
     learn_const = 0.2
     weightsH = [np.random.uniform() for i in range(4)]
     weightsO = [np.random.uniform() for i in range(2)]
     biases = [1,1,1]
     for epoch in range(epochs):
         error_sum = 0
-        for index, point in enumerate(inputs):
+        for index, point in enumerate(train_set):
             outsH, out = predict(point, biases, weightsH, weightsO)
-            error = count_error(xored[index], out)
+            error = count_error(results[index], out)
             error_sum += math.fabs(error)
             weightsO, weightsH, biases = backpropagation(error, out, outsH, weightsO, weightsH, learn_const, point, biases)
-        if error_sum < 0.4:
-            print("{}: {}".format(epoch,error_sum))
+        #if error_sum < 0.4:
+            #print("{}: {}".format(epoch,error_sum))
     print(weightsH)
     print(weightsO)
     print(biases)
-    for index, point in enumerate(inputs):
+    if use_chaos:
+        train_set, results = create_test_set_chaos(a, 1000)
+    else:
+        train_set, results = create_test_set(a, 1000)
+
+    max_diff = 0
+    avg_difference = 0
+    for index, point in enumerate(train_set):
         #print(predict(point, biases, weightsH, weightsO))
-        print("Point {} is expeted to be {} and was predicted as {}".format(point, xored[index], predict(point, biases, weightsH, weightsO)[1]))
+        predicted = predict(point, biases, weightsH, weightsO)[1]
+        difference = results[index]-predicted
+        avg_difference += math.fabs(difference)
+        if math.fabs(difference) > max_diff:
+            max_diff = math.fabs(difference)
+        print("Point {} is expeted to be {} and was predicted as {}. Difference is {}".format(point, results[index], predicted,difference))
+    print("Max difference was {}. Average difference was: {}".format(max_diff,avg_difference/len(train_set)))
 
 
-start_prog(5000)
 
 
 
@@ -97,6 +143,64 @@ def create_train_set(a, count, result=None):
         if result is None:
             results.append(a*base_x*(1-base_x))
         else:
-            results.append(result)
+            if type(result) is list:
+                expected_result = a * base_x * (1 - base_x)
+                errors = [item - expected_result for item in result]
+                minimum = 999999
+                minimum_index = -1
+                for index, error in enumerate(errors):
+                    if math.fabs(error) < minimum:
+                        minimum_index = index
+                        minimum = math.fabs(error)
+                #print(result[minimum_index])
+                results.append(result[minimum_index])
+            else:
+                results.append(result)
         base_x = np.random.uniform()
     return train_set, results
+
+def create_test_set(a, count):
+    base_x = np.random.uniform()
+    train_set = []
+    results = []
+    for i in range(count):
+        train_set.append([base_x, a])
+        results.append(a * base_x * (1 - base_x))
+        base_x = np.random.uniform()
+    return train_set, results
+
+def create_train_set_chaos(a, count, result=None):
+    base_x = 0.01
+    train_set = []
+    results = []
+    for i in range(count):
+        train_set.append([base_x,a])
+        if result is None:
+            results.append(a*base_x*(1-base_x))
+        else:
+            if type(result) is list:
+                expected_result = a * base_x * (1 - base_x)
+                errors = [item - expected_result for item in result]
+                minimum = 999999
+                minimum_index = -1
+                for index, error in enumerate(errors):
+                    if math.fabs(error) < minimum:
+                        minimum_index = index
+                        minimum = math.fabs(error)
+                #print(result[minimum_index])
+                results.append(result[minimum_index])
+            else:
+                results.append(result)
+        base_x = a*base_x*(1-base_x)
+    return train_set, results
+
+def create_test_set_chaos(a, count):
+    base_x = np.random.uniform()
+    train_set = []
+    results = []
+    for i in range(count):
+        train_set.append([base_x, a])
+        results.append(a * base_x * (1 - base_x))
+        base_x = a*base_x*(1-base_x)
+    return train_set, results
+start_prog(500, 4.0,  False, False)

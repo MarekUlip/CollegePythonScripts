@@ -1233,7 +1233,6 @@ def draw_graph(minimum, maximum, test_function, points, res):
     ax.set_zlabel('Z Label')
 
     plt.show()
-
 normal_run = True
 if normal_run:
     root = tix.Tk()
