@@ -1,10 +1,13 @@
 import csv
 import math
 import copy
+import networkx as nx
+import matplotlib.pyplot as plt
 
 matrix = [[0 for col in range(34)] for row in range(34)]
 nodes = []
 edges = []
+
 with open('1KarateClub.csv') as csvfile:
     readCSV = csv.reader(csvfile, delimiter=';')
     for row in readCSV:
@@ -126,7 +129,7 @@ def complete_linkage(matrix):
     sec_vertex_num = matrix[vertex_num].index(max_val)
     return [vertex_num, sec_vertex_num]
 
-def output_cluster(cluster, num_of_clusters):
+def output_cluster_no_timeline(cluster, num_of_clusters):
     to_output = ["nodedef>name VARCHAR, label VARCHAR, color VARCHAR\n"]
     edge_part = "edgedef> node1,node2\n"
     cluster_less_color = "#FF0000"
@@ -144,13 +147,59 @@ def output_cluster(cluster, num_of_clusters):
     with open("clusters-{}.gdf".format(num_of_clusters), "w") as f:
         for item in to_output:
             f.write(item)
+def output_cluster_gdf(cluster, num_of_clusters):
+    to_output = ["nodedef>name VARCHAR, label VARCHAR, color VARCHAR, timeline_dynamic VARCHAR\n"]
+    edge_part = "edgedef> node1,node2\n"
+    cluster_less_color = "#FF0000"
+    colors = ["#8B008B", "#A9A9A9", "#1E90FF", "#F08080", "#7B68EE", "#2F4F4F", "#A0522D", "#483D8B", "#48D1CC", "#00FF00", "#B8860B", ]
+    for sub_clust in cluster:
+        if type(sub_clust) is list:
+            color = colors.pop()
+            for item in sub_clust:
+                to_output.append("{},\"{}\",{},{}\n".format(item+1,item+1,color,num_of_clusters))
+        else:
+            to_output.append("{},\"{}\",{},{}\n".format(sub_clust+1,sub_clust+1,cluster_less_color, num_of_clusters))
+    to_output.append(edge_part)
+    for edge in edges:
+        to_output.append("{},{}\n".format(edge[0],edge[1]))
+    with open("clusters-{}.gdf".format(num_of_clusters), "w") as f:
+        for item in to_output:
+            f.write(item)
+
+def output_cluster(cluster, num_of_clusters):
+    graph = nx.Graph(name=str(num_of_clusters),timerepresentation="timestamp", timestamp=str(num_of_clusters))
+    print(graph.graph)
+    print("f")
+    #mode="slice" name="" timerepresentation="timestamp" timestamp=
+    cluster_less_color = "#FF0000"
+    colors = ["#8B008B", "#A9A9A9", "#1E90FF", "#F08080", "#7B68EE", "#2F4F4F", "#A0522D", "#483D8B", "#48D1CC", "#00FF00", "#B8860B", ]
+    node_colors = []
+    for sub_clust in cluster:
+        if type(sub_clust) is list:
+            color = colors.pop()
+            for item in sub_clust:
+                graph.add_node(item+1)
+                node_colors.append(color)
+                graph.node[item+1]['viz'] = {'color': {'r': color, 'g': color, 'b': color, 'a': 0}}
+                #to_output.append("{},\"{}\",{},{}\n".format(item+1,item+1,color,num_of_clusters))
+        else:
+            graph.add_node(sub_clust+1)
+            node_colors.append(cluster_less_color)
+            graph.node[sub_clust+1]['viz'] = {'color': {'r': 255, 'g': 0, 'b': 0, 'a': 0}}
+    for edge in edges:
+        graph.add_edge(int(edge[0]),int(edge[1]))
+        #to_output.append("{},{}\n".format(edge[0],edge[1]))
+    nx.write_gexf(graph, "clusters-{}.gexf".format(num_of_clusters))
+    nx.draw(graph, node_color = node_colors)    
+    plt.show()    
+    
 
 
 similarity_matrix = count_similarity(matrix)
 similarity_matrix_work = similarity_matrix.copy()
 clusters = clustering(similarity_matrix_work)
 [print("{}: {}".format(index,row)) for index,row in enumerate(clusters)]
-clust_num = 19
+clust_num = 17
 output_cluster(clusters[clust_num],clust_num+1)
 #simple_linkage(similarity_matrix)      
 #[print(row) for row in count_similarity(matrix)]

@@ -1,4 +1,6 @@
 *.png
 *.csv
 *.gdf
+*.gexf
+*.xml
 !1*.csv
