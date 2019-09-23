@@ -80,20 +80,31 @@ def apriori(transactions, minsup):
 def do_final_things(F, transactions, minsup):
     rule_sum = 0
     min_conf = 1
+    conf_rules = []
     for rules in F:
         rule_sum+=len(rules)
         for rule in rules:
             if len(rule) <= 1:
                 continue
-            temp_rule = rule[:-1]
-            Y = rule[len(rule)-1]
-            conf = count_conf(temp_rule,Y,transactions)
-            print("{}  -> {} : {}".format(temp_rule,Y,conf))
-            if conf < min_conf:
-                min_conf = conf
+            for j in range(len(rule)):
+                temp_rule = []
+                Y = 0
+                for i in range(len(rule)):
+                    if i == j:
+                        Y = rule[i]
+                    else:
+                        temp_rule.append(rule[i])
+                """temp_rule = rule[:-1]
+                Y = rule[len(rule)-1]"""
+                conf = count_conf(temp_rule,Y,transactions)
+                print("{}  -> {} : {}".format(temp_rule,Y,conf))
+                conf_rules.append([temp_rule,Y])
+                if conf < min_conf:
+                    min_conf = conf
     print("Min confidence is {}".format(min_conf))
-    print("Number of rules that have min support {} is {}".format(minsup, rule_sum))
-
+    print("Number of freq item sets that have min support {} is {}".format(minsup, rule_sum))
+    print("Number of rules that have min confidence {} is {}".format(min_conf, len(conf_rules)))
+    return conf_rules
 def load_dataset(file_path):
     dataset = []
     with open(file_path) as dset:
@@ -104,7 +115,7 @@ def load_dataset(file_path):
 
 
 dataset = load_dataset("chess.dat")
-do_final_things(apriori(dataset,0.950),dataset,0.950)
+print(len(do_final_things(apriori(dataset,0.950),dataset,0.950)))
 #create_variations3()
 #for i in range(5):
 #    create_rules(i+1,75)
