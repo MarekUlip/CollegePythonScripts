@@ -73,6 +73,7 @@ def apriori(transactions, minsup):
             create_rules_a(rule[len(rule)-1]+1,rule,k+2,75,rules_to_create,transactions,minsup)
         F.append(rules_to_create)
         k += 1
+    input()
     return F
     
 
@@ -114,6 +115,8 @@ def load_dataset(file_path):
     return dataset
 
 
+create_rules(3,6)
+input()
 dataset = load_dataset("chess.dat")
 print(len(do_final_things(apriori(dataset,0.950),dataset,0.950)))
 #create_variations3()
