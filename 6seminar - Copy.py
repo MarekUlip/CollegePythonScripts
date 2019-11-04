@@ -36,39 +36,21 @@ class Node:
         if self.class_num is not None:
             return self.class_num
         if self.is_numerical:
-            if self.rule[2]: #is lesser
-                if item[self.rule[1]] < self.rule[0]:
-                    if self.true_branch is None:
-                        return self.rule[4]
-                    else:
-                        return self.true_branch.go_to_next_rule(item)
+            if item[self.rule[1]] <= self.rule[0]:
+                if self.true_branch is None:
+                    return self.rule[4]
                 else:
-                    return self.false_branch.go_to_next_rule(item)
-            else: #is greater
-                if item[self.rule[1]] >= self.rule[0]:
-                    if self.true_branch is None:
-                        return self.rule[4]
-                    else:
-                        return self.true_branch.go_to_next_rule(item)
-                else:
-                    return self.false_branch.go_to_next_rule(item)
-        else:
-            if self.rule[2]:
-                if item[self.rule[1]] == self.rule[0]:
-                    if self.true_branch is None:
-                        return self.rule[4]
-                    else:
-                        return self.true_branch.go_to_next_rule(item)
-                else:
-                    return self.false_branch.go_to_next_rule(item)
+                    return self.true_branch.go_to_next_rule(item)
             else:
-                if item[self.rule[1]] != self.rule[0]:
-                    if self.true_branch is None:
-                        return self.rule[4]
-                    else:
-                        return self.true_branch.go_to_next_rule(item)
+                return self.false_branch.go_to_next_rule(item)
+        else:
+            if item[self.rule[1]] == self.rule[0]:
+                if self.true_branch is None:
+                    return self.rule[4]
                 else:
-                    return self.false_branch.go_to_next_rule(item)
+                    return self.true_branch.go_to_next_rule(item)
+            else:
+                return self.false_branch.go_to_next_rule(item)
 
 
 def normalize(data):
@@ -98,39 +80,23 @@ def create_decision_tree(datas, feature_indexes:list, target_index,tree:Node, cl
         for j in iter_range:
             lesser, greater = split_datas(i,j,datas,is_numerical)
             branch_size_l = len(lesser)
-            branch_size_g = len(greater)
             gini_l = 1
-            gini_g = 1
-            if branch_size_l == 0 or branch_size_g == 0:
-                if branch_size_l > 0:
-                    gini_l = gini_index(create_temp_groups(lesser,target_index, class_count),branch_size_l)
-                else:
-                    gini_g = gini_index(create_temp_groups(greater,target_index, class_count),branch_size_g)    
-                if gini_l != 0 or gini_g != 0:
-                    continue
-            else:
+            if branch_size_l == 0:
+                continue
             #print(lesser)
-                gini_l = gini_index(create_temp_groups(lesser,target_index, class_count),branch_size_l)
-                gini_g = gini_index(create_temp_groups(greater,target_index, class_count),branch_size_g)
+            gini_l = gini_index(create_temp_groups(lesser,target_index, class_count),branch_size_l)
             if gini_l <= best_gini and best_branch_size < branch_size_l:
                 best_gini = gini_l
                 best_split = j
                 best_split_index = i
                 best_branch_size = branch_size_l
-                other_gini = gini_g
                 is_lesser=True
-            if gini_g <= best_gini and best_branch_size < branch_size_g:
-                best_gini = gini_g
-                best_split = j
-                best_split_index = i
-                best_branch_size = branch_size_g
-                other_gini = gini_l
-                is_lesser = False
     lesser_branch,greater_branch = split_datas(best_split_index,best_split,datas,is_numerical)
     if best_gini == 0:
         if is_lesser:
             tree.rule = [best_split,best_split_index, is_lesser,True, lesser_branch[0][target_index],"contains {}".format(len(lesser_branch))]
             if len(greater_branch) > 0:
+                other_gini = gini_index(create_temp_groups(greater_branch,target_index, class_count),len(greater_branch))
                 if other_gini == 0:
                     new_node = tree.add_false_branch()
                     new_node.class_num = greater_branch[0][target_index]
@@ -144,24 +110,9 @@ def create_decision_tree(datas, feature_indexes:list, target_index,tree:Node, cl
                     c_num = random.randint(0,class_count-1)
                 new_branch.class_num = c_num
                 return
-        else:
-            tree.rule = [best_split,best_split_index, is_lesser,True, greater_branch[0][target_index],"contains {}".format(len(lesser_branch))]
-            if len(lesser_branch) > 0:
-                if other_gini == 0:
-                    new_node = tree.add_false_branch()
-                    new_node.class_num = lesser_branch[0][target_index]
-                    return
-                else:
-                    create_decision_tree(lesser_branch,feature_indexes,target_index,tree.add_false_branch(),class_count,is_numerical,possible_values)
-            else:
-                new_branch = tree.add_false_branch()
-                c_num = random.randint(0,class_count-1)
-                while c_num == greater_branch[0][target_index]:
-                    c_num = random.randint(0,class_count-1)
-                new_branch.class_num = c_num
-                return
     else:
         #print('not the best gini')
+        other_gini = gini_index(create_temp_groups(greater_branch,target_index, class_count),len(greater_branch))
         if best_gini == 1 and other_gini == 1:
             h_class = get_highest_class(greater_branch,lesser_branch,target_index)
             tree.rule = [0.0,0,True,True,h_class]
@@ -177,12 +128,9 @@ def create_decision_tree(datas, feature_indexes:list, target_index,tree:Node, cl
         #print(best_gini)
         #print(other_gini)
         tree.rule = [best_split,best_split_index, is_lesser, False,get_highest_class(greater_branch,lesser_branch,target_index)]
-        if is_lesser:
-            create_decision_tree(greater_branch,feature_indexes,target_index,tree.add_false_branch(),class_count,is_numerical,possible_values)
-            create_decision_tree(lesser_branch,feature_indexes,target_index,tree.add_true_branch(),class_count,is_numerical,possible_values)
-        else:
-            create_decision_tree(greater_branch,feature_indexes,target_index,tree.add_true_branch(),class_count,is_numerical,possible_values)
-            create_decision_tree(lesser_branch,feature_indexes,target_index,tree.add_false_branch(),class_count,is_numerical,possible_values)
+        
+        create_decision_tree(greater_branch,feature_indexes,target_index,tree.add_false_branch(),class_count,is_numerical,possible_values)
+        create_decision_tree(lesser_branch,feature_indexes,target_index,tree.add_true_branch(),class_count,is_numerical,possible_values)
     #print(rules)
 
 #def evaluate()
@@ -233,7 +181,7 @@ def split_datas(index, value, data, numerical):
     greater = []
     for row in data:
         if numerical:
-            if row[index]<value:
+            if row[index]<=value:
                 lesser.append(row)
             else:
                 greater.append(row)
@@ -248,14 +196,10 @@ def split_datas(index, value, data, numerical):
 def test_decision_tree(tree:Node,test_set, num_of_classes, target_index):
     conf_matrix = np.zeros((num_of_classes,num_of_classes))
     print('testiong')
-    hits = 0
     for row in test_set:
         res = int(tree.go_to_next_rule(row))
-        if res == int(row[target_index]):
-            hits+=1
         #print(res)
         conf_matrix[int(row[target_index]),res]+= 1
-    print('Accuracy is {}'.format(hits/len(test_set)))
     return conf_matrix
 
 #Rozdelit si sadu a ukazat jaka je presnost pomoci confusion matrix
