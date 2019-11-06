@@ -38,14 +38,21 @@ def score_substrings(string,substrings, scoring_matrix, mappings, w=3, threshold
 
 def get_sequence_start_index(sub_sequence, sequence, w=3,skip=0):
     skipped = 0
-    print(sub_sequence)
-    print(sequence)
+    
     for i in range(len(sequence)-w-1):
         if sequence[i:i+w] == sub_sequence and skip == skipped:
-            return i
-        else:
             skipped+=1
+            #print(sub_sequence)
+            #print(sequence)
+            return i
+            
     return -1
+
+def count_string_score(string1, string2,scoring_matrix):
+    score = 0
+    for k in range(len(string1)):
+        score += scoring_matrix[mappings[string1[k]]][mappings[string2[k]]]
+    return score
 
 def extend_alignment(index,database_index, sequence, database_sequence,scoring_matrix, mappings, direction=1,w=3):
     drop_off = 0
@@ -56,7 +63,7 @@ def extend_alignment(index,database_index, sequence, database_sequence,scoring_m
         index -= 1
         database_index -= 1
     seq_len = len(sequence)
-    dat_seq_len = len(sequence)
+    dat_seq_len = len(database_sequence)
     extended_alignment = []
     score = 0
     while drop_off >=-2:
@@ -83,22 +90,22 @@ def get_base_subsequence_score(sub_sequence, scoring_matrix, mappings):
 
 
 def find_hsp(sub_sequence, sequence, database, scoring_matrix, mappings, base_score, sub_sequence_index, w=3):
-    index = get_sequence_start_index(sub_sequence,sequence,w,0)
-    print(index)
     skip = 0
     hsp = ['',0]
     #while index >= 0:
     for database_sequence in database:
         database_index = get_sequence_start_index(sub_sequence,database_sequence,w,0)
+        if database_index == -1:
+            continue
         #for i in range(len(database_sequence)-w-1):
         if database_index >=0:
-            right_alignment = extend_alignment(index,i,sequence,database_sequence,scoring_matrix,mappings,1,w)
-            left_alignment = extend_alignment(index,i,sequence,database_sequence,scoring_matrix,mappings,-1,w)
+            right_alignment = extend_alignment(sub_sequence_index,database_index,sequence,database_sequence,scoring_matrix,mappings,1,w)
+            left_alignment = extend_alignment(sub_sequence_index,database_index,sequence,database_sequence,scoring_matrix,mappings,-1,w)
             score = base_score + right_alignment[1]+left_alignment[1]
-            print("{} {}".format(score, hsp))
             if score > hsp[1]:
-                hsp = [left_alignment[0]+sub_sequence+right_alignment[0], score]
-                print(hsp)
+                hsp = [left_alignment[0][::-1]+sub_sequence+right_alignment[0], score]
+                print("{} {} {}".format(sub_sequence,score, hsp))
+                #print(hsp)
             skip+=1
         #index = get_sequence_start_index(sub_sequence,sequence,w,skip)
     return hsp
@@ -111,7 +118,7 @@ def get_msp(sequence, database, scoring_matrix, mappings, substrings, w=3):
         #print(scores)
         #print(len(scores))
         for key, score in scores.items():
-            hsp = find_hsp(key,sequence,database,scoring_matrix,mappings,score,index,w)
+            hsp = find_hsp(key,sequence,database,scoring_matrix,mappings,count_string_score(key,key,scoring_matrix),index,w)
             if hsp[1] >= msp[1]:
                 #print(hsp)
                 msp = hsp
@@ -138,7 +145,7 @@ texts[0].append('')
 texts = np.array(texts)
 #print(texts)
 blosum = texts[1:21,1:21].astype('int')
-database = ['DAPCQEHKRGWPNDC']#'SGQYTKQSPVSSS','ADEGILEHKMWP','VLNDCQEGHILRS','DAPCQEHKRGWPNDC']
+database = ['SGQYTKQSPVSSS','ADEGILEHKMWP','VLNDCQEGHILRS','DAPCQEHKRGWPNDC']
 #print(texts)
 strings = []
 generate_substrings_rec('A  R  N  D  C  Q  E  G  H  I  L  K  M  F  P  S  T  W  Y  V '.split(),strings,'',0,3)

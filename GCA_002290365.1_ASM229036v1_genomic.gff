@@ -1,0 +1,424 @@
+##gff-version 3
+#!gff-spec-version 1.21
+#!processor NCBI annotwriter
+#!genome-build ASM229036v1
+#!genome-build-accession NCBI_Assembly:GCA_002290365.1
+##sequence-region CP021173.1 1 144602
+##species https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=1160784
+CP021173.1	Genbank	region	1	144602	.	+	.	ID=id0;Dbxref=taxon:1160784;Is_circular=true;Name=ANONYMOUS;collection-date=Jun-2013;country=USA: Yale West Campus%2C Orange%2C Connecticut;gbkey=Src;genome=chromosome;mol_type=genomic DNA;nat-host=Entylia carinata;strain=ENCA
+CP021173.1	Genbank	gene	2900	3550	.	+	.	ID=gene0;Name=CA212_001;Note=hisG;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_001
+CP021173.1	Genbank	CDS	2900	3550	.	+	0	ID=cds0;Parent=gene0;Dbxref=GO:0003879,NCBI_GP:ASS47011.1;Name=ASS47011.1;Note=hisG;gbkey=CDS;product=ATP phosphoribosyltransferase;protein_id=ASS47011.1;transl_table=4
+CP021173.1	Genbank	gene	3531	4847	.	+	.	ID=gene1;Name=CA212_002;Note=hisD;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_002
+CP021173.1	Genbank	CDS	3531	4847	.	+	0	ID=cds1;Parent=gene1;Dbxref=GO:0004399,NCBI_GP:ASS47012.1;Name=ASS47012.1;Note=hisD;gbkey=CDS;product=Histidinol dehydrogenase;protein_id=ASS47012.1;transl_table=4
+CP021173.1	Genbank	gene	4849	5427	.	+	.	ID=gene2;Name=CA212_003;Note=hisB;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_003
+CP021173.1	Genbank	CDS	4849	5427	.	+	0	ID=cds2;Parent=gene2;Dbxref=GO:0004424,NCBI_GP:ASS47013.1;Name=ASS47013.1;Note=hisB;gbkey=CDS;product=Imidazoleglycerol-phosphate dehydratase;protein_id=ASS47013.1;transl_table=4
+CP021173.1	Genbank	gene	5437	6054	.	+	.	ID=gene3;Name=CA212_004;Note=hisH;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_004
+CP021173.1	Genbank	CDS	5437	6054	.	+	0	ID=cds3;Parent=gene3;Dbxref=GO:0003824,NCBI_GP:ASS47014.1;Name=ASS47014.1;Note=hisH;gbkey=CDS;product=Imidazole glycerol phosphate synthase amidotransferase subunit;protein_id=ASS47014.1;transl_table=4
+CP021173.1	Genbank	gene	6057	6815	.	+	.	ID=gene4;Name=CA212_005;Note=hisA;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_005
+CP021173.1	Genbank	CDS	6057	6815	.	+	0	ID=cds4;Parent=gene4;Dbxref=GO:0003949,NCBI_GP:ASS47015.1;Name=ASS47015.1;Note=hisA;gbkey=CDS;product=Phosphoribosylformimino-5-aminoimidazole carboxamide ribotide isomerase;protein_id=ASS47015.1;transl_table=4
+CP021173.1	Genbank	gene	6808	7581	.	+	.	ID=gene5;Name=CA212_006;Note=hisF;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_006
+CP021173.1	Genbank	CDS	6808	7581	.	+	0	ID=cds5;Parent=gene5;Dbxref=GO:0000105,NCBI_GP:ASS47016.1;Name=ASS47016.1;Note=hisF;gbkey=CDS;product=Imidazole glycerol phosphate synthase cyclase subunit;protein_id=ASS47016.1;transl_table=4
+CP021173.1	Genbank	gene	7559	7918	.	+	.	ID=gene6;Name=CA212_007;Note=hisI;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_007
+CP021173.1	Genbank	CDS	7559	7918	.	+	0	ID=cds6;Parent=gene6;Dbxref=GO:0004635,NCBI_GP:ASS47017.1;Name=ASS47017.1;Note=hisI;gbkey=CDS;product=Phosphoribosyl-AMP cyclohydrolase;protein_id=ASS47017.1;transl_table=4
+CP021173.1	Genbank	gene	7930	9201	.	+	.	ID=gene7;Name=CA212_008;Note=maeB;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_008
+CP021173.1	Genbank	CDS	7930	9201	.	+	0	ID=cds7;Parent=gene7;Dbxref=GO:0004473,NCBI_GP:ASS47018.1;Name=ASS47018.1;Note=maeB;gbkey=CDS;product=NADP-dependent malic enzyme;protein_id=ASS47018.1;transl_table=4
+CP021173.1	Genbank	gene	9219	9304	.	+	.	ID=gene8;Name=CA212_009;gbkey=Gene;gene_biotype=tRNA;locus_tag=CA212_009
+CP021173.1	Genbank	tRNA	9219	9304	.	+	.	ID=rna0;Parent=gene8;gbkey=tRNA;product=tRNA-Tyr
+CP021173.1	Genbank	exon	9219	9304	.	+	.	ID=id1;Parent=rna0;gbkey=tRNA;product=tRNA-Tyr
+CP021173.1	Genbank	gene	9318	9388	.	+	.	ID=gene9;Name=CA212_010;gbkey=Gene;gene_biotype=tRNA;locus_tag=CA212_010
+CP021173.1	Genbank	tRNA	9318	9388	.	+	.	ID=rna1;Parent=gene9;gbkey=tRNA;product=tRNA-Gly
+CP021173.1	Genbank	exon	9318	9388	.	+	.	ID=id2;Parent=rna1;gbkey=tRNA;product=tRNA-Gly
+CP021173.1	Genbank	gene	9438	10625	.	+	.	ID=gene10;Name=CA212_011;Note=tufA;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_011
+CP021173.1	Genbank	CDS	9438	10625	.	+	0	ID=cds8;Parent=gene10;Dbxref=GO:0005525,GO:0006412,NCBI_GP:ASS47019.1;Name=ASS47019.1;Note=tufA;gbkey=CDS;product=Translation elongation factor Tu;protein_id=ASS47019.1;transl_table=4
+CP021173.1	Genbank	gene	10616	10688	.	+	.	ID=gene11;Name=CA212_012;gbkey=Gene;gene_biotype=tRNA;locus_tag=CA212_012
+CP021173.1	Genbank	tRNA	10616	10688	.	+	.	ID=rna2;Parent=gene11;gbkey=tRNA;product=tRNA-Sec
+CP021173.1	Genbank	exon	10616	10688	.	+	.	ID=id3;Parent=rna2;gbkey=tRNA;product=tRNA-Sec
+CP021173.1	Genbank	gene	10702	11115	.	+	.	ID=gene12;Name=CA212_013;Note=rplK;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_013
+CP021173.1	Genbank	CDS	10702	11115	.	+	0	ID=cds9;Parent=gene12;Dbxref=GO:0003735,GO:0005622,GO:0005840,GO:0006412,NCBI_GP:ASS47020.1;Name=ASS47020.1;Note=rplK;gbkey=CDS;product=50S ribosomal protein L11p (L12e);protein_id=ASS47020.1;transl_table=4
+CP021173.1	Genbank	gene	11126	11809	.	+	.	ID=gene13;Name=CA212_014;Note=rplA;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_014
+CP021173.1	Genbank	CDS	11126	11809	.	+	0	ID=cds10;Parent=gene13;Dbxref=GO:0003735,GO:0005622,GO:0005840,GO:0006412,NCBI_GP:ASS47021.1;Name=ASS47021.1;Note=rplA;gbkey=CDS;product=50S ribosomal protein L1p (L10Ae);protein_id=ASS47021.1;transl_table=4
+CP021173.1	Genbank	gene	12269	12658	.	+	.	ID=gene14;Name=CA212_015;Note=rplL;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_015
+CP021173.1	Genbank	CDS	12269	12658	.	+	0	ID=cds11;Parent=gene14;Dbxref=NCBI_GP:ASS47022.1;Name=ASS47022.1;Note=rplL;gbkey=CDS;product=50S ribosomal protein L7/L12 (P1/P2);protein_id=ASS47022.1;transl_table=4
+CP021173.1	Genbank	gene	12660	16745	.	+	.	ID=gene15;Name=CA212_016;Note=rpoB;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_016
+CP021173.1	Genbank	CDS	12660	16745	.	+	0	ID=cds12;Parent=gene15;Dbxref=GO:0003899,NCBI_GP:ASS47023.1;Name=ASS47023.1;Note=rpoB;gbkey=CDS;product=DNA-directed RNA polymerase beta subunit;protein_id=ASS47023.1;transl_table=4
+CP021173.1	Genbank	gene	16757	20839	.	+	.	ID=gene16;Name=CA212_017;Note=rpoC;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_017
+CP021173.1	Genbank	CDS	16757	20839	.	+	0	ID=cds13;Parent=gene16;Dbxref=GO:0003899,NCBI_GP:ASS47024.1;Name=ASS47024.1;Note=rpoC;gbkey=CDS;product=DNA-directed RNA polymerase beta' subunit;protein_id=ASS47024.1;transl_table=4
+CP021173.1	Genbank	gene	20781	21149	.	+	.	ID=gene17;Name=CA212_019;Note=rpsL;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_019
+CP021173.1	Genbank	CDS	20781	21149	.	+	0	ID=cds14;Parent=gene17;Dbxref=NCBI_GP:ASS47025.1;Name=ASS47025.1;Note=rpsL;gbkey=CDS;product=30S ribosomal subunit protein S12;protein_id=ASS47025.1;transl_table=4
+CP021173.1	Genbank	gene	21167	21628	.	+	.	ID=gene18;Name=CA212_020;Note=rpsG;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_020
+CP021173.1	Genbank	CDS	21167	21628	.	+	0	ID=cds15;Parent=gene18;Dbxref=GO:0003735,GO:0005622,GO:0005840,GO:0006412,NCBI_GP:ASS47026.1;Name=ASS47026.1;Note=rpsG;gbkey=CDS;product=30S ribosomal protein S7p (S5e);protein_id=ASS47026.1;transl_table=4
+CP021173.1	Genbank	gene	21631	23715	.	+	.	ID=gene19;Name=CA212_021;Note=fusA;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_021
+CP021173.1	Genbank	CDS	21631	23715	.	+	0	ID=cds16;Parent=gene19;Dbxref=GO:0005525,GO:0006412,NCBI_GP:ASS47027.1;Name=ASS47027.1;Note=fusA;gbkey=CDS;product=Translation elongation factor G;protein_id=ASS47027.1;transl_table=4
+CP021173.1	Genbank	gene	23721	24035	.	+	.	ID=gene20;Name=CA212_022;Note=rpsJ;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_022
+CP021173.1	Genbank	CDS	23721	24035	.	+	0	ID=cds17;Parent=gene20;Dbxref=GO:0003735,GO:0005622,GO:0005840,GO:0006412,NCBI_GP:ASS47028.1;Name=ASS47028.1;Note=rpsJ;gbkey=CDS;product=30S ribosomal protein S10p (S20e);protein_id=ASS47028.1;transl_table=4
+CP021173.1	Genbank	gene	24041	24670	.	+	.	ID=gene21;Name=CA212_023;Note=rplC;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_023
+CP021173.1	Genbank	CDS	24041	24670	.	+	0	ID=cds18;Parent=gene21;Dbxref=GO:0003735,GO:0005622,GO:0005840,GO:0006412,NCBI_GP:ASS47029.1;Name=ASS47029.1;Note=rplC;gbkey=CDS;product=50S ribosomal protein L3p (L3e);protein_id=ASS47029.1;transl_table=4
+CP021173.1	Genbank	gene	24672	25277	.	+	.	ID=gene22;Name=CA212_024;Note=rplD;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_024
+CP021173.1	Genbank	CDS	24672	25277	.	+	0	ID=cds19;Parent=gene22;Dbxref=GO:0003735,GO:0005622,GO:0005840,GO:0006412,NCBI_GP:ASS47030.1;Name=ASS47030.1;Note=rplD;gbkey=CDS;product=50S ribosomal protein L4p (L1e);protein_id=ASS47030.1;transl_table=4
+CP021173.1	Genbank	gene	25286	25555	.	+	.	ID=gene23;Name=CA212_025;Note=rplW;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_025
+CP021173.1	Genbank	CDS	25286	25555	.	+	0	ID=cds20;Parent=gene23;Dbxref=NCBI_GP:ASS47031.1;Name=ASS47031.1;Note=rplW;gbkey=CDS;product=50S ribosomal protein L23;protein_id=ASS47031.1;transl_table=4
+CP021173.1	Genbank	gene	25557	26348	.	+	.	ID=gene24;Name=CA212_026;Note=rplB;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_026
+CP021173.1	Genbank	CDS	25557	26348	.	+	0	ID=cds21;Parent=gene24;Dbxref=GO:0003735,GO:0005622,GO:0005840,GO:0006412,NCBI_GP:ASS47032.1;Name=ASS47032.1;Note=rplB;gbkey=CDS;product=50S ribosomal protein L2p (L8e);protein_id=ASS47032.1;transl_table=4
+CP021173.1	Genbank	gene	26350	26634	.	+	.	ID=gene25;Name=CA212_027;Note=rpsS;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_027
+CP021173.1	Genbank	CDS	26350	26634	.	+	0	ID=cds22;Parent=gene25;Dbxref=GO:0003735,GO:0005622,GO:0005840,GO:0006412,NCBI_GP:ASS47033.1;Name=ASS47033.1;Note=rpsS;gbkey=CDS;product=30S ribosomal protein S19p (S15e);protein_id=ASS47033.1;transl_table=4
+CP021173.1	Genbank	gene	26634	26954	.	+	.	ID=gene26;Name=CA212_028;Note=rplV;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_028
+CP021173.1	Genbank	CDS	26634	26954	.	+	0	ID=cds23;Parent=gene26;Dbxref=NCBI_GP:ASS47034.1;Name=ASS47034.1;Note=rplV;gbkey=CDS;product=50S ribosomal protein L22;protein_id=ASS47034.1;transl_table=4
+CP021173.1	Genbank	gene	26969	27595	.	+	.	ID=gene27;Name=CA212_029;Note=rpsC;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_029
+CP021173.1	Genbank	CDS	26969	27595	.	+	0	ID=cds24;Parent=gene27;Dbxref=GO:0003676,GO:0003735,GO:0005622,GO:0005840,GO:0006412,NCBI_GP:ASS47035.1;Name=ASS47035.1;Note=rpsC;gbkey=CDS;product=30S ribosomal protein S3p (S3e);protein_id=ASS47035.1;transl_table=4
+CP021173.1	Genbank	gene	27601	28005	.	+	.	ID=gene28;Name=CA212_030;Note=rplP;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_030
+CP021173.1	Genbank	CDS	27601	28005	.	+	0	ID=cds25;Parent=gene28;Dbxref=GO:0003735,GO:0005622,GO:0005840,GO:0006412,NCBI_GP:ASS47036.1;Name=ASS47036.1;Note=rplP;gbkey=CDS;product=50S ribosomal protein L16p (L10e);protein_id=ASS47036.1;transl_table=4
+CP021173.1	Genbank	gene	28016	28222	.	+	.	ID=gene29;Name=CA212_031;Note=rpmC;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_031
+CP021173.1	Genbank	CDS	28016	28222	.	+	0	ID=cds26;Parent=gene29;Dbxref=NCBI_GP:ASS47037.1;Name=ASS47037.1;Note=rpmC;gbkey=CDS;product=50S ribosomal protein L29;protein_id=ASS47037.1;transl_table=4
+CP021173.1	Genbank	gene	28239	28433	.	+	.	ID=gene30;Name=CA212_032;Note=rpsQ;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_032
+CP021173.1	Genbank	CDS	28239	28433	.	+	0	ID=cds27;Parent=gene30;Dbxref=NCBI_GP:ASS47038.1;Name=ASS47038.1;Note=rpsQ;gbkey=CDS;product=30S ribosomal protein S17;protein_id=ASS47038.1;transl_table=4
+CP021173.1	Genbank	gene	28435	28803	.	+	.	ID=gene31;Name=CA212_033;Note=rplN;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_033
+CP021173.1	Genbank	CDS	28435	28803	.	+	0	ID=cds28;Parent=gene31;Dbxref=GO:0003735,GO:0005622,GO:0005840,GO:0006412,NCBI_GP:ASS47039.1;Name=ASS47039.1;Note=rplN;gbkey=CDS;product=50S ribosomal protein L14p (L23e);protein_id=ASS47039.1;transl_table=4
+CP021173.1	Genbank	gene	28804	29337	.	+	.	ID=gene32;Name=CA212_034;Note=rplE;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_034
+CP021173.1	Genbank	CDS	28804	29337	.	+	0	ID=cds29;Parent=gene32;Dbxref=GO:0003735,GO:0005622,GO:0005840,GO:0006412,NCBI_GP:ASS47040.1;Name=ASS47040.1;Note=rplE;gbkey=CDS;product=50S ribosomal protein L5p (L11e);protein_id=ASS47040.1;transl_table=4
+CP021173.1	Genbank	gene	29342	29647	.	+	.	ID=gene33;Name=CA212_035;Note=rpsN;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_035
+CP021173.1	Genbank	CDS	29342	29647	.	+	0	ID=cds30;Parent=gene33;Dbxref=GO:0003735,GO:0005622,GO:0005840,GO:0006412,NCBI_GP:ASS47041.1;Name=ASS47041.1;Note=rpsN%3B SSU ribosomal protein S14p (S29e)%2C zinc-independent;gbkey=CDS;product=30S ribosomal protein S14p (S29e);protein_id=ASS47041.1;transl_table=4
+CP021173.1	Genbank	gene	29648	30040	.	+	.	ID=gene34;Name=CA212_036;Note=rpsH;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_036
+CP021173.1	Genbank	CDS	29648	30040	.	+	0	ID=cds31;Parent=gene34;Dbxref=GO:0003735,GO:0005622,GO:0005840,GO:0006412,NCBI_GP:ASS47042.1;Name=ASS47042.1;Note=rpsH;gbkey=CDS;product=30S ribosomal protein S8p (S15Ae);protein_id=ASS47042.1;transl_table=4
+CP021173.1	Genbank	gene	30030	30587	.	+	.	ID=gene35;Name=CA212_037;Note=rplF;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_037
+CP021173.1	Genbank	CDS	30030	30587	.	+	0	ID=cds32;Parent=gene35;Dbxref=GO:0003735,GO:0005622,GO:0005840,GO:0006412,NCBI_GP:ASS47043.1;Name=ASS47043.1;Note=rplF;gbkey=CDS;product=50S ribosomal protein L6p (L9e);protein_id=ASS47043.1;transl_table=4
+CP021173.1	Genbank	gene	30593	30958	.	+	.	ID=gene36;Name=CA212_038;Note=rplR;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_038
+CP021173.1	Genbank	CDS	30593	30958	.	+	0	ID=cds33;Parent=gene36;Dbxref=GO:0003735,GO:0005622,GO:0005840,GO:0006412,NCBI_GP:ASS47044.1;Name=ASS47044.1;Note=rplR;gbkey=CDS;product=50S ribosomal protein L18p (L5e);protein_id=ASS47044.1;transl_table=4
+CP021173.1	Genbank	gene	30963	31436	.	+	.	ID=gene37;Name=CA212_039;Note=rpsE;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_039
+CP021173.1	Genbank	CDS	30963	31436	.	+	0	ID=cds34;Parent=gene37;Dbxref=GO:0003735,GO:0005622,GO:0005840,GO:0006412,NCBI_GP:ASS47045.1;Name=ASS47045.1;Note=rpsE;gbkey=CDS;product=30S ribosomal protein S5p (S2e);protein_id=ASS47045.1;transl_table=4
+CP021173.1	Genbank	gene	31464	31901	.	+	.	ID=gene38;Name=CA212_040;Note=rplO;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_040
+CP021173.1	Genbank	CDS	31464	31901	.	+	0	ID=cds35;Parent=gene38;Dbxref=GO:0003735,GO:0005622,GO:0005840,GO:0006412,NCBI_GP:ASS47046.1;Name=ASS47046.1;Note=rplO;gbkey=CDS;product=50S ribosomal protein L15p (L27Ae);protein_id=ASS47046.1;transl_table=4
+CP021173.1	Genbank	gene	31895	32155	.	+	.	ID=gene39;Name=CA212_041;Note=hypothetical protein;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_041
+CP021173.1	Genbank	CDS	31895	32155	.	+	0	ID=cds36;Parent=gene39;Dbxref=NCBI_GP:ASS47047.1;Name=ASS47047.1;Note=hypothetical protein;gbkey=CDS;product=hypothetical protein;protein_id=ASS47047.1;transl_table=4
+CP021173.1	Genbank	gene	32169	32399	.	+	.	ID=gene40;Name=CA212_042;Note=infA;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_042
+CP021173.1	Genbank	CDS	32169	32399	.	+	0	ID=cds37;Parent=gene40;Dbxref=GO:0003723,GO:0003743,GO:0006413,NCBI_GP:ASS47048.1;Name=ASS47048.1;Note=infA;gbkey=CDS;product=Protein chain initiation factor IF-1;protein_id=ASS47048.1;transl_table=4
+CP021173.1	Genbank	gene	32408	32524	.	+	.	ID=gene41;Name=CA212_043;Note=rpmJ;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_043
+CP021173.1	Genbank	CDS	32408	32524	.	+	0	ID=cds38;Parent=gene41;Dbxref=NCBI_GP:ASS47049.1;Name=ASS47049.1;Note=rpmJ;gbkey=CDS;product=50S ribosomal protein L36;protein_id=ASS47049.1;transl_table=4
+CP021173.1	Genbank	gene	32534	32905	.	+	.	ID=gene42;Name=CA212_044;Note=rpsM;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_044
+CP021173.1	Genbank	CDS	32534	32905	.	+	0	ID=cds39;Parent=gene42;Dbxref=GO:0003723,GO:0003735,GO:0005622,GO:0005840,GO:0006412,NCBI_GP:ASS47050.1;Name=ASS47050.1;Note=rpsM;gbkey=CDS;product=30S ribosomal protein S13p (S18e);protein_id=ASS47050.1;transl_table=4
+CP021173.1	Genbank	gene	32905	33288	.	+	.	ID=gene43;Name=CA212_045;Note=rpsK;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_045
+CP021173.1	Genbank	CDS	32905	33288	.	+	0	ID=cds40;Parent=gene43;Dbxref=GO:0003735,GO:0005622,GO:0005840,GO:0006412,NCBI_GP:ASS47051.1;Name=ASS47051.1;Note=rpsK;gbkey=CDS;product=30S ribosomal protein S11p (S14e);protein_id=ASS47051.1;transl_table=4
+CP021173.1	Genbank	gene	33297	33908	.	+	.	ID=gene44;Name=CA212_046;Note=rpsD;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_046
+CP021173.1	Genbank	CDS	33297	33908	.	+	0	ID=cds41;Parent=gene44;Dbxref=GO:0003723,GO:0003735,GO:0005622,GO:0005840,GO:0006412,NCBI_GP:ASS47052.1;Name=ASS47052.1;Note=rpsD;gbkey=CDS;product=30S ribosomal protein S4p (S9e);protein_id=ASS47052.1;transl_table=4
+CP021173.1	Genbank	gene	33913	34902	.	+	.	ID=gene45;Name=CA212_047;Note=rpoA;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_047
+CP021173.1	Genbank	CDS	33913	34902	.	+	0	ID=cds42;Parent=gene45;Dbxref=GO:0003899,NCBI_GP:ASS47053.1;Name=ASS47053.1;Note=rpoA;gbkey=CDS;product=DNA-directed RNA polymerase alpha subunit;protein_id=ASS47053.1;transl_table=4
+CP021173.1	Genbank	gene	34889	35239	.	+	.	ID=gene46;Name=CA212_048;Note=rplQ;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_048
+CP021173.1	Genbank	CDS	34889	35239	.	+	0	ID=cds43;Parent=gene46;Dbxref=GO:0003735,GO:0005622,GO:0005840,GO:0006412,NCBI_GP:ASS47054.1;Name=ASS47054.1;Note=rplQ;gbkey=CDS;product=50S ribosomal protein L17p;protein_id=ASS47054.1;transl_table=4
+CP021173.1	Genbank	gene	35248	35565	.	+	.	ID=gene47;Name=CA212_049;Note=rpsF;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_049
+CP021173.1	Genbank	CDS	35248	35565	.	+	0	ID=cds44;Parent=gene47;Dbxref=NCBI_GP:ASS47055.1;Name=ASS47055.1;Note=rpsF;gbkey=CDS;product=30S ribosomal protein S6;protein_id=ASS47055.1;transl_table=4
+CP021173.1	Genbank	gene	35571	35759	.	+	.	ID=gene48;Name=CA212_050;Note=rpsR;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_050
+CP021173.1	Genbank	CDS	35571	35759	.	+	0	ID=cds45;Parent=gene48;Dbxref=NCBI_GP:ASS47056.1;Name=ASS47056.1;Note=rpsR;gbkey=CDS;product=30S ribosomal protein S18;protein_id=ASS47056.1;transl_table=4
+CP021173.1	Genbank	gene	35761	36171	.	+	.	ID=gene49;Name=CA212_051;Note=rplI;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_051
+CP021173.1	Genbank	CDS	35761	36171	.	+	0	ID=cds46;Parent=gene49;Dbxref=NCBI_GP:ASS47057.1;Name=ASS47057.1;Note=rplI;gbkey=CDS;product=50S ribosomal protein L9;protein_id=ASS47057.1;transl_table=4
+CP021173.1	Genbank	gene	36188	37522	.	+	.	ID=gene50;Name=CA212_052;Note=dnaB;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_052
+CP021173.1	Genbank	CDS	36188	37522	.	+	0	ID=cds47;Parent=gene50;Dbxref=GO:0003678,GO:0005524,GO:0006260,NCBI_GP:ASS47058.1;Name=ASS47058.1;Note=dnaB;gbkey=CDS;product=Replicative DNA helicase;protein_id=ASS47058.1;transl_table=4
+CP021173.1	Genbank	gene	37613	37849	.	-	.	ID=gene51;Name=CA212_053;Note=rpmE;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_053
+CP021173.1	Genbank	CDS	37613	37849	.	-	0	ID=cds48;Parent=gene51;Dbxref=NCBI_GP:ASS47059.1;Name=ASS47059.1;Note=rpmE;gbkey=CDS;product=50S ribosomal protein L31 type B;protein_id=ASS47059.1;transl_table=4
+CP021173.1	Genbank	gene	37839	38165	.	-	.	ID=gene52;Name=CA212_054;Note=trxA;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_054
+CP021173.1	Genbank	CDS	37839	38165	.	-	0	ID=cds49;Parent=gene52;Dbxref=NCBI_GP:ASS47060.1;Name=ASS47060.1;Note=trxA;gbkey=CDS;product=Thioredoxin 1 redox factor;protein_id=ASS47060.1;transl_table=4
+CP021173.1	Genbank	gene	38175	39287	.	+	.	ID=gene53;Name=CA212_055;Note=dnaX;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_055
+CP021173.1	Genbank	CDS	38175	39287	.	+	0	ID=cds50;Parent=gene53;Dbxref=GO:0003887,NCBI_GP:ASS47061.1;Name=ASS47061.1;Note=dnaX;gbkey=CDS;product=DNA polymerase III subunits gamma and tau;protein_id=ASS47061.1;transl_table=4
+CP021173.1	Genbank	gene	39295	39525	.	+	.	ID=gene54;Name=CA212_056;Note=rpsO;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_056
+CP021173.1	Genbank	CDS	39295	39525	.	+	0	ID=cds51;Parent=gene54;Dbxref=GO:0003735,GO:0005622,GO:0005840,GO:0006412,NCBI_GP:ASS47062.1;Name=ASS47062.1;Note=rpsO;gbkey=CDS;product=30S ribosomal protein S15p (S13e);protein_id=ASS47062.1;transl_table=4
+CP021173.1	Genbank	gene	39528	39614	.	+	.	ID=gene55;Name=CA212_057;gbkey=Gene;gene_biotype=tRNA;locus_tag=CA212_057
+CP021173.1	Genbank	tRNA	39528	39614	.	+	.	ID=rna3;Parent=gene55;gbkey=tRNA;product=tRNA-Leu
+CP021173.1	Genbank	exon	39528	39614	.	+	.	ID=id4;Parent=rna3;gbkey=tRNA;product=tRNA-Leu
+CP021173.1	Genbank	gene	39624	40316	.	-	.	ID=gene56;Name=CA212_058;Note=ssb;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_058
+CP021173.1	Genbank	CDS	39624	40316	.	-	0	ID=cds52;Parent=gene56;Dbxref=GO:0003697,NCBI_GP:ASS47063.1;Name=ASS47063.1;Note=ssb;gbkey=CDS;product=Single-stranded DNA-binding protein;protein_id=ASS47063.1;transl_table=4
+CP021173.1	Genbank	gene	40368	41588	.	+	.	ID=gene57;Name=CA212_059;Note=engA;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_059
+CP021173.1	Genbank	CDS	40368	41588	.	+	0	ID=cds53;Parent=gene57;Dbxref=GO:0005525,GO:0005622,NCBI_GP:ASS47064.1;Name=ASS47064.1;Note=engA;gbkey=CDS;product=GTP-binding protein EngA;protein_id=ASS47064.1;transl_table=4
+CP021173.1	Genbank	gene	41591	43231	.	-	.	ID=gene58;Name=CA212_060;Note=groL;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_060
+CP021173.1	Genbank	CDS	41591	43231	.	-	0	ID=cds54;Parent=gene58;Dbxref=GO:0005515,GO:0005524,GO:0044267,NCBI_GP:ASS47065.1;Name=ASS47065.1;Note=groL;gbkey=CDS;product=Heat shock protein 60 family chaperone GroEL;protein_id=ASS47065.1;transl_table=4
+CP021173.1	Genbank	gene	43232	43501	.	-	.	ID=gene59;Name=CA212_061;Note=groS;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_061
+CP021173.1	Genbank	CDS	43232	43501	.	-	0	ID=cds55;Parent=gene59;Dbxref=GO:0005524,GO:0006457,NCBI_GP:ASS47066.1;Name=ASS47066.1;Note=groS;gbkey=CDS;product=Heat shock protein 60 family co-chaperone GroES;protein_id=ASS47066.1;transl_table=4
+CP021173.1	Genbank	gene	43560	44240	.	-	.	ID=gene60;Name=CA212_062;Note=gpmA;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_062
+CP021173.1	Genbank	CDS	43560	44240	.	-	0	ID=cds56;Parent=gene60;Dbxref=GO:0004619,NCBI_GP:ASS47067.1;Name=ASS47067.1;Note=gpmA;gbkey=CDS;product=2%2C3-bisphosphoglycerate-dependent phosphoglycerate mutase;protein_id=ASS47067.1;transl_table=4
+CP021173.1	Genbank	gene	44239	44994	.	+	.	ID=gene61;Name=CA212_063;Note=cyoA;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_063
+CP021173.1	Genbank	CDS	44239	44994	.	+	0	ID=cds57;Parent=gene61;Dbxref=GO:0004129,NCBI_GP:ASS47068.1;Name=ASS47068.1;Note=cyoA;gbkey=CDS;product=Cytochrome c oxidase polypeptide II;protein_id=ASS47068.1;transl_table=4
+CP021173.1	Genbank	gene	45000	46385	.	+	.	ID=gene62;Name=CA212_064;Note=cyoB;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_064
+CP021173.1	Genbank	CDS	45000	46385	.	+	0	ID=cds58;Parent=gene62;Dbxref=GO:0004129,NCBI_GP:ASS47069.1;Name=ASS47069.1;Note=cyoB;gbkey=CDS;product=Cytochrome c oxidase polypeptide I;protein_id=ASS47069.1;transl_table=4
+CP021173.1	Genbank	gene	47025	47537	.	+	.	ID=gene63;Name=CA212_065;Note=sco1;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_065
+CP021173.1	Genbank	CDS	47025	47537	.	+	0	ID=cds59;Parent=gene63;Dbxref=NCBI_GP:ASS47070.1;Name=ASS47070.1;Note=sco1;gbkey=CDS;product=Prolyl-tRNA synthetase%2C bacterial type;protein_id=ASS47070.1;transl_table=4
+CP021173.1	Genbank	gene	47540	48307	.	-	.	ID=gene64;Name=CA212_066;Note=tsF;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_066
+CP021173.1	Genbank	CDS	47540	48307	.	-	0	ID=cds60;Parent=gene64;Dbxref=GO:0004832,NCBI_GP:ASS47071.1;Name=ASS47071.1;Note=tsF;gbkey=CDS;product=Elongation factor Ts;protein_id=ASS47071.1;transl_table=4
+CP021173.1	Genbank	gene	48294	49004	.	-	.	ID=gene65;Name=CA212_067;Note=rpsB;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_067
+CP021173.1	Genbank	CDS	48294	49004	.	-	0	ID=cds61;Parent=gene65;Dbxref=GO:0003735,GO:0005622,GO:0005840,GO:0006412,NCBI_GP:ASS47072.1;Name=ASS47072.1;Note=rpsB;gbkey=CDS;product=30S ribosomal protein S2p (SAe);protein_id=ASS47072.1;transl_table=4
+CP021173.1	Genbank	gene	49016	50383	.	+	.	ID=gene66;Name=CA212_068;Note=Cytochrome c-type biois protein Ccs1/ResB;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_068
+CP021173.1	Genbank	CDS	49016	50383	.	+	0	ID=cds62;Parent=gene66;Dbxref=NCBI_GP:ASS47073.1;Name=ASS47073.1;Note=Cytochrome c-type biogeneis protein Ccs1/ResB;gbkey=CDS;product=Cytochrome c-type biogeneis protein Ccs1/ResB;protein_id=ASS47073.1;transl_table=4
+CP021173.1	Genbank	gene	50506	51534	.	+	.	ID=gene67;Name=CA212_069;Note=Cytochrome c-type biosis protein CcsA/ResC;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_069
+CP021173.1	Genbank	CDS	50506	51534	.	+	0	ID=cds63;Parent=gene67;Dbxref=NCBI_GP:ASS47074.1;Name=ASS47074.1;Note=Cytochrome c-type biogenesis protein CcsA/ResC;gbkey=CDS;product=Cytochrome c-type biogenesis protein CcsA/ResC;protein_id=ASS47074.1;transl_table=4
+CP021173.1	Genbank	gene	51521	51865	.	+	.	ID=gene68;Name=CA212_070;Note=rplU;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_070
+CP021173.1	Genbank	CDS	51521	51865	.	+	0	ID=cds64;Parent=gene68;Dbxref=NCBI_GP:ASS47075.1;Name=ASS47075.1;Note=rplU;gbkey=CDS;product=50S ribosomal protein L21;protein_id=ASS47075.1;transl_table=4
+CP021173.1	Genbank	gene	51867	52112	.	+	.	ID=gene69;Name=CA212_071;Note=rpmA;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_071
+CP021173.1	Genbank	CDS	51867	52112	.	+	0	ID=cds65;Parent=gene69;Dbxref=GO:0003735,GO:0005622,GO:0005840,GO:0006412,NCBI_GP:ASS47076.1;Name=ASS47076.1;Note=rpmA;gbkey=CDS;product=50S ribosomal protein L27p;protein_id=ASS47076.1;transl_table=4
+CP021173.1	Genbank	gene	52112	53089	.	+	.	ID=gene70;Name=CA212_072;Note=obgE;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_072
+CP021173.1	Genbank	CDS	52112	53089	.	+	0	ID=cds66;Parent=gene70;Dbxref=NCBI_GP:ASS47077.1;Name=ASS47077.1;Note=obgE;gbkey=CDS;product=GTPase involved in chromosome partitioning and ribosome assembly;protein_id=ASS47077.1;transl_table=4
+CP021173.1	Genbank	gene	53076	54701	.	+	.	ID=gene71;Name=CA212_073;Note=proS;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_073
+CP021173.1	Genbank	CDS	53076	54701	.	+	0	ID=cds67;Parent=gene71;Dbxref=NCBI_GP:ASS47078.1;Name=ASS47078.1;Note=proS;gbkey=CDS;product=Prolyl-tRNA synthetase%2C bacterial type;protein_id=ASS47078.1;transl_table=4
+CP021173.1	Genbank	gene	54704	56890	.	-	.	ID=gene72;Name=CA212_074;Note=valS;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_074
+CP021173.1	Genbank	CDS	54704	56890	.	-	0	ID=cds68;Parent=gene72;Dbxref=GO:0004832,NCBI_GP:ASS47079.1;Name=ASS47079.1;Note=valS;gbkey=CDS;product=Valyl-tRNA synthetase;protein_id=ASS47079.1;transl_table=4
+CP021173.1	Genbank	gene	56909	56994	.	+	.	ID=gene73;Name=CA212_075;gbkey=Gene;gene_biotype=tRNA;locus_tag=CA212_075
+CP021173.1	Genbank	tRNA	56909	56994	.	+	.	ID=rna4;Parent=gene73;gbkey=tRNA;product=tRNA-Leu
+CP021173.1	Genbank	exon	56909	56994	.	+	.	ID=id5;Parent=rna4;gbkey=tRNA;product=tRNA-Leu
+CP021173.1	Genbank	gene	57001	57073	.	-	.	ID=gene74;Name=CA212_076;gbkey=Gene;gene_biotype=tRNA;locus_tag=CA212_076
+CP021173.1	Genbank	tRNA	57001	57073	.	-	.	ID=rna5;Parent=gene74;gbkey=tRNA;product=tRNA-Asn
+CP021173.1	Genbank	exon	57001	57073	.	-	.	ID=id6;Parent=rna5;gbkey=tRNA;product=tRNA-Asn
+CP021173.1	Genbank	gene	57082	57405	.	-	.	ID=gene75;Name=CA212_077;Note=4Fe-4S ferredoxin;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_077
+CP021173.1	Genbank	CDS	57082	57405	.	-	0	ID=cds69;Parent=gene75;Dbxref=NCBI_GP:ASS47080.1;Name=ASS47080.1;Note=4Fe-4S ferredoxin;gbkey=CDS;product=4Fe-4S ferredoxin%2C iron-sulfur binding;protein_id=ASS47080.1;transl_table=4
+CP021173.1	Genbank	gene	57467	57595	.	+	.	ID=gene76;Name=CA212_078;Note=hypothetical protein;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_078
+CP021173.1	Genbank	CDS	57467	57595	.	+	0	ID=cds70;Parent=gene76;Dbxref=NCBI_GP:ASS47081.1;Name=ASS47081.1;Note=hypothetical protein;gbkey=CDS;product=hypothetical protein;protein_id=ASS47081.1;transl_table=4
+CP021173.1	Genbank	gene	57615	57687	.	+	.	ID=gene77;Name=CA212_079;gbkey=Gene;gene_biotype=tRNA;locus_tag=CA212_079
+CP021173.1	Genbank	tRNA	57615	57687	.	+	.	ID=rna6;Parent=gene77;gbkey=tRNA;product=tRNA-Pro
+CP021173.1	Genbank	exon	57615	57687	.	+	.	ID=id7;Parent=rna6;gbkey=tRNA;product=tRNA-Pro
+CP021173.1	Genbank	gene	57676	58758	.	-	.	ID=gene78;Name=CA212_080;Note=metX;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_080
+CP021173.1	Genbank	CDS	57676	58758	.	-	0	ID=cds71;Parent=gene78;Dbxref=NCBI_GP:ASS47082.1;Name=ASS47082.1;Note=metX;gbkey=CDS;product=Homoserine O-acetyltransferase;protein_id=ASS47082.1;transl_table=4
+CP021173.1	Genbank	gene	58800	59588	.	+	.	ID=gene79;Name=CA212_081;Note=folE;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_081
+CP021173.1	Genbank	CDS	58800	59588	.	+	0	ID=cds72;Parent=gene79;Dbxref=GO:0003934,NCBI_GP:ASS47083.1;Name=ASS47083.1;Note=folE;gbkey=CDS;product=GTP cyclohydrolase I type 2;protein_id=ASS47083.1;transl_table=4
+CP021173.1	Genbank	gene	59624	61195	.	+	.	ID=gene80;Name=CA212_082;Note=dnaG;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_082
+CP021173.1	Genbank	CDS	59624	61195	.	+	0	ID=cds73;Parent=gene80;Dbxref=GO:0003676,GO:0003677,GO:0003896,GO:0006260,GO:0006304,GO:0008270,NCBI_GP:ASS47084.1;Name=ASS47084.1;Note=dnaG;gbkey=CDS;product=DNA primase;protein_id=ASS47084.1;transl_table=4
+CP021173.1	Genbank	gene	61188	63014	.	+	.	ID=gene81;Name=CA212_083;Note=rpoD;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_083
+CP021173.1	Genbank	CDS	61188	63014	.	+	0	ID=cds74;Parent=gene81;Dbxref=GO:0004822,NCBI_GP:ASS47085.1;Name=ASS47085.1;Note=rpoD;gbkey=CDS;product=RNA polymerase%2C sigma 70 (Sigma D) factor;protein_id=ASS47085.1;transl_table=4
+CP021173.1	Genbank	gene	63013	63085	.	+	.	ID=gene82;Name=CA212_084;gbkey=Gene;gene_biotype=tRNA;locus_tag=CA212_084
+CP021173.1	Genbank	tRNA	63013	63085	.	+	.	ID=rna7;Parent=gene82;gbkey=tRNA;product=tRNA-Met
+CP021173.1	Genbank	exon	63013	63085	.	+	.	ID=id8;Parent=rna7;gbkey=tRNA;product=tRNA-Met
+CP021173.1	Genbank	gene	63083	63364	.	-	.	ID=gene83;Name=CA212_085;Note=Cytochrome C biosis protein CcsA;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_085
+CP021173.1	Genbank	CDS	63083	63364	.	-	0	ID=cds75;Parent=gene83;Dbxref=NCBI_GP:ASS47086.1;Name=ASS47086.1;Note=Cytochrome C biogenesis protein CcsA;gbkey=CDS;product=Cytochrome C biogenesis protein CcsA;protein_id=ASS47086.1;transl_table=4
+CP021173.1	Genbank	gene	63372	63731	.	+	.	ID=gene84;Name=CA212_086;Note=Cytochrome c553;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_086
+CP021173.1	Genbank	CDS	63372	63731	.	+	0	ID=cds76;Parent=gene84;Dbxref=NCBI_GP:ASS47087.1;Name=ASS47087.1;Note=Cytochrome c553;gbkey=CDS;product=Cytochrome c553;protein_id=ASS47087.1;transl_table=4
+CP021173.1	Genbank	gene	63712	63966	.	+	.	ID=gene85;Name=CA212_087;Note=Cytochrome c553;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_087
+CP021173.1	Genbank	CDS	63712	63966	.	+	0	ID=cds77;Parent=gene85;Dbxref=NCBI_GP:ASS47088.1;Name=ASS47088.1;Note=Cytochrome c553;gbkey=CDS;product=Cytochrome c553;protein_id=ASS47088.1;transl_table=4
+CP021173.1	Genbank	gene	63976	64314	.	-	.	ID=gene86;Name=CA212_088;Note=rplS;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_088
+CP021173.1	Genbank	CDS	63976	64314	.	-	0	ID=cds78;Parent=gene86;Dbxref=GO:0003735,GO:0005622,GO:0005840,GO:0006412,NCBI_GP:ASS47089.1;Name=ASS47089.1;Note=rplS;gbkey=CDS;product=50S ribosomal protein L19p;protein_id=ASS47089.1;transl_table=4
+CP021173.1	Genbank	gene	64302	64544	.	-	.	ID=gene87;Name=CA212_089;Note=rpsP;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_089
+CP021173.1	Genbank	CDS	64302	64544	.	-	0	ID=cds79;Parent=gene87;Dbxref=GO:0003735,GO:0005622,GO:0005840,GO:0006412,NCBI_GP:ASS47090.1;Name=ASS47090.1;Note=rpsP;gbkey=CDS;product=30S ribosomal protein S16p;protein_id=ASS47090.1;transl_table=4
+CP021173.1	Genbank	gene	64554	67616	.	-	.	ID=gene88;Name=CA212_090;Note=dnaE;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_090
+CP021173.1	Genbank	CDS	64554	67616	.	-	0	ID=cds80;Parent=gene88;Dbxref=GO:0003887,NCBI_GP:ASS47091.1;Name=ASS47091.1;Note=dnaE;gbkey=CDS;product=DNA polymerase III alpha subunit;protein_id=ASS47091.1;transl_table=4
+CP021173.1	Genbank	gene	67617	69878	.	-	.	ID=gene89;Name=CA212_091;Note=metE;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_091
+CP021173.1	Genbank	CDS	67617	69878	.	-	0	ID=cds81;Parent=gene89;Dbxref=GO:0003871,NCBI_GP:ASS47092.1;Name=ASS47092.1;Note=metE;gbkey=CDS;product=5-methyltetrahydropteroyltriglutamate-- homocysteine methyltransferase;protein_id=ASS47092.1;transl_table=4
+CP021173.1	Genbank	gene	69893	69965	.	-	.	ID=gene90;Name=CA212_092;gbkey=Gene;gene_biotype=tRNA;locus_tag=CA212_092
+CP021173.1	Genbank	tRNA	69893	69965	.	-	.	ID=rna8;Parent=gene90;gbkey=tRNA;product=tRNA-His
+CP021173.1	Genbank	exon	69893	69965	.	-	.	ID=id9;Parent=rna8;gbkey=tRNA;product=tRNA-His
+CP021173.1	Genbank	gene	70526	70732	.	-	.	ID=gene91;Name=CA212_093;Note=cspA;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_093
+CP021173.1	Genbank	CDS	70526	70732	.	-	0	ID=cds82;Parent=gene91;Dbxref=NCBI_GP:ASS47093.1;Name=ASS47093.1;Note=cspA;gbkey=CDS;product=Cold shock transcription regulator protein;protein_id=ASS47093.1;transl_table=4
+CP021173.1	Genbank	gene	70948	71178	.	-	.	ID=gene92;Name=CA212_094;Note=hypothetical protein;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_094
+CP021173.1	Genbank	CDS	70948	71178	.	-	0	ID=cds83;Parent=gene92;Dbxref=NCBI_GP:ASS47094.1;Name=ASS47094.1;Note=hypothetical protein;gbkey=CDS;product=hypothetical protein;protein_id=ASS47094.1;transl_table=4
+CP021173.1	Genbank	gene	71179	72021	.	-	.	ID=gene93;Name=CA212_095;Note=metF;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_095
+CP021173.1	Genbank	CDS	71179	72021	.	-	0	ID=cds84;Parent=gene93;Dbxref=NCBI_GP:ASS47095.1;Name=ASS47095.1;Note=metF;gbkey=CDS;product=5%2C10-methylenetetrahydrofolate reductase;protein_id=ASS47095.1;transl_table=4
+CP021173.1	Genbank	gene	72061	73029	.	-	.	ID=gene94;Name=CA212_096;Note=hypothetical protein;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_096
+CP021173.1	Genbank	CDS	72061	73029	.	-	0	ID=cds85;Parent=gene94;Dbxref=GO:0003676,GO:0003677,GO:0003896,GO:0006260,GO:0006304,GO:0008270,NCBI_GP:ASS47096.1;Name=ASS47096.1;Note=hypothetical protein;gbkey=CDS;product=DNA primase;protein_id=ASS47096.1;transl_table=4
+CP021173.1	Genbank	gene	73034	75331	.	-	.	ID=gene95;Name=CA212_097;Note=leuS;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_097
+CP021173.1	Genbank	CDS	73034	75331	.	-	0	ID=cds86;Parent=gene95;Dbxref=GO:0004823,NCBI_GP:ASS47097.1;Name=ASS47097.1;Note=leuS;gbkey=CDS;product=Leucyl-tRNA synthetase;protein_id=ASS47097.1;transl_table=4
+CP021173.1	Genbank	gene	75346	75416	.	-	.	ID=gene96;Name=CA212_098;gbkey=Gene;gene_biotype=tRNA;locus_tag=CA212_098
+CP021173.1	Genbank	tRNA	75346	75416	.	-	.	ID=rna9;Parent=gene96;gbkey=tRNA;product=tRNA-Val
+CP021173.1	Genbank	exon	75346	75416	.	-	.	ID=id10;Parent=rna9;gbkey=tRNA;product=tRNA-Val
+CP021173.1	Genbank	gene	75419	75958	.	-	.	ID=gene97;Name=CA212_099;Note=radA;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_099
+CP021173.1	Genbank	CDS	75419	75958	.	-	0	ID=cds87;Parent=gene97;Dbxref=NCBI_GP:ASS47098.1;Name=ASS47098.1;Note=radA;gbkey=CDS;product=putative DNA repair protein;protein_id=ASS47098.1;transl_table=4
+CP021173.1	Genbank	gene	75969	77015	.	-	.	ID=gene98;Name=CA212_100;Note=clpX;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_100
+CP021173.1	Genbank	CDS	75969	77015	.	-	0	ID=cds88;Parent=gene98;Dbxref=NCBI_GP:ASS47099.1;Name=ASS47099.1;Note=clpX;gbkey=CDS;product=ATP-dependent Clp protease ATP-binding subunit ClpX;protein_id=ASS47099.1;transl_table=4
+CP021173.1	Genbank	gene	77041	77646	.	-	.	ID=gene99;Name=CA212_101;Note=clpP;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_101
+CP021173.1	Genbank	CDS	77041	77646	.	-	0	ID=cds89;Parent=gene99;Dbxref=GO:0008462,NCBI_GP:ASS47100.1;Name=ASS47100.1;Note=clpP;gbkey=CDS;product=ATP-dependent Clp protease proteolytic subunit;protein_id=ASS47100.1;transl_table=4
+CP021173.1	Genbank	pseudogene	77662	77733	.	+	.	ID=gene100;Name=CA212_102;gbkey=Gene;gene_biotype=tRNA_pseudogene;locus_tag=CA212_102;pseudo=true
+CP021173.1	Genbank	tRNA	77662	77733	.	+	.	ID=rna10;Parent=gene100;gbkey=tRNA;product=tRNA-Cys
+CP021173.1	Genbank	exon	77662	77733	.	+	.	ID=id11;Parent=rna10;gbkey=tRNA;product=tRNA-Cys
+CP021173.1	Genbank	gene	77742	77813	.	-	.	ID=gene101;Name=CA212_103;gbkey=Gene;gene_biotype=tRNA;locus_tag=CA212_103
+CP021173.1	Genbank	tRNA	77742	77813	.	-	.	ID=rna11;Parent=gene101;gbkey=tRNA;product=tRNA-Gly
+CP021173.1	Genbank	exon	77742	77813	.	-	.	ID=id12;Parent=rna11;gbkey=tRNA;product=tRNA-Gly
+CP021173.1	Genbank	gene	77822	77892	.	-	.	ID=gene102;Name=CA212_104;gbkey=Gene;gene_biotype=tRNA;locus_tag=CA212_104
+CP021173.1	Genbank	tRNA	77822	77892	.	-	.	ID=rna12;Parent=gene102;gbkey=tRNA;product=tRNA-Met
+CP021173.1	Genbank	exon	77822	77892	.	-	.	ID=id13;Parent=rna12;gbkey=tRNA;product=tRNA-Met
+CP021173.1	Genbank	gene	77896	78282	.	+	.	ID=gene103;Name=CA212_105;Note=smpB;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_105
+CP021173.1	Genbank	CDS	77896	78282	.	+	0	ID=cds90;Parent=gene103;Dbxref=NCBI_GP:ASS47101.1;Name=ASS47101.1;Note=smpB;gbkey=CDS;product=tmRNA-binding protein SmpB;protein_id=ASS47101.1;transl_table=4
+CP021173.1	Genbank	gene	78260	78505	.	+	.	ID=gene104;Name=CA212_106;Note=rpmB;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_106
+CP021173.1	Genbank	CDS	78260	78505	.	+	0	ID=cds91;Parent=gene104;Dbxref=NCBI_GP:ASS47102.1;Name=ASS47102.1;Note=rpmB;gbkey=CDS;product=50S ribosomal protein L28;protein_id=ASS47102.1;transl_table=4
+CP021173.1	Genbank	gene	78495	78656	.	+	.	ID=gene105;Name=CA212_107;Note=rpmG;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_107
+CP021173.1	Genbank	CDS	78495	78656	.	+	0	ID=cds92;Parent=gene105;Dbxref=NCBI_GP:ASS47103.1;Name=ASS47103.1;Note=rpmG;gbkey=CDS;product=50S ribosomal protein L33;protein_id=ASS47103.1;transl_table=4
+CP021173.1	Genbank	gene	78671	79774	.	-	.	ID=gene106;Name=CA212_108;Note=mscS;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_108
+CP021173.1	Genbank	CDS	78671	79774	.	-	0	ID=cds93;Parent=gene106;Dbxref=NCBI_GP:ASS47104.1;Name=ASS47104.1;Note=mscS;gbkey=CDS;product=Mechanosensitive ion channel;protein_id=ASS47104.1;transl_table=4
+CP021173.1	Genbank	gene	79801	82536	.	+	.	ID=gene107;Name=CA212_109;Note=ileS;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_109
+CP021173.1	Genbank	CDS	79801	82536	.	+	0	ID=cds94;Parent=gene107;Dbxref=GO:0004822,NCBI_GP:ASS47105.1;Name=ASS47105.1;Note=ileS;gbkey=CDS;product=Isoleucine--tRNA ligase;protein_id=ASS47105.1;transl_table=4
+CP021173.1	Genbank	gene	82545	82617	.	-	.	ID=gene108;Name=CA212_110;gbkey=Gene;gene_biotype=tRNA;locus_tag=CA212_110
+CP021173.1	Genbank	tRNA	82545	82617	.	-	.	ID=rna13;Parent=gene108;gbkey=tRNA;product=tRNA-Thr
+CP021173.1	Genbank	exon	82545	82617	.	-	.	ID=id14;Parent=rna13;gbkey=tRNA;product=tRNA-Thr
+CP021173.1	Genbank	gene	82839	83273	.	-	.	ID=gene109;Name=CA212_111;Note=hypothetical protein;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_111
+CP021173.1	Genbank	CDS	82839	83273	.	-	0	ID=cds95;Parent=gene109;Dbxref=NCBI_GP:ASS47106.1;Name=ASS47106.1;Note=hypothetical protein;gbkey=CDS;product=hypothetical protein;protein_id=ASS47106.1;transl_table=4
+CP021173.1	Genbank	gene	83266	84594	.	-	.	ID=gene110;Name=CA212_112;Note=miaB;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_112
+CP021173.1	Genbank	CDS	83266	84594	.	-	0	ID=cds96;Parent=gene110;Dbxref=GO:0003824,GO:0005506,NCBI_GP:ASS47107.1;Name=ASS47107.1;Note=miaB;gbkey=CDS;product=tRNA-i(6)A37 methylthiotransferase;protein_id=ASS47107.1;transl_table=4
+CP021173.1	Genbank	gene	84599	85357	.	-	.	ID=gene111;Name=CA212_113;Note=rsmA;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_113
+CP021173.1	Genbank	CDS	84599	85357	.	-	0	ID=cds97;Parent=gene111;Dbxref=NCBI_GP:ASS47108.1;Name=ASS47108.1;Note=rsmA;gbkey=CDS;product=Ribosomal RNA small subunit methyltransferase A;protein_id=ASS47108.1;transl_table=4
+CP021173.1	Genbank	gene	85363	85776	.	+	.	ID=gene112;Name=CA212_114;Note=hypothetical protein;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_114
+CP021173.1	Genbank	CDS	85363	85776	.	+	0	ID=cds98;Parent=gene112;Dbxref=NCBI_GP:ASS47109.1;Name=ASS47109.1;Note=hypothetical protein;gbkey=CDS;product=hypothetical protein;protein_id=ASS47109.1;transl_table=4
+CP021173.1	Genbank	gene	85756	86493	.	-	.	ID=gene113;Name=CA212_115;Note=cysG;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_115
+CP021173.1	Genbank	CDS	85756	86493	.	-	0	ID=cds99;Parent=gene113;Dbxref=GO:0004851,NCBI_GP:ASS47110.1;Name=ASS47110.1;Note=cysG;gbkey=CDS;product=Uroporphyrinogen-III methyltransferase;protein_id=ASS47110.1;transl_table=4
+CP021173.1	Genbank	gene	86503	87201	.	-	.	ID=gene114;Name=CA212_116;Note=cysH;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_116
+CP021173.1	Genbank	CDS	86503	87201	.	-	0	ID=cds100;Parent=gene114;Dbxref=GO:0004604,NCBI_GP:ASS47111.1;Name=ASS47111.1;Note=cysH;gbkey=CDS;product=Phosphoadenosine phosphosulfate reductase;protein_id=ASS47111.1;transl_table=4
+CP021173.1	Genbank	gene	87207	87500	.	-	.	ID=gene115;Name=CA212_117;Note=hypothetical protein;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_117
+CP021173.1	Genbank	CDS	87207	87500	.	-	0	ID=cds101;Parent=gene115;Dbxref=NCBI_GP:ASS47112.1;Name=ASS47112.1;Note=hypothetical protein;gbkey=CDS;product=hypothetical protein;protein_id=ASS47112.1;transl_table=4
+CP021173.1	Genbank	gene	87493	89136	.	-	.	ID=gene116;Name=CA212_118;Note=cysI;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_118
+CP021173.1	Genbank	CDS	87493	89136	.	-	0	ID=cds102;Parent=gene116;Dbxref=GO:0004783,NCBI_GP:ASS47113.1;Name=ASS47113.1;Note=cysI;gbkey=CDS;product=Sulfite reductase [NADPH] hemoprotein beta-component;protein_id=ASS47113.1;transl_table=4
+CP021173.1	Genbank	gene	89159	89243	.	+	.	ID=gene117;Name=CA212_119;gbkey=Gene;gene_biotype=tRNA;locus_tag=CA212_119
+CP021173.1	Genbank	tRNA	89159	89243	.	+	.	ID=rna14;Parent=gene117;gbkey=tRNA;product=tRNA-Leu
+CP021173.1	Genbank	exon	89159	89243	.	+	.	ID=id15;Parent=rna14;gbkey=tRNA;product=tRNA-Leu
+CP021173.1	Genbank	gene	89260	90699	.	+	.	ID=gene118;Name=CA212_120;Note=glnS;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_120
+CP021173.1	Genbank	CDS	89260	90699	.	+	0	ID=cds103;Parent=gene118;Dbxref=GO:0004819,NCBI_GP:ASS47114.1;Name=ASS47114.1;Note=glnS;gbkey=CDS;product=Glutaminyl-tRNA synthetase;protein_id=ASS47114.1;transl_table=4
+CP021173.1	Genbank	gene	90710	90783	.	-	.	ID=gene119;Name=CA212_121;gbkey=Gene;gene_biotype=tRNA;locus_tag=CA212_121
+CP021173.1	Genbank	tRNA	90710	90783	.	-	.	ID=rna15;Parent=gene119;gbkey=tRNA;product=tRNA-Arg
+CP021173.1	Genbank	exon	90710	90783	.	-	.	ID=id16;Parent=rna15;gbkey=tRNA;product=tRNA-Arg
+CP021173.1	Genbank	gene	90766	91923	.	-	.	ID=gene120;Name=CA212_122;Note=rpsA;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_122
+CP021173.1	Genbank	CDS	90766	91923	.	-	0	ID=cds104;Parent=gene120;Dbxref=NCBI_GP:ASS47115.1;Name=ASS47115.1;Note=rpsA;gbkey=CDS;product=30S ribosomal protein S1;protein_id=ASS47115.1;transl_table=4
+CP021173.1	Genbank	gene	91932	92246	.	-	.	ID=gene121;Name=CA212_123;Note=fdx;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_123
+CP021173.1	Genbank	CDS	91932	92246	.	-	0	ID=cds105;Parent=gene121;Dbxref=NCBI_GP:ASS47116.1;Name=ASS47116.1;Note=fdx;gbkey=CDS;product=putative ferredoxin%2C 2Fe-2S type%2C ISC system;protein_id=ASS47116.1;transl_table=4
+CP021173.1	Genbank	gene	92250	93611	.	-	.	ID=gene122;Name=CA212_124;Note=hypothetical protein;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_124
+CP021173.1	Genbank	CDS	92250	93611	.	-	0	ID=cds106;Parent=gene122;Dbxref=GO:0004823,NCBI_GP:ASS47117.1;Name=ASS47117.1;Note=hypothetical protein;gbkey=CDS;product=Leucyl-tRNA synthetase;protein_id=ASS47117.1;transl_table=4
+CP021173.1	Genbank	gene	93636	94016	.	-	.	ID=gene123;Name=CA212_125;Note=iscU;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_125
+CP021173.1	Genbank	CDS	93636	94016	.	-	0	ID=cds107;Parent=gene123;Dbxref=NCBI_GP:ASS47118.1;Name=ASS47118.1;Note=iscU;gbkey=CDS;product=Iron-sulfur cluster assembly scaffold protein IscU;protein_id=ASS47118.1;transl_table=4
+CP021173.1	Genbank	gene	94006	95175	.	-	.	ID=gene124;Name=CA212_126;Note=iscS;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_126
+CP021173.1	Genbank	CDS	94006	95175	.	-	0	ID=cds108;Parent=gene124;Dbxref=GO:0031071,NCBI_GP:ASS47119.1;Name=ASS47119.1;Note=iscS;gbkey=CDS;product=Cysteine desulfurase;protein_id=ASS47119.1;transl_table=4
+CP021173.1	Genbank	gene	95199	95272	.	+	.	ID=gene125;Name=CA212_127;gbkey=Gene;gene_biotype=tRNA;locus_tag=CA212_127
+CP021173.1	Genbank	tRNA	95199	95272	.	+	.	ID=rna16;Parent=gene125;gbkey=tRNA;product=tRNA-Arg
+CP021173.1	Genbank	exon	95199	95272	.	+	.	ID=id17;Parent=rna16;gbkey=tRNA;product=tRNA-Arg
+CP021173.1	Genbank	gene	95280	95364	.	+	.	ID=gene126;Name=CA212_128;gbkey=Gene;gene_biotype=tRNA;locus_tag=CA212_128
+CP021173.1	Genbank	tRNA	95280	95364	.	+	.	ID=rna17;Parent=gene126;gbkey=tRNA;product=tRNA-Ser
+CP021173.1	Genbank	exon	95280	95364	.	+	.	ID=id18;Parent=rna17;gbkey=tRNA;product=tRNA-Ser
+CP021173.1	Genbank	gene	95330	95725	.	-	.	ID=gene127;Name=CA212_129;Note=putative pre-16S rRNA nuclease;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_129
+CP021173.1	Genbank	CDS	95330	95725	.	-	0	ID=cds109;Parent=gene127;Dbxref=NCBI_GP:ASS47120.1;Name=ASS47120.1;Note=putative pre-16S rRNA nuclease;gbkey=CDS;product=putative pre-16S rRNA nuclease;protein_id=ASS47120.1;transl_table=4
+CP021173.1	Genbank	gene	95741	95814	.	-	.	ID=gene128;Name=CA212_130;gbkey=Gene;gene_biotype=tRNA;locus_tag=CA212_130
+CP021173.1	Genbank	tRNA	95741	95814	.	-	.	ID=rna18;Parent=gene128;gbkey=tRNA;product=tRNA-Met
+CP021173.1	Genbank	exon	95741	95814	.	-	.	ID=id19;Parent=rna18;gbkey=tRNA;product=tRNA-Met
+CP021173.1	Genbank	gene	95805	97514	.	-	.	ID=gene129;Name=CA212_131;Note=aspS;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_131
+CP021173.1	Genbank	CDS	95805	97514	.	-	0	ID=cds110;Parent=gene129;Dbxref=GO:0004815,NCBI_GP:ASS47121.1;Name=ASS47121.1;Note=aspS;gbkey=CDS;product=Aspartyl-tRNA synthetase;protein_id=ASS47121.1;transl_table=4
+CP021173.1	Genbank	gene	97857	97928	.	+	.	ID=gene130;Name=CA212_132;gbkey=Gene;gene_biotype=tRNA;locus_tag=CA212_132
+CP021173.1	Genbank	tRNA	97857	97928	.	+	.	ID=rna19;Parent=gene130;gbkey=tRNA;product=tRNA-Gln
+CP021173.1	Genbank	exon	97857	97928	.	+	.	ID=id20;Parent=rna19;gbkey=tRNA;product=tRNA-Gln
+CP021173.1	Genbank	gene	97941	98234	.	+	.	ID=gene131;Name=CA212_133;Note=rplY;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_133
+CP021173.1	Genbank	CDS	97941	98234	.	+	0	ID=cds111;Parent=gene131;Dbxref=NCBI_GP:ASS47122.1;Name=ASS47122.1;Note=rplY;gbkey=CDS;product=50S ribosomal subunit protein L25;protein_id=ASS47122.1;transl_table=4
+CP021173.1	Genbank	gene	98258	99328	.	+	.	ID=gene132;Name=CA212_134;Note=hisC;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_134
+CP021173.1	Genbank	CDS	98258	99328	.	+	0	ID=cds112;Parent=gene132;Dbxref=GO:0004400,NCBI_GP:ASS47123.1;Name=ASS47123.1;Note=hisC;gbkey=CDS;product=Histidinol-phosphate aminotransferase;protein_id=ASS47123.1;transl_table=4
+CP021173.1	Genbank	gene	99333	99878	.	-	.	ID=gene133;Name=CA212_135;Note=rsmD;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_135
+CP021173.1	Genbank	CDS	99333	99878	.	-	0	ID=cds113;Parent=gene133;Dbxref=NCBI_GP:ASS47124.1;Name=ASS47124.1;Note=rsmD;gbkey=CDS;product=RNA methyltransferase;protein_id=ASS47124.1;transl_table=4
+CP021173.1	Genbank	gene	99900	99972	.	-	.	ID=gene134;Name=CA212_136;gbkey=Gene;gene_biotype=tRNA;locus_tag=CA212_136
+CP021173.1	Genbank	tRNA	99900	99972	.	-	.	ID=rna20;Parent=gene134;gbkey=tRNA;product=tRNA-Lys
+CP021173.1	Genbank	exon	99900	99972	.	-	.	ID=id21;Parent=rna20;gbkey=tRNA;product=tRNA-Lys
+CP021173.1	Genbank	gene	99988	101022	.	+	.	ID=gene135;Name=CA212_137;Note=prfA;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_137
+CP021173.1	Genbank	CDS	99988	101022	.	+	0	ID=cds114;Parent=gene135;Dbxref=GO:0003747,GO:0006415,NCBI_GP:ASS47125.1;Name=ASS47125.1;Note=prfA;gbkey=CDS;product=Peptide chain release factor 1;protein_id=ASS47125.1;transl_table=4
+CP021173.1	Genbank	gene	101035	101337	.	+	.	ID=gene136;Name=CA212_138;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_138
+CP021173.1	Genbank	CDS	101035	101337	.	+	0	ID=cds115;Parent=gene136;Dbxref=NCBI_GP:ASS47126.1;Name=ASS47126.1;Note=hypothetical protein;gbkey=CDS;product=hypothetical protein;protein_id=ASS47126.1;transl_table=4
+CP021173.1	Genbank	gene	101035	101331	.	+	.	ID=gene137;Name=CA212_139;Note=hypothetical protein;gbkey=Gene;gene_biotype=other;locus_tag=CA212_139
+CP021173.1	Genbank	gene	101364	102545	.	+	.	ID=gene138;Name=CA212_140;Note=putative gluconate 2-dehydrogenase CccA%3B Cytochrome c%2C mono- and diheme variants;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_140
+CP021173.1	Genbank	CDS	101364	102545	.	+	0	ID=cds116;Parent=gene138;Dbxref=NCBI_GP:ASS47127.1;Name=ASS47127.1;Note=putative gluconate 2-dehydrogenase CccA%3B Cytochrome c%2C mono- and diheme variants;gbkey=CDS;product=putative diheme cytochrome c-553;protein_id=ASS47127.1;transl_table=4
+CP021173.1	Genbank	gene	102534	102800	.	-	.	ID=gene139;Name=CA212_141;Note=hypothetical protein;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_141
+CP021173.1	Genbank	CDS	102534	102800	.	-	0	ID=cds117;Parent=gene139;Dbxref=NCBI_GP:ASS47128.1;Name=ASS47128.1;Note=hypothetical protein;gbkey=CDS;product=hypothetical protein;protein_id=ASS47128.1;transl_table=4
+CP021173.1	Genbank	gene	102799	103473	.	+	.	ID=gene140;Name=CA212_142;Note=tilS;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_142
+CP021173.1	Genbank	CDS	102799	103473	.	+	0	ID=cds118;Parent=gene140;Dbxref=NCBI_GP:ASS47129.1;Name=ASS47129.1;Note=tilS;gbkey=CDS;product=tRNA(Ile)-lysidine synthase;protein_id=ASS47129.1;transl_table=4
+CP021173.1	Genbank	gene	103451	103539	.	+	.	ID=gene141;Name=CA212_143;gbkey=Gene;gene_biotype=tRNA;locus_tag=CA212_143
+CP021173.1	Genbank	tRNA	103451	103539	.	+	.	ID=rna21;Parent=gene141;gbkey=tRNA;product=tRNA-Ser
+CP021173.1	Genbank	exon	103451	103539	.	+	.	ID=id22;Parent=rna21;gbkey=tRNA;product=tRNA-Ser
+CP021173.1	Genbank	gene	103503	104453	.	-	.	ID=gene142;Name=CA212_144;Note=rluD;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_144
+CP021173.1	Genbank	CDS	103503	104453	.	-	0	ID=cds119;Parent=gene142;Dbxref=NCBI_GP:ASS47130.1;Name=ASS47130.1;Note=rluD;gbkey=CDS;product=Pseudouridine synthase;protein_id=ASS47130.1;transl_table=4
+CP021173.1	Genbank	gene	104452	105096	.	+	.	ID=gene143;Name=CA212_145;Note=serB;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_145
+CP021173.1	Genbank	CDS	104452	105096	.	+	0	ID=cds120;Parent=gene143;Dbxref=GO:0004832,NCBI_GP:ASS47131.1;Name=ASS47131.1;Note=serB;gbkey=CDS;product=HAD hydrolase%2C family IB;protein_id=ASS47131.1;transl_table=4
+CP021173.1	Genbank	gene	105085	106185	.	-	.	ID=gene144;Name=CA212_146;Note=dnaJ;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_146
+CP021173.1	Genbank	CDS	105085	106185	.	-	0	ID=cds121;Parent=gene144;Dbxref=GO:0006457,GO:0031072,GO:0051082,NCBI_GP:ASS47132.1;Name=ASS47132.1;Note=dnaJ;gbkey=CDS;product=Chaperone protein DnaJ;protein_id=ASS47132.1;transl_table=4
+CP021173.1	Genbank	gene	106187	108292	.	-	.	ID=gene145;Name=CA212_147;Note=dnaK;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_147
+CP021173.1	Genbank	CDS	106187	108292	.	-	0	ID=cds122;Parent=gene145;Dbxref=NCBI_GP:ASS47133.1;Name=ASS47133.1;Note=dnaK;gbkey=CDS;product=Chaperone protein DnaK;protein_id=ASS47133.1;transl_table=4
+CP021173.1	Genbank	gene	108319	108879	.	-	.	ID=gene146;Name=CA212_148;Note=grpE;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_148
+CP021173.1	Genbank	CDS	108319	108879	.	-	0	ID=cds123;Parent=gene146;Dbxref=GO:0000774,GO:0006457,GO:0042803,GO:0051087,NCBI_GP:ASS47134.1;Name=ASS47134.1;Note=grpE;gbkey=CDS;product=Heat shock protein GrpE;protein_id=ASS47134.1;transl_table=4
+CP021173.1	Genbank	gene	108906	109442	.	+	.	ID=gene147;Name=CA212_149;Note=putative cytochrome c oxidase assembly protein (SCO2);gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_149
+CP021173.1	Genbank	CDS	108906	109442	.	+	0	ID=cds124;Parent=gene147;Dbxref=NCBI_GP:ASS47135.1;Name=ASS47135.1;Note=putative cytochrome c oxidase assembly protein (SCO2);gbkey=CDS;product=putative cytochrome c oxidase assembly protein (SCO2);protein_id=ASS47135.1;transl_table=4
+CP021173.1	Genbank	gene	109444	110127	.	+	.	ID=gene148;Name=CA212_150;Note=membrane protein;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_150
+CP021173.1	Genbank	CDS	109444	110127	.	+	0	ID=cds125;Parent=gene148;Dbxref=GO:0005507,GO:0006825,GO:0006878,GO:0016021,GO:0042597,GO:0046688,NCBI_GP:ASS47136.1;Name=ASS47136.1;Note=membrane protein;gbkey=CDS;product=membrane protein;protein_id=ASS47136.1;transl_table=4
+CP021173.1	Genbank	gene	110101	111288	.	-	.	ID=gene149;Name=CA212_151;Note=metB;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_151
+CP021173.1	Genbank	CDS	110101	111288	.	-	0	ID=cds126;Parent=gene149;Dbxref=GO:0003961,NCBI_GP:ASS47137.1;Name=ASS47137.1;Note=metB;gbkey=CDS;product=O-succinylhomoserine sulfhydrylase;protein_id=ASS47137.1;transl_table=4
+CP021173.1	Genbank	gene	111294	112019	.	-	.	ID=gene150;Name=CA212_152;Note=truA;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_152
+CP021173.1	Genbank	CDS	111294	112019	.	-	0	ID=cds127;Parent=gene150;Dbxref=GO:0004730,NCBI_GP:ASS47138.1;Name=ASS47138.1;Note=truA;gbkey=CDS;product=tRNA pseudouridine synthase A;protein_id=ASS47138.1;transl_table=4
+CP021173.1	Genbank	gene	112007	114268	.	-	.	ID=gene151;Name=CA212_153;Note=pheT;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_153
+CP021173.1	Genbank	CDS	112007	114268	.	-	0	ID=cds128;Parent=gene151;Dbxref=NCBI_GP:ASS47139.1;Name=ASS47139.1;Note=pheT;gbkey=CDS;product=Phenylalanine--tRNA ligase beta subunit;protein_id=ASS47139.1;transl_table=4
+CP021173.1	Genbank	gene	114274	115203	.	-	.	ID=gene152;Name=CA212_154;Note=rpmI;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_154
+CP021173.1	Genbank	CDS	114274	115203	.	-	0	ID=cds129;Parent=gene152;Dbxref=GO:0004826,NCBI_GP:ASS47140.1;Name=ASS47140.1;Note=rpmI;gbkey=CDS;product=Phenylalanine--tRNA ligase;protein_id=ASS47140.1;transl_table=4
+CP021173.1	Genbank	gene	115193	115555	.	-	.	ID=gene153;Name=CA212_155;Note=rplT;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_155
+CP021173.1	Genbank	CDS	115193	115555	.	-	0	ID=cds130;Parent=gene153;Dbxref=GO:0003723,GO:0003735,GO:0005622,GO:0005840,GO:0006412,NCBI_GP:ASS47141.1;Name=ASS47141.1;Note=rplT;gbkey=CDS;product=50S ribosomal protein L20p;protein_id=ASS47141.1;transl_table=4
+CP021173.1	Genbank	gene	115561	115734	.	-	.	ID=gene154;Name=CA212_156;Note=rpmI;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_156
+CP021173.1	Genbank	CDS	115561	115734	.	-	0	ID=cds131;Parent=gene154;Dbxref=NCBI_GP:ASS47142.1;Name=ASS47142.1;Note=rpmI;gbkey=CDS;product=50S ribosomal protein L35;protein_id=ASS47142.1;transl_table=4
+CP021173.1	Genbank	gene	115718	116500	.	-	.	ID=gene155;Name=CA212_157;Note=infC;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_157
+CP021173.1	Genbank	CDS	115718	116500	.	-	0	ID=cds132;Parent=gene155;Dbxref=NCBI_GP:ASS47143.1;Name=ASS47143.1;Note=infC;gbkey=CDS;product=Translation initiation factor 3;protein_id=ASS47143.1;transl_table=4
+CP021173.1	Genbank	gene	116532	116604	.	-	.	ID=gene156;Name=CA212_158;gbkey=Gene;gene_biotype=tRNA;locus_tag=CA212_158
+CP021173.1	Genbank	tRNA	116532	116604	.	-	.	ID=rna22;Parent=gene156;gbkey=tRNA;product=tRNA-Val
+CP021173.1	Genbank	exon	116532	116604	.	-	.	ID=id23;Parent=rna22;gbkey=tRNA;product=tRNA-Val
+CP021173.1	Genbank	gene	116617	116722	.	-	.	ID=gene157;Name=CA212_159;gbkey=Gene;gene_biotype=rRNA;locus_tag=CA212_159
+CP021173.1	Genbank	rRNA	116617	116722	.	-	.	ID=rna23;Parent=gene157;gbkey=rRNA;product=5S Ribosomal RNA
+CP021173.1	Genbank	exon	116617	116722	.	-	.	ID=id24;Parent=rna23;gbkey=rRNA;product=5S Ribosomal RNA
+CP021173.1	Genbank	gene	116746	119635	.	-	.	ID=gene158;Name=CA212_160;gbkey=Gene;gene_biotype=rRNA;locus_tag=CA212_160
+CP021173.1	Genbank	rRNA	116746	119635	.	-	.	ID=rna24;Parent=gene158;gbkey=rRNA;product=23S Ribosomal RNA
+CP021173.1	Genbank	exon	116746	119635	.	-	.	ID=id25;Parent=rna24;gbkey=rRNA;product=23S Ribosomal RNA
+CP021173.1	Genbank	gene	119657	119730	.	-	.	ID=gene159;Name=CA212_161;gbkey=Gene;gene_biotype=tRNA;locus_tag=CA212_161
+CP021173.1	Genbank	tRNA	119657	119730	.	-	.	ID=rna25;Parent=gene159;gbkey=tRNA;product=tRNA-Ile
+CP021173.1	Genbank	exon	119657	119730	.	-	.	ID=id26;Parent=rna25;gbkey=tRNA;product=tRNA-Ile
+CP021173.1	Genbank	gene	119761	121321	.	-	.	ID=gene160;Name=CA212_162;gbkey=Gene;gene_biotype=rRNA;locus_tag=CA212_162
+CP021173.1	Genbank	rRNA	119761	121321	.	-	.	ID=rna26;Parent=gene160;gbkey=rRNA;product=16S Ribosomal RNA
+CP021173.1	Genbank	exon	119761	121321	.	-	.	ID=id27;Parent=rna26;gbkey=rRNA;product=16S Ribosomal RNA
+CP021173.1	Genbank	gene	121414	121486	.	-	.	ID=gene161;Name=CA212_163;gbkey=Gene;gene_biotype=tRNA;locus_tag=CA212_163
+CP021173.1	Genbank	tRNA	121414	121486	.	-	.	ID=rna27;Parent=gene161;gbkey=tRNA;product=tRNA-Ala
+CP021173.1	Genbank	exon	121414	121486	.	-	.	ID=id28;Parent=rna27;gbkey=tRNA;product=tRNA-Ala
+CP021173.1	Genbank	gene	121500	121585	.	-	.	ID=gene162;Name=CA212_164;gbkey=Gene;gene_biotype=tRNA;locus_tag=CA212_164
+CP021173.1	Genbank	tRNA	121500	121585	.	-	.	ID=rna28;Parent=gene162;gbkey=tRNA;product=tRNA-Ser
+CP021173.1	Genbank	exon	121500	121585	.	-	.	ID=id29;Parent=rna28;gbkey=tRNA;product=tRNA-Ser
+CP021173.1	Genbank	gene	121550	123013	.	-	.	ID=gene163;Name=CA212_165;Note=gatB;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_165
+CP021173.1	Genbank	CDS	121550	123013	.	-	0	ID=cds133;Parent=gene163;Dbxref=NCBI_GP:ASS47144.1;Name=ASS47144.1;Note=gatB;gbkey=CDS;product=Aspartyl/glutamyl-tRNA(Asn/Gln) amidotransferase subunit B;protein_id=ASS47144.1;transl_table=4
+CP021173.1	Genbank	gene	123004	124479	.	-	.	ID=gene164;Name=CA212_166;Note=gatA;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_166
+CP021173.1	Genbank	CDS	123004	124479	.	-	0	ID=cds134;Parent=gene164;Dbxref=NCBI_GP:ASS47145.1;Name=ASS47145.1;Note=gatA%3B Glutamyl-tRNA(Gln) amidotransferase subunit A;gbkey=CDS;product=Aspartyl-tRNA(Asn) amidotransferase subunit A;protein_id=ASS47145.1;transl_table=4
+CP021173.1	Genbank	gene	124482	124751	.	-	.	ID=gene165;Name=CA212_167;Note=hypothetical protein;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_167
+CP021173.1	Genbank	CDS	124482	124751	.	-	0	ID=cds135;Parent=gene165;Dbxref=NCBI_GP:ASS47146.1;Name=ASS47146.1;Note=hypothetical protein;gbkey=CDS;product=hypothetical protein;protein_id=ASS47146.1;transl_table=4
+CP021173.1	Genbank	gene	124769	124841	.	-	.	ID=gene166;Name=CA212_168;gbkey=Gene;gene_biotype=tRNA;locus_tag=CA212_168
+CP021173.1	Genbank	tRNA	124769	124841	.	-	.	ID=rna29;Parent=gene166;gbkey=tRNA;product=tRNA-Phe
+CP021173.1	Genbank	exon	124769	124841	.	-	.	ID=id30;Parent=rna29;gbkey=tRNA;product=tRNA-Phe
+CP021173.1	Genbank	gene	124832	125464	.	-	.	ID=gene167;Name=CA212_169;Note=fmt;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_169
+CP021173.1	Genbank	CDS	124832	125464	.	-	0	ID=cds136;Parent=gene167;Dbxref=NCBI_GP:ASS47147.1;Name=ASS47147.1;Note=fmt;gbkey=CDS;product=Phosphoribosylglycinamide formyltransferase;protein_id=ASS47147.1;transl_table=4
+CP021173.1	Genbank	gene	125468	128050	.	+	.	ID=gene168;Name=CA212_170;Note=infB;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_170
+CP021173.1	Genbank	CDS	125468	128050	.	+	0	ID=cds137;Parent=gene168;Dbxref=NCBI_GP:ASS47148.1;Name=ASS47148.1;Note=infB;gbkey=CDS;product=Translation initiation factor IF-2;protein_id=ASS47148.1;transl_table=4
+CP021173.1	Genbank	gene	128055	129770	.	+	.	ID=gene169;Name=CA212_171;Note=gidA;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_171
+CP021173.1	Genbank	CDS	128055	129770	.	+	0	ID=cds138;Parent=gene169;Dbxref=NCBI_GP:ASS47149.1;Name=ASS47149.1;Note=gidA;gbkey=CDS;product=tRNA uridine 5-carboxymethylaminomethyl modification enzyme GidA;protein_id=ASS47149.1;transl_table=4
+CP021173.1	Genbank	gene	129763	130416	.	-	.	ID=gene170;Name=CA212_172;Note=dnaQ;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_172
+CP021173.1	Genbank	CDS	129763	130416	.	-	0	ID=cds139;Parent=gene170;Dbxref=GO:0003887,NCBI_GP:ASS47150.1;Name=ASS47150.1;Note=dnaQ;gbkey=CDS;product=DNA polymerase III epsilon subunit;protein_id=ASS47150.1;transl_table=4
+CP021173.1	Genbank	gene	130418	130894	.	+	.	ID=gene171;Name=CA212_173;Note=greA;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_173
+CP021173.1	Genbank	CDS	130418	130894	.	+	0	ID=cds140;Parent=gene171;Dbxref=GO:0003677,GO:0003711,NCBI_GP:ASS47151.1;Name=ASS47151.1;Note=greA;gbkey=CDS;product=Transcription elongation factor GreA;protein_id=ASS47151.1;transl_table=4
+CP021173.1	Genbank	gene	131165	131320	.	+	.	ID=gene172;Name=CA212_174;Note=hypothetical protein;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_174
+CP021173.1	Genbank	CDS	131165	131320	.	+	0	ID=cds141;Parent=gene172;Dbxref=NCBI_GP:ASS47152.1;Name=ASS47152.1;Note=hypothetical protein;gbkey=CDS;product=hypothetical protein;protein_id=ASS47152.1;transl_table=4
+CP021173.1	Genbank	gene	131307	131561	.	+	.	ID=gene173;Name=CA212_175;Note=/rplM%3B rplM;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_175
+CP021173.1	Genbank	CDS	131307	131561	.	+	0	ID=cds142;Parent=gene173;Dbxref=NCBI_GP:ASS47153.1;Name=ASS47153.1;Note=rplM;gbkey=CDS;product=50S ribosomal subunit protein L13;protein_id=ASS47153.1;transl_table=4
+CP021173.1	Genbank	gene	131545	131925	.	+	.	ID=gene174;Name=CA212_176;Note=rpsI;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_176
+CP021173.1	Genbank	CDS	131545	131925	.	+	0	ID=cds143;Parent=gene174;Dbxref=GO:0003735,GO:0005622,GO:0005840,GO:0006412,NCBI_GP:ASS47154.1;Name=ASS47154.1;Note=rpsI;gbkey=CDS;product=30S ribosomal protein S9p (S16e);protein_id=ASS47154.1;transl_table=4
+CP021173.1	Genbank	gene	131930	132292	.	+	.	ID=gene175;Name=CA212_177;Note=erpA;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_177
+CP021173.1	Genbank	CDS	131930	132292	.	+	0	ID=cds144;Parent=gene175;Dbxref=GO:0005554,NCBI_GP:ASS47155.1;Name=ASS47155.1;Note=erpA;gbkey=CDS;product=Iron-sulfur cluster insertion protein ErpA;protein_id=ASS47155.1;transl_table=4
+CP021173.1	Genbank	gene	132319	132783	.	-	.	ID=gene176;Name=CA212_178;Note=ribE;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_178
+CP021173.1	Genbank	CDS	132319	132783	.	-	0	ID=cds145;Parent=gene176;Dbxref=NCBI_GP:ASS47156.1;Name=ASS47156.1;Note=ribE;gbkey=CDS;product=6%2C7-dimethyl-8-ribityllumazine synthase;protein_id=ASS47156.1;transl_table=4
+CP021173.1	Genbank	gene	132767	133387	.	-	.	ID=gene177;Name=CA212_179;Note=ribC;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_179
+CP021173.1	Genbank	CDS	132767	133387	.	-	0	ID=cds146;Parent=gene177;Dbxref=NCBI_GP:ASS47157.1;Name=ASS47157.1;Note=ribC;gbkey=CDS;product=Riboflavin synthase eubacterial/eukaryotic;protein_id=ASS47157.1;transl_table=4
+CP021173.1	Genbank	gene	133395	134327	.	-	.	ID=gene178;Name=CA212_180;Note=trxB;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_180
+CP021173.1	Genbank	CDS	133395	134327	.	-	0	ID=cds147;Parent=gene178;Dbxref=GO:0004791,NCBI_GP:ASS47158.1;Name=ASS47158.1;Note=trxB;gbkey=CDS;product=Thioredoxin reductase;protein_id=ASS47158.1;transl_table=4
+CP021173.1	Genbank	gene	134387	135598	.	+	.	ID=gene179;Name=CA212_181;Note=serS;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_181
+CP021173.1	Genbank	CDS	134387	135598	.	+	0	ID=cds148;Parent=gene179;Dbxref=GO:0004828,NCBI_GP:ASS47159.1;Name=ASS47159.1;Note=serS;gbkey=CDS;product=Seryl-tRNA synthetase;protein_id=ASS47159.1;transl_table=4
+CP021173.1	Genbank	gene	135602	136942	.	-	.	ID=gene180;Name=CA212_182;Note=mnmE;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_182
+CP021173.1	Genbank	CDS	135602	136942	.	-	0	ID=cds149;Parent=gene180;Dbxref=GO:0005525,GO:0005622,NCBI_GP:ASS47160.1;Name=ASS47160.1;Note=mnmE;gbkey=CDS;product=GTPase and tRNA-U34 5-formylation enzyme TrmE;protein_id=ASS47160.1;transl_table=4
+CP021173.1	Genbank	gene	136942	137253	.	-	.	ID=gene181;Name=CA212_183;Note=hypothetical protein;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_183
+CP021173.1	Genbank	CDS	136942	137253	.	-	0	ID=cds150;Parent=gene181;Dbxref=NCBI_GP:ASS47161.1;Name=ASS47161.1;Note=hypothetical protein;gbkey=CDS;product=hypothetical protein;protein_id=ASS47161.1;transl_table=4
+CP021173.1	Genbank	gene	137311	137424	.	-	.	ID=gene182;Name=CA212_184;Note=rpmH;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_184
+CP021173.1	Genbank	CDS	137311	137424	.	-	0	ID=cds151;Parent=gene182;Dbxref=NCBI_GP:ASS47162.1;Name=ASS47162.1;Note=rpmH;gbkey=CDS;product=50S ribosomal subunit protein L34;protein_id=ASS47162.1;transl_table=4
+CP021173.1	Genbank	gene	137429	138520	.	+	.	ID=gene183;Name=CA212_185;Note=dnaN;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_185
+CP021173.1	Genbank	CDS	137429	138520	.	+	0	ID=cds152;Parent=gene183;Dbxref=GO:0003887,NCBI_GP:ASS47163.1;Name=ASS47163.1;Note=dnaN;gbkey=CDS;product=DNA polymerase III beta subunit;protein_id=ASS47163.1;transl_table=4
+CP021173.1	Genbank	gene	138527	139297	.	-	.	ID=gene184;Name=CA212_186;Note=fpr;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_186
+CP021173.1	Genbank	CDS	138527	139297	.	-	0	ID=cds153;Parent=gene184;Dbxref=GO:0004324,NCBI_GP:ASS47164.1;Name=ASS47164.1;Note=fpr;gbkey=CDS;product=Ferredoxin--NADP(+) reductase;protein_id=ASS47164.1;transl_table=4
+CP021173.1	Genbank	gene	139302	140384	.	+	.	ID=gene185;Name=CA212_187;Note=mnmA;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_187
+CP021173.1	Genbank	CDS	139302	140384	.	+	0	ID=cds154;Parent=gene185;Dbxref=NCBI_GP:ASS47165.1;Name=ASS47165.1;Note=mnmA;gbkey=CDS;product=tRNA-specific 2-thiouridylase MnmA;protein_id=ASS47165.1;transl_table=4
+CP021173.1	Genbank	gene	140381	141538	.	-	.	ID=gene186;Name=CA212_188;Note=tyrs;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_188
+CP021173.1	Genbank	CDS	140381	141538	.	-	0	ID=cds155;Parent=gene186;Dbxref=GO:0004831,NCBI_GP:ASS47166.1;Name=ASS47166.1;Note=tyrs;gbkey=CDS;product=Tyrosine--tRNA ligase;protein_id=ASS47166.1;transl_table=4
+CP021173.1	Genbank	gene	142243	142437	.	+	.	ID=gene187;Name=CA212_189;Note=rpsU;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_189
+CP021173.1	Genbank	CDS	142243	142437	.	+	0	ID=cds156;Parent=gene187;Dbxref=NCBI_GP:ASS47167.1;Name=ASS47167.1;Note=rpsU;gbkey=CDS;product=30S ribosomal protein S21;protein_id=ASS47167.1;transl_table=4
+CP021173.1	Genbank	gene	142488	143147	.	+	.	ID=gene188;Name=CA212_190;Note=rlmB;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_190
+CP021173.1	Genbank	CDS	142488	143147	.	+	0	ID=cds157;Parent=gene188;Dbxref=NCBI_GP:ASS47168.1;Name=ASS47168.1;Note=rlmB%3B LSU rRNA Gm2251;gbkey=CDS;product=23S rRNA (guanosine-2'-O-) -methyltransferase rlmB;protein_id=ASS47168.1;transl_table=4
+CP021173.1	Genbank	gene	143161	143233	.	-	.	ID=gene189;Name=CA212_191;gbkey=Gene;gene_biotype=tRNA;locus_tag=CA212_191
+CP021173.1	Genbank	tRNA	143161	143233	.	-	.	ID=rna30;Parent=gene189;gbkey=tRNA;product=tRNA-Asp
+CP021173.1	Genbank	exon	143161	143233	.	-	.	ID=id31;Parent=rna30;gbkey=tRNA;product=tRNA-Asp
+CP021173.1	Genbank	gene	143238	143309	.	-	.	ID=gene190;Name=CA212_192;gbkey=Gene;gene_biotype=tRNA;locus_tag=CA212_192
+CP021173.1	Genbank	tRNA	143238	143309	.	-	.	ID=rna31;Parent=gene190;gbkey=tRNA;product=tRNA-Glu
+CP021173.1	Genbank	exon	143238	143309	.	-	.	ID=id32;Parent=rna31;gbkey=tRNA;product=tRNA-Glu
+CP021173.1	Genbank	gene	143295	144602	.	-	.	ID=gene191;Name=CA212_193;Note=gltX;gbkey=Gene;gene_biotype=protein_coding;locus_tag=CA212_193
+CP021173.1	Genbank	CDS	143295	144602	.	-	0	ID=cds158;Parent=gene191;Dbxref=NCBI_GP:ASS47169.1;Name=ASS47169.1;Note=gltX;gbkey=CDS;product=Glutamate--tRNA ligase;protein_id=ASS47169.1;transl_table=4
+###

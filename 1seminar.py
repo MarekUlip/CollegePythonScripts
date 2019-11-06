@@ -81,6 +81,7 @@ def convert_to_amino(gen):
     return amino[:-1]
 
 print(len(loaded_genome))
+print(loaded_genome[:200])
 found_gens = find_gens_with_ignore(convert_to_complementary(loaded_genome))#find_gens(convert_to_complementary(loaded_genome))
 #print(found_gens)
 print(len(found_gens))

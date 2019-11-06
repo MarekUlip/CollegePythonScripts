@@ -18,7 +18,7 @@ def find_max_for_range(sequence, matrix, i,j):
     results = []
     for k in range(i,j):
         results.append(matrix[i,k]+matrix[k+1,j])
-    print(results)
+    #print("{}".format([i,j]))
     return max(results)
 
 def is_complementary(a,b,pairs=pairs):
@@ -33,13 +33,38 @@ def cost_func(a,b,pairs=pairs):
 
 def count_nussinov(sequence, matrix):
     n = len(sequence)
-    for j in range(n):
-        for i in range(n):
-            if i == j or i-j > 0:
+    for k in range(1,n):
+        for i in range(n-k):
+            j = i+k
+            if i == j or j<i:
                 continue
             matrix[i,j] = max([matrix[i+1,j-1]+cost_func(sequence[i],sequence[j]),find_max_for_range(sequence,matrix,i,j)])
     print(matrix)
 
-sequence = 'ACCAGCU'
+def traceback(i,j,matrix,sequence,pairs):
+    if j<=i:
+        #print(j)
+        return
+    elif matrix[i,j]==matrix[i,j-1]:
+        traceback(i,j-1,matrix,sequence,p)
+        return
+    else:
+        for k in range(i,j):
+            if not is_complementary(sequence[k],sequence[j]):
+               continue
+            if matrix[i,j] == (matrix[i,k-1]+matrix[k+1,j-1]+1):
+                print([k,j])
+                pairs.append([k,j])
+                traceback(i,k-1,matrix,sequence,p)
+                traceback(k+1,j-1,matrix,sequence,p)
+                return
+
+
+#sequence = 'ACCAGCU'
+#sequence = 'GCACGACG'
+sequence = 'GCGGAUUUAACUCAGUUGGGAGAGCGCCUUCGGGAGGUCCUGUGUUCGAUCCACAGAAUUCGCACCA'
 matrix = initialize(len(sequence))
 count_nussinov(sequence,matrix)
+p = []
+traceback(0,len(sequence)-1,matrix,sequence,p)
+print(len(p))
