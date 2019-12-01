@@ -11,8 +11,7 @@ params_list = [
     ['iris.csv',4,120,3,True,[]]]
 
 kernels = ['linear','rbf','poly']
-svm_params = [1,10,100,1000,10000,100000]
-#gamma_params = [0.01,0.1,0.2,0.5,0.75,1.0]
+svm_params = [1,10,100,1000,10000]
 
 def count_accuracy(classes,predicts):
     hits = 0
@@ -36,13 +35,13 @@ for params in params_list:
     arr = np.array(arr)
     classes = arr[:,target_index].astype(int)
     classes = np.reshape(classes,(len(classes)))
-    arr = arr[:,:target_index].astype(float).tolist()
+    arr = arr[:,:target_index].tolist()
 
     for svm_param in svm_params:
         print()
         for kernel in kernels:
             print('Testing with params {}'.format([kernel,svm_param]))
-            clf = svm.SVC(C=svm_param,gamma='scale',kernel=kernel)
+            clf = svm.SVC(C=svm_param,gamma='scaled',kernel=kernel)
             clf.fit(arr[:test_size],classes[:test_size])
             predicts = clf.predict(arr[test_size:])
             results.append([count_accuracy(classes[test_size:],predicts),[kernel,svm_param],params[0]])
