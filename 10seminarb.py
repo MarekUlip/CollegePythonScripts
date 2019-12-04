@@ -20,12 +20,10 @@ matrix = [
     ]
 
 def find_lowest_val_pos(matrix):
-    # Cell value with minimum value
     min_val = float('inf')
     pos_x = -1
     pos_y = -1
     
-    # Traverse the entire matrix to find the smallest value
     for i in range(len(matrix)):
         for j in range(len(matrix[i])):
             if(matrix[i][j] < min_val):
@@ -50,27 +48,21 @@ def join_matrix(matrix, a, b):
     if b < a:
         a, b = b, a
 
-    # Recalculate row for smaller index
     row = []
     for i in range(0, a):
         row.append((matrix[a][i] + matrix[b][i])/2)
     matrix[a] = row
     
-    # Recalculate entire column
     for i in range(a+1, b):
         matrix[i][a] = (matrix[i][a] + matrix[b][i])/2
         
-    # get the rest of the values in row i
     for i in range(b+1, len(matrix)):
         matrix[i][a] = (matrix[i][a] + matrix[i][b])/2
-        # Delete the second column
         del matrix[i][b]
 
-    # Delete the second row
     del matrix[b]
 
 def upgma(matrix, headers):
-    # Stop when all labels are joined
     print('Matrix of Initial Differences: ', matrix)
     nodes = {}
     edges = []
@@ -92,18 +84,18 @@ def upgma(matrix, headers):
         
         
 
-        # Actualizar los headers
         key_name = join_headers(headers, x, y)        
         print('Labels updated:', headers)
         edges.append([node1,key_name,new_height-h1])
         edges.append([node2,key_name,new_height-h2])
         nodes[key_name] = new_height
-        # Junta dos columnas de la matrix de diferencias en las coordenadas de la posicion
+        
         join_matrix(matrix, x, y)
         print('Array values joined:', matrix)
         iteration += 1
 
     # Final result stored in the first position
+    print(headers)
     print(nodes)
     print(edges)
     return headers[0]
