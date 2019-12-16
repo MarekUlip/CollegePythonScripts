@@ -8,7 +8,8 @@ from sklearn.neural_network import MLPRegressor
 from sklearn.metrics import mean_squared_error,mean_absolute_error,r2_score
 from sklearn.tree import DecisionTreeRegressor
 from sklearn.neighbors import KNeighborsRegressor
-
+from sklearn.ensemble import RandomForestRegressor
+from sklearn import preprocessing
 
 def convert_dates_to_day_of_year(dates):
     d_o_months = []
@@ -17,6 +18,10 @@ def convert_dates_to_day_of_year(dates):
         d_o_months.append(dt.timetuple().tm_yday)
     print(d_o_months[1000:1005])
     return d_o_months
+
+def normalize(data_frame):
+    x = data_frame.values
+    return pd.DataFrame(preprocessing.normalize(x,axis=0), columns=data_frame.columns)
 
 def test_models(data_frame:pd.DataFrame, target_column):
     y = data_frame[target_column].values
@@ -32,15 +37,26 @@ def test_models(data_frame:pd.DataFrame, target_column):
     ridge = linear_model.Ridge(alpha=0.5)
     ridge.fit(X_train,Y_train)
     measure_accuracy(ridge.predict(X_test),Y_test)
+    print('Linear:')
+    linear = linear_model.LinearRegression()
+    linear.fit(X_train,Y_train)
+    measure_accuracy(linear.predict(X_test),Y_test)
+    
     print('svr:')
     svm = SVR(gamma='scale',C=100000)
     svm.fit(X_train,Y_train)
     measure_accuracy(svm.predict(X_test),Y_test)
-    print('dcr:')
+    print('dtr:')
     #dec tree regressor
     dcr = DecisionTreeRegressor()
     dcr.fit(X_train,Y_train)
     measure_accuracy(dcr.predict(X_test),Y_test)
+
+    print("rfr:")
+    rfr = RandomForestRegressor(n_estimators=20)
+    rfr.fit(X_train,Y_train)
+    measure_accuracy(rfr.predict(X_test),Y_test)
+
 
     print('knr:')
     #nearest neigh regressor
@@ -65,6 +81,10 @@ dates = convert_dates_to_day_of_year(dates)
 dates = pd.DataFrame(dates,columns=['dteday'])
 df['dteday'] = dates
 df = df.drop(['casual','registered'],axis=1)
+keep_back = df['cnt']
+df = df.drop(['cnt'], axis=1)
+df = normalize(df)
+df = df.join(keep_back)
 
 print(df)
 test_models(df,'cnt')
