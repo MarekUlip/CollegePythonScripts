@@ -4,7 +4,6 @@ from sklearn.naive_bayes import GaussianNB
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import f1_score
 from sklearn.model_selection import train_test_split
-from sklearn.neural_network import MLPClassifier
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.ensemble import BaggingClassifier
@@ -35,11 +34,11 @@ def test_accuracy(data_frame, targets, test_name=""):
     results.append([test_name,'dec_tree',measure_accuracy(y_pred, Y_test),measure_f_score(y_pred, Y_test)])
     
 
-    nn = MLPClassifier(hidden_layer_sizes=[200, 150], activation='relu', solver='adam', max_iter=15)
+    """nn = MLPClassifier(hidden_layer_sizes=[200, 150], activation='relu', solver='adam', max_iter=15)
     y_pred = nn.fit(X_train, Y_train).predict(X_test)
     print('Accuracy for Neural Network is {}. F1 score is {}'.format(measure_accuracy(y_pred, Y_test),
                                                                      measure_f_score(y_pred, Y_test)))
-    results.append([test_name,'NN_15_ep', measure_accuracy(y_pred, Y_test), measure_f_score(y_pred, Y_test)])
+    results.append([test_name,'NN_15_ep', measure_accuracy(y_pred, Y_test), measure_f_score(y_pred, Y_test)])"""
 
     k_nn = KNeighborsClassifier()
     y_pred = k_nn.fit(X_train, Y_train).predict(X_test)
@@ -54,11 +53,17 @@ def test_accuracy(data_frame, targets, test_name=""):
                                                                 measure_f_score(y_pred, Y_test)))
     results.append([test_name,'baggingNB', measure_accuracy(y_pred, Y_test), measure_f_score(y_pred, Y_test)])
 
-    bagging = BaggingClassifier(MLPClassifier(hidden_layer_sizes=[200, 150], activation='relu', solver='adam', max_iter=15),max_samples=0.5,max_features=0.5,n_estimators=20)
+    bagging = BaggingClassifier(DecisionTreeClassifier(), max_samples=0.5, max_features=0.5, n_estimators=100)
+    y_pred = bagging.fit(X_train, Y_train).predict(X_test)
+    print("Accuracy for bagging baggingDT is {}. F1 score is {}".format(measure_accuracy(y_pred, Y_test),
+                                                                 measure_f_score(y_pred, Y_test)))
+    results.append([test_name, 'baggingDT', measure_accuracy(y_pred, Y_test), measure_f_score(y_pred, Y_test)])
+
+    """bagging = BaggingClassifier(MLPClassifier(hidden_layer_sizes=[200, 150], activation='relu', solver='adam', max_iter=15),max_samples=0.5,max_features=0.5,n_estimators=20)
     y_pred = bagging.fit(X_train,Y_train).predict(X_test)
     print("Accuracy for bagging NN is {}. F1 score is {}".format(measure_accuracy(y_pred, Y_test),
                                                                 measure_f_score(y_pred, Y_test)))
-    results.append([test_name,'baggingNN', measure_accuracy(y_pred, Y_test), measure_f_score(y_pred, Y_test)])
+    results.append([test_name,'baggingNN', measure_accuracy(y_pred, Y_test), measure_f_score(y_pred, Y_test)])"""
 
     bagging = BaggingClassifier(KNeighborsClassifier(),max_samples=0.5,max_features=0.5,n_estimators=100)
     y_pred = bagging.fit(X_train,Y_train).predict(X_test)
