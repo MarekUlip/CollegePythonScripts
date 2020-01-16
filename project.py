@@ -346,16 +346,20 @@ class CFNode:
         return min_dist_index
 
 
-X, clusters = make_blobs(n_samples=450, centers=6, cluster_std=0.70, random_state=0)
+X, clusters = make_blobs(n_samples=10000, centers=250, cluster_std=0.70, random_state=0)
 birch = CFTree(50,1.5,50)
+start = time()
 birch.build_tree(X.tolist())
+print(time()-start)
 labels = birch.get_point_labels()
 print(len(set(labels)))
 plt.scatter(X[:,0], X[:,1], c=labels, cmap='rainbow', alpha=0.7, edgecolors='b')
 plt.show()
 print('Reference')
-brc = Birch(branching_factor=50, n_clusters=None, threshold=1.5)
+brc = Birch(branching_factor=50, n_clusters=None, threshold=0.5)
+start = time()
 brc.fit(X)
+print(time()-start)
 labels = brc.predict(X)
 print(len(set(labels)))
 plt.scatter(X[:,0], X[:,1], c=labels, cmap='rainbow', alpha=0.7, edgecolors='b')
