@@ -1,5 +1,6 @@
 import csv
 
+
 def lessen_data(path):
     points = []
     counter = 0
@@ -12,9 +13,10 @@ def lessen_data(path):
                 counter = 0
             if add_data:
                 points.append(row)
-            counter+=1
-    with open(path[:-4]+"-small.csv", 'w+',newline='') as output_file:
-        writeCSV = csv.writer(output_file,delimiter=';')
+            counter += 1
+    with open(path[:-4] + "-small.csv", 'w+', newline='') as output_file:
+        writeCSV = csv.writer(output_file, delimiter=';')
         writeCSV.writerows(points)
+
 
 lessen_data('boxes.csv')
