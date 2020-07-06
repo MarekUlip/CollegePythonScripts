@@ -4,7 +4,6 @@ from tkinter import *
 from tkinter import tix
 from tkinter import ttk
 
-
 # correction is weight + Error*lambda
 # lambda can be 0.1
 
@@ -21,31 +20,38 @@ alg_params = {
 
 
 def dot_product(input, bias):
-    #print(sum([item[0]*item[1] + bias for item in input]))
-    return sum([item[0]*item[1] + bias for item in input])
+    # print(sum([item[0]*item[1] + bias for item in input]))
+    return sum([item[0] * item[1] + bias for item in input])
+
 
 def activation_function(input):
     if input < 0:
         return 0
-    #elif input == 0:
+    # elif input == 0:
     #    return 0
     else:
         return 1
 
+
 def count_error(expected, predicted):
     return expected - predicted
 
+
 def adaptation(weight, error, inpt_val, learning_const):
-    return weight + error*inpt_val*learning_const
+    return weight + error * inpt_val * learning_const
+
 
 def adapt_bias(bias, error, leaning_const):
-    return bias + error*leaning_const
+    return bias + error * leaning_const
+
 
 def predict(input, bias):
     return activation_function(dot_product(input, bias))
 
+
 def get_true_res(x, y):
-    return int((2*x+1) > y)
+    return int((2 * x + 1) > y)
+
 
 def get_color(point, predicted):
     print("True result: {}. Predicted {}".format(get_true_res(point[0], point[1]), predicted))
@@ -54,8 +60,9 @@ def get_color(point, predicted):
     else:
         return 'r'
 
+
 def get_point_pos_color(point):
-    res = 2*point[0]+1 - point[1]
+    res = 2 * point[0] + 1 - point[1]
     if res > 0:
         return 'black'
     elif res == 0:
@@ -63,16 +70,18 @@ def get_point_pos_color(point):
     else:
         return 'cyan'
 
+
 def train(num_of_train_points, num_of_test_points, bias, epochs, learning_const, min_val, max_val):
     train_points_count = num_of_train_points
-    x_train = [np.random.randint(min_val,max_val) for i in range(train_points_count)]#np.random.randint(min_val, max_val, num_of_points)
-    y_train = [np.random.randint(min_val,max_val) for i in range(train_points_count)]
+    x_train = [np.random.randint(min_val, max_val) for i in
+               range(train_points_count)]  # np.random.randint(min_val, max_val, num_of_points)
+    y_train = [np.random.randint(min_val, max_val) for i in range(train_points_count)]
     bias = bias
     weights = [np.random.uniform() for i in range(2)]
 
     for epoch in range(epochs):
         for i in range(train_points_count):
-            #print(weights)
+            # print(weights)
             point = [[x_train[i], weights[0]], [y_train[i], weights[1]]]
             res = predict(point, bias)
             true_res = get_true_res(x_train[i], y_train[i])
@@ -82,9 +91,8 @@ def train(num_of_train_points, num_of_test_points, bias, epochs, learning_const,
                 weights[1] = adaptation(weights[1], error, y_train[i], learning_const)
                 bias = adapt_bias(bias, error, learning_const)
 
-    x_test = [np.random.randint(min_val,max_val) for i in range(num_of_test_points)]
-    y_test = [np.random.randint(min_val,max_val) for i in range(num_of_test_points)]
-
+    x_test = [np.random.randint(min_val, max_val) for i in range(num_of_test_points)]
+    y_test = [np.random.randint(min_val, max_val) for i in range(num_of_test_points)]
 
     colors = []
     true_colors = []
@@ -92,14 +100,15 @@ def train(num_of_train_points, num_of_test_points, bias, epochs, learning_const,
     for i in range(num_of_test_points):
         point = [[x_test[i], weights[0]], [y_test[i], weights[1]]]
         res = predict(point, bias)
-        colors.append(get_color([x_test[i],y_test[i]],res))
-        true_colors.append(get_point_pos_color([x_test[i],y_test[i]]))
+        colors.append(get_color([x_test[i], y_test[i]], res))
+        true_colors.append(get_point_pos_color([x_test[i], y_test[i]]))
 
-    ll = np.arange(min_val,max_val,1)
-    plt.plot(ll, 2*ll + 1)
+    ll = np.arange(min_val, max_val, 1)
+    plt.plot(ll, 2 * ll + 1)
     plt.scatter(x_test, y_test, c=true_colors, edgecolors=colors)
     plt.grid(True)
     plt.show()
+
 
 def start_alg():
     train(int(alg_params["num_of_train_p"].get()),
@@ -160,4 +169,4 @@ if True:
 
     root.mainloop()
 
-#train(1000, 0.1)
+# train(1000, 0.1)

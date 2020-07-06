@@ -1,19 +1,17 @@
 import math
+import matplotlib.animation as animation
+import matplotlib.pyplot as plt
+import numpy as np
 import random
 import sys
+import time
+from functools import partial
+from matplotlib import cm
+from matplotlib import colors as mcolors
+from mpl_toolkits.mplot3d import Axes3D
+from tkinter import *
 from tkinter import tix
 from tkinter import ttk
-
-import numpy as np
-import matplotlib.pyplot as plt
-import matplotlib.animation as animation
-from matplotlib import colors as mcolors
-from tkinter import *
-from functools import partial
-import time
-
-from matplotlib import cm
-from mpl_toolkits.mplot3d import Axes3D
 
 
 class AlgorithmGUI:
@@ -83,7 +81,6 @@ class AlgorithmGUI:
         wrapper.pack(fill=X)
         Label(wrapper, text="Ant Colony Optimization", font=("Arial", 44)).pack(anchor='center')
 
-
         wrapper = Frame(self.main_frame)
         wrapper.pack(fill=X)
         Label(wrapper, text="Generations", font=("Arial", font_size)).pack(side=LEFT)
@@ -142,11 +139,14 @@ class AlgorithmGUI:
         self.main_frame = Frame(self.gui)
         self.main_frame.pack(fill=BOTH)
 
+
 def genetic_algorithm(pop_num, generations, cross_prob, mutation_factor, drawing_speed):
     num_of_towns = 20
     population = []
     to_draw = []
-    towns = [[60, 200], [80, 200], [80, 180], [140, 180], [20, 160], [100, 160], [200, 160], [140, 140], [40, 120], [100, 120], [180, 100], [60, 80], [120, 80], [180, 60], [20, 40], [100, 40], [200, 40], [20, 20], [60, 20], [160, 20]]
+    towns = [[60, 200], [80, 200], [80, 180], [140, 180], [20, 160], [100, 160], [200, 160], [140, 140], [40, 120],
+             [100, 120], [180, 100], [60, 80], [120, 80], [180, 60], [20, 40], [100, 40], [200, 40], [20, 20], [60, 20],
+             [160, 20]]
     for i in range(pop_num):
         person = []
         for j in range(num_of_towns):
@@ -156,13 +156,13 @@ def genetic_algorithm(pop_num, generations, cross_prob, mutation_factor, drawing
             person.append(rand_num)
         population.append(person)
     distance_matrix = create_distance_matrix(towns)
-    #print(distance_matrix)
+    # print(distance_matrix)
     for i in range(generations):
-        #for index, path in enumerate(population):
+        # for index, path in enumerate(population):
 
-            #print("{}".format(index))
-        parent = roulette_selection(population,distance_matrix)
-        parent2 = roulette_selection(population,distance_matrix)
+        # print("{}".format(index))
+        parent = roulette_selection(population, distance_matrix)
+        parent2 = roulette_selection(population, distance_matrix)
         """while parent == parent2:
             print("Roulleting")
             parent2 = roulette_selection(population, distance_matrix)"""
@@ -171,17 +171,17 @@ def genetic_algorithm(pop_num, generations, cross_prob, mutation_factor, drawing
             rnd = random.randint(0,pop_num-1)
         parent = population[rnd]"""
 
-        #print("{} done roulette".format(index))
+        # print("{} done roulette".format(index))
         wannabe_path = do_crossover(parent, parent2, cross_prob)
-        #print("{} done crossover".format(index))
+        # print("{} done crossover".format(index))
         do_mutation(wannabe_path, mutation_factor)
-        #print("{} done mutation".format(index))
+        # print("{} done mutation".format(index))
         worst = find_extreme(population, distance_matrix, towns, False)[0]
-        #print("{} found worst".format(index))
-        #if count_cost(population[worst], distance_matrix) > count_cost(wannabe_path, distance_matrix):
+        # print("{} found worst".format(index))
+        # if count_cost(population[worst], distance_matrix) > count_cost(wannabe_path, distance_matrix):
         population[worst] = wannabe_path
-        #print("{} swapped worst".format(index))
-        #if count_cost(path, distance_matrix) > count_cost(wannabe_path, distance_matrix):
+        # print("{} swapped worst".format(index))
+        # if count_cost(path, distance_matrix) > count_cost(wannabe_path, distance_matrix):
         #    population[index] = wannabe_path
         """path_costs = {}
         for index, path in enumerate(population):
@@ -190,18 +190,19 @@ def genetic_algorithm(pop_num, generations, cross_prob, mutation_factor, drawing
         best_points = []
         for town in population[best[0]]:
             best_points.append(towns[town])"""
-        candidate = find_extreme(population,distance_matrix,towns,True)[1]
+        candidate = find_extreme(population, distance_matrix, towns, True)[1]
         if candidate not in to_draw:
             to_draw.append(candidate)
-        #print(count_cost(to_draw[i][len(to_draw)-1],distance_matrix))
+        # print(count_cost(to_draw[i][len(to_draw)-1],distance_matrix))
         print(len(to_draw))
-    draw_graph_animated(to_draw,drawing_speed)
-    return to_draw[len(to_draw)-1]
+    draw_graph_animated(to_draw, drawing_speed)
+    return to_draw[len(to_draw) - 1]
+
 
 def find_extreme(population, distance_matrix, towns, find_best):
     pops = population.copy()
     path_costs = {}
-    #for i in range(len(pops)):
+    # for i in range(len(pops)):
     #    pops[i].append(pops[i][0])
     for index, path in enumerate(population):
         path_costs[index] = count_cost(path, distance_matrix)
@@ -209,13 +210,14 @@ def find_extreme(population, distance_matrix, towns, find_best):
     best_points = []
     if find_best:
         print(best[0])
-        #print(population[best[0][0]])
+        # print(population[best[0][0]])
         best = best[0]
     else:
-        best = best[len(best)-1]
+        best = best[len(best) - 1]
     for town in population[best[0]]:
         best_points.append(towns[town])
     return [best[0], best_points, best[1]]
+
 
 def create_distance_matrix(points):
     size = len(points)
@@ -229,13 +231,15 @@ def create_distance_matrix(points):
 def euclidean_distance(vec1, vec2):
     return math.sqrt(sum([(vec1[i] - vec2[i]) ** 2 for i in range(len(vec1))]))
 
+
 def count_cost(path, distance_matrix):
     path_cost = 0
-    for i in range(len(path)-1):
-        j = i+1
+    for i in range(len(path) - 1):
+        j = i + 1
         path_cost += distance_matrix[path[i]][path[j]]
-    path_cost += distance_matrix[path[0]][path[len(path)-1]]
+    path_cost += distance_matrix[path[0]][path[len(path) - 1]]
     return path_cost
+
 
 def roulette_selection(paths, distance_matrix):
     path_costs = [count_cost(path, distance_matrix) for path in paths]
@@ -244,7 +248,7 @@ def roulette_selection(paths, distance_matrix):
         p_costs_dict[i] = path_costs[i]
     p_costs_dict = sorted(p_costs_dict.items(), key=lambda kv: kv[1])
     S = sum(path_costs)
-    rand_S = random.random()#random.randint(0,int(S))
+    rand_S = random.random()  # random.randint(0,int(S))
     path_sum = 0
     parent = []
     """for index, path_cost in enumerate(path_costs):
@@ -259,8 +263,9 @@ def roulette_selection(paths, distance_matrix):
         path_sum += path_cost / S
     if len(parent) == 0:
         print("Uups")
-        parent = paths[len(paths)-1]
+        parent = paths[len(paths) - 1]
     return parent
+
 
 def do_crossover(path, parent, prob):
     rnd = random.random()
@@ -275,15 +280,16 @@ def do_crossover(path, parent, prob):
         start = end
         end = helper
     p_slice = parent[start:end]
-    #res_path = path[0:start] + p_slice + path[end:]
+    # res_path = path[0:start] + p_slice + path[end:]
 
-    #return create_set(res_path)
-    fixed_paths = create_set_from_parts(path[0:start],path[end:],p_slice,len(path))
+    # return create_set(res_path)
+    fixed_paths = create_set_from_parts(path[0:start], path[end:], p_slice, len(path))
     res_path = fixed_paths[0] + p_slice + fixed_paths[1]
     res_p = sorted(res_path)
     if res_p != [x for x in range(20)]:
         print("Lists do not match. Duplicity suspected.")
     return res_path
+
 
 def create_set(path):
     missing = []
@@ -300,11 +306,12 @@ def create_set(path):
         if i not in path:
             missing.append(i)
 
-    for index,item in enumerate(path):
+    for index, item in enumerate(path):
         if item in duplicates:
-            path[index] = missing.pop() #TODO randomize
+            path[index] = missing.pop()  # TODO randomize
             duplicates.remove(item)
     return path
+
 
 def create_set_from_parts(part1, part2, duplicates, num):
     missing = []
@@ -323,14 +330,15 @@ def create_set_from_parts(part1, part2, duplicates, num):
 def do_mutation(path, mutation_factor):
     mut = random.random()
     if mut < mutation_factor:
-        first_i = random.randint(0,len(path)-1)
-        second_i = random.randint(0,len(path)-1)
+        first_i = random.randint(0, len(path) - 1)
+        second_i = random.randint(0, len(path) - 1)
         while first_i == second_i:
-            second_i = random.randint(0,len(path)-1)
+            second_i = random.randint(0, len(path) - 1)
         helper = path[first_i]
         path[first_i] = path[second_i]
         path[second_i] = helper
     return path
+
 
 def draw_graph_animated(points, interval=100):
     """
@@ -344,20 +352,21 @@ def draw_graph_animated(points, interval=100):
     a = plt.axes()  # fig.add_subplot(111, projection='3d')
 
     dat = points[len(points) - 1]
-    #dat.append(dat[0])
+    # dat.append(dat[0])
     a.plot([i[0] for i in dat], [j[1] for j in dat], color='k', marker='.', markersize=10)
     a.plot(dat[0][0], dat[0][1], color='r', marker='.', markersize=20)
     a.set_xlabel('X Label')
     a.set_ylabel('Y Label')
 
     fig = plt.figure(1)
-    ax = plt.axes()#fig.add_subplot(111, projection='3d')
+    ax = plt.axes()  # fig.add_subplot(111, projection='3d')
+
     def update(num):
-        if num == len(points)-1:
+        if num == len(points) - 1:
             anim.event_source.stop()
         to_draw = points[num]
         to_draw.append(to_draw[0])
-        #print("{}".format(num))
+        # print("{}".format(num))
         graph.set_data([i[0] for i in to_draw], [j[1] for j in to_draw])
         return graph,
 
@@ -368,15 +377,16 @@ def draw_graph_animated(points, interval=100):
 
     ax.set_xlabel('X Label')
     ax.set_ylabel('Y Label')
-    #ax.set_zlabel('Z Label')
-    #ax.view_init(90,180)
+    # ax.set_zlabel('Z Label')
+    # ax.view_init(90,180)
 
-    #plt.show()
+    # plt.show()
 
     plt.show()
 
-#r je 0,4 mozna
-def ant_colony_optimization(generations,alpha=0.2, beta=0.6, r=0.4, ro=0.4, q=0.0, base_tau=0.2):
+
+# r je 0,4 mozna
+def ant_colony_optimization(generations, alpha=0.2, beta=0.6, r=0.4, ro=0.4, q=0.0, base_tau=0.2):
     population = []
     to_draw = []
     towns = [[60, 200], [80, 200], [80, 180], [140, 180], [20, 160], [100, 160], [200, 160], [140, 140], [40, 120],
@@ -397,40 +407,43 @@ def ant_colony_optimization(generations,alpha=0.2, beta=0.6, r=0.4, ro=0.4, q=0.
             town_ids = [x for x in range(town_count) if x != ant]
             path = [ant]
             distances = []
-            #distance_sum = 0
-            for i in range(town_count-1):
-                nxt_town = pick_next_town(feromones[ant], path[i],town_ids,distance_matrix, alpha, beta)
+            # distance_sum = 0
+            for i in range(town_count - 1):
+                nxt_town = pick_next_town(feromones[ant], path[i], town_ids, distance_matrix, alpha, beta)
                 path.append(nxt_town)
                 town_ids.remove(nxt_town)
-                #distance = count_cost([path[i],nxt_town],distance_matrix)
-                #distances.append(distance)
-                #recount_feromones_locally(path[len(path)-2],nxt_town,base_tau, ro,feromones[ant])
-                #disperse_feromones(0.9, feromones[ant])
-                #recount_feromones(ro, feromones[i], distance, distance_sum)
-                #distance_sum += distance
-            #recount_feromones_locally(path[len(path)-1], path[0], base_tau, ro, feromones[ant])
+                # distance = count_cost([path[i],nxt_town],distance_matrix)
+                # distances.append(distance)
+                # recount_feromones_locally(path[len(path)-2],nxt_town,base_tau, ro,feromones[ant])
+                # disperse_feromones(0.9, feromones[ant])
+                # recount_feromones(ro, feromones[i], distance, distance_sum)
+                # distance_sum += distance
+            # recount_feromones_locally(path[len(path)-1], path[0], base_tau, ro, feromones[ant])
             paths.append(path)
         candidate = find_extreme(paths, distance_matrix, towns, True)
         if candidate[2] < best_len:
             to_draw.append(candidate[1])
             best_len = candidate[2]
             best_path = paths[candidate[0]]
-        disperse_feromones(ro,feromones_best)
-        #recount_feromones(ro,feromones_best,best_path,best_len)
-        recount_feromones_paths(ro,feromones_best,paths,distance_matrix)
-        #disperse_feromones(0.3,feromones_best)
+        disperse_feromones(ro, feromones_best)
+        # recount_feromones(ro,feromones_best,best_path,best_len)
+        recount_feromones_paths(ro, feromones_best, paths, distance_matrix)
+        # disperse_feromones(0.3,feromones_best)
         feromones = []
         for i in range(town_count):
             feromones.append(feromones_best.copy())
     print(best_len)
-    draw_graph_animated(to_draw,250)
+    draw_graph_animated(to_draw, 250)
 
 
 def pick_next_town(feromones, point_of_origin, towns, distance_matrix, alpha, beta):
     probabilities = []
-    feromones_sum = sum([(feromones[point_of_origin][town]**alpha) * ((1 / distance_matrix[point_of_origin][town]) **beta) for town in towns])
-    for town in towns:#range(len(towns)):
-        feromone_str = float(((feromones[point_of_origin][town]**alpha) * ((1/distance_matrix[point_of_origin][town])**beta))) / float(feromones_sum)
+    feromones_sum = sum(
+        [(feromones[point_of_origin][town] ** alpha) * ((1 / distance_matrix[point_of_origin][town]) ** beta) for town
+         in towns])
+    for town in towns:  # range(len(towns)):
+        feromone_str = float(((feromones[point_of_origin][town] ** alpha) * (
+                    (1 / distance_matrix[point_of_origin][town]) ** beta))) / float(feromones_sum)
         probabilities.append(feromone_str)
     cummulative_probability = []
     cum_sum = 0
@@ -441,37 +454,38 @@ def pick_next_town(feromones, point_of_origin, towns, distance_matrix, alpha, be
     for index, prob in enumerate(cummulative_probability):
         if rnd <= prob:
             return towns[index]
-    #print("Returning last")
-    return towns[len(towns)-1]
+    # print("Returning last")
+    return towns[len(towns) - 1]
 
 
 def recount_feromones_paths(ro, feromones, paths, distance_matrix):
     delta = 0
     edge_list = []
     for path in paths:
-        distance_sum = count_cost(path,distance_matrix)
+        distance_sum = count_cost(path, distance_matrix)
         if distance_sum != 0:
             delta = 1 / distance_sum
-        for i in range(len(path)-1):
-            for j in range(1,len(path)):
+        for i in range(len(path) - 1):
+            for j in range(1, len(path)):
                 feromones[path[i]][path[j]] = (1 - ro) * feromones[path[i]][path[j]] + ro * delta
-                #edge_list.append([path[i],path[j]])
-                #edge_list.append([path[j],path[i]])
+                # edge_list.append([path[i],path[j]])
+                # edge_list.append([path[j],path[i]])
 
         """for r, row in enumerate(feromones):
             for col, column in enumerate(row):
                 if [r,col] in edge_list:
                     feromones[r][col] = (1 - ro) * feromones[r][col] + ro * delta
 """
-                    #feromones[path[i]][path[j]] = (1 - ro) * feromones[path[i]][path[j]] + ro * delta
-                    #feromones[path[j]][path[i]] = (1 - ro) * feromones[path[j]][path[i]] + ro * delta
+        # feromones[path[i]][path[j]] = (1 - ro) * feromones[path[i]][path[j]] + ro * delta
+        # feromones[path[j]][path[i]] = (1 - ro) * feromones[path[j]][path[i]] + ro * delta
+
 
 def recount_feromones(ro, feromones, path, distance_sum):
     delta = 0
     if distance_sum != 0:
         delta = 1 / distance_sum
-    for i in range(len(path)-1):
-        for j in range(1,len(path)):
+    for i in range(len(path) - 1):
+        for j in range(1, len(path)):
             feromones[path[i]][path[j]] = (1 - ro) * feromones[path[i]][path[j]] + ro * delta
             feromones[path[j]][path[i]] = (1 - ro) * feromones[path[j]][path[i]] + ro * delta
     """for r, row in enumerate(feromones):
@@ -481,19 +495,20 @@ def recount_feromones(ro, feromones, path, distance_sum):
                 delta = 1/distance_sum
             feromones[r][col] = (1-ro)*feromones[r][col] + ro*delta"""
 
+
 def disperse_feromones(ro, feromones):
     for r, row in enumerate(feromones):
         for col, column in enumerate(row):
             feromones[r][col] *= (1 - ro) * feromones[r][col]
 
-def recount_feromones_locally(i,j,tau0,ro, feromones):
-    feromones[i][j] = (1-ro)*feromones[i][j] + ro*tau0
-    feromones[j][i] = (1-ro)*feromones[j][i] + ro*tau0
+
+def recount_feromones_locally(i, j, tau0, ro, feromones):
+    feromones[i][j] = (1 - ro) * feromones[i][j] + ro * tau0
+    feromones[j][i] = (1 - ro) * feromones[j][i] + ro * tau0
 
 
-
-#genetic_algorithm(20,2000,0.2)
-#ant_colony_optimization(100)
+# genetic_algorithm(20,2000,0.2)
+# ant_colony_optimization(100)
 normal_run = True
 if normal_run:
     root = tix.Tk()
@@ -502,4 +517,3 @@ if normal_run:
     fc = AlgorithmGUI(root)
     root.config(menu=main_menu)
     root.mainloop()
-

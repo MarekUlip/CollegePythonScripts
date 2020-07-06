@@ -27,26 +27,17 @@ def show_permutations_for(field, item):
             show_permutations(value, field)
             break
 
+
 start = time.time()
-#show_permutations("", create_towns(3))
+# show_permutations("", create_towns(3))
 show_permutations_for(create_towns(11), "0")
-print(time.time()-start)
-
-
-
-
-
-
-
-
-
-
+print(time.time() - start)
 
 
 def factorial(n):
     if n == 0:
         return 1
-    return n*factorial(n-1)
+    return n * factorial(n - 1)
 
 
 def factorial_field(work_field):
@@ -68,21 +59,24 @@ def create_sub_array(array):
             for i in array[1:]:
                 res.append()
 
-def test(towns,depth = 0):
+
+def test(towns, depth=0):
     result = []
     for index, value in enumerate(towns[depth:]):
         result.append([])
 
-def tst(towns, field, depth = 1):
+
+def tst(towns, field, depth=1):
     print(towns[2:])
-    #print(depth)
+    # print(depth)
     if len(towns) == 1:
         field.append(towns[0])
     else:
-        field.append(tst(towns[depth:], field, depth+1))
+        field.append(tst(towns[depth:], field, depth + 1))
+
 
 def aatst(towns):
-    size = len(towns)-1
+    size = len(towns) - 1
     first = towns[0]
     res = []
     for i in range(1, size):
@@ -92,8 +86,9 @@ def aatst(towns):
         res.append(tmp)
         print("tst {}".format(tmp))
     print(res)
-# aatst(create_towns(3))
 
+
+# aatst(create_towns(3))
 
 
 def atst(prev, towns):
@@ -103,18 +98,19 @@ def atst(prev, towns):
         print(type(atst(towns[0], towns[1:])))
         # atst(towns[0], towns[1:]).insert(0, prev)
 
+
 towns = create_towns(3)
-#print(atst(towns[0], towns[1:]))
+# print(atst(towns[0], towns[1:]))
 
 """for i in a:
     for j in a[1:]:
         for k in a[2:]:"""
 
-
-
 result = []
-#print(factorial_field(create_towns(3)))
-#print(result)
+
+
+# print(factorial_field(create_towns(3)))
+# print(result)
 
 def create_permutations(towns):
     permutations = []
@@ -130,15 +126,9 @@ def create_permutations(towns):
     print(temp)
 
 
-
-def add_item(field,towns):
+def add_item(field, towns):
     if len(towns) == 0:
         return
     add_item()
 
-#print(create_permutations(create_towns(5)))
-
-
-
-
-
+# print(create_permutations(create_towns(5)))

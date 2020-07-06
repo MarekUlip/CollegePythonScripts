@@ -1,20 +1,18 @@
-import random
 import math
+import matplotlib.animation as animation
 import matplotlib.pyplot as plt
-
+import numpy as np
+import random
 import sys
+import time
+from functools import partial
+from matplotlib import cm
+from matplotlib import colors as mcolors
+from mpl_toolkits.mplot3d import Axes3D
+from tkinter import *
 from tkinter import tix
 from tkinter import ttk
 
-import numpy as np
-import matplotlib.animation as animation
-from matplotlib import colors as mcolors
-from tkinter import *
-from functools import partial
-import time
-
-from matplotlib import cm
-from mpl_toolkits.mplot3d import Axes3D
 
 class AlgorithmGUI:
     def __init__(self, gui):
@@ -36,7 +34,6 @@ class AlgorithmGUI:
         wrapper.pack(fill=X)
         Label(wrapper, text="Multiobjective optimization", font=("Arial", 44)).pack(anchor='center')
 
-
         wrapper = Frame(self.main_frame)
         wrapper.pack(fill=X)
         Label(wrapper, text="Generations", font=("Arial", font_size)).pack(side=LEFT)
@@ -46,7 +43,6 @@ class AlgorithmGUI:
         wrapper.pack(fill=X)
         Label(wrapper, text="Population", font=("Arial", font_size)).pack(side=LEFT)
         Entry(wrapper, textvariable=self.alg_params["population"], font=("Arial", font_size)).pack(side=RIGHT)
-
 
         wrapper = Frame(self.main_frame)
         wrapper.pack(fill=BOTH)
@@ -61,32 +57,38 @@ class AlgorithmGUI:
         self.main_frame = Frame(self.gui)
         self.main_frame.pack(fill=BOTH)
 
+
 def generate_solutions(num_of_solutions):
-    return [random.uniform(-55.0,55.0) for x in range(num_of_solutions)]
+    return [random.uniform(-55.0, 55.0) for x in range(num_of_solutions)]
+
 
 def generate_offspring(parents, constant):
     offspring = []
     num_of_parents = len(parents)
     for i in range(num_of_parents):
-        first_p = random.randint(0,num_of_parents-1)
-        second_p = random.randint(0,num_of_parents-1)
+        first_p = random.randint(0, num_of_parents - 1)
+        second_p = random.randint(0, num_of_parents - 1)
         if first_p > second_p:
             hlp = first_p
             first_p = second_p
             second_p = hlp
         while first_p == second_p:
-            second_p = random.randint(0,num_of_parents-1)
-        offspring.append(sum([parents[first_p], parents[second_p]])/2 + constant)
+            second_p = random.randint(0, num_of_parents - 1)
+        offspring.append(sum([parents[first_p], parents[second_p]]) / 2 + constant)
     return offspring
 
+
 def test_func1(x):
-    return -x**2
+    return -x ** 2
+
 
 def test_func2(x):
-    return -(x-2)**2
+    return -(x - 2) ** 2
+
 
 def test_func(x):
     return [test_func1(x), test_func2(x)]
+
 
 def count_number_of_dominating(solutions, index_to_check):
     chkd_sol = solutions[index_to_check]
@@ -97,6 +99,7 @@ def count_number_of_dominating(solutions, index_to_check):
         if solution[0] > chkd_sol[0] and solution[1] > chkd_sol[1]:
             num_of_better += 1
     return num_of_better
+
 
 def count_dominating_list(solutions):
     """
@@ -109,6 +112,7 @@ def count_dominating_list(solutions):
         dominating_list.append(count_number_of_dominating(solutions, index))
     return dominating_list
 
+
 def find_dominated_solutions(solutions, index_to_check):
     chkd_sol = solutions[index_to_check]
     indexes_of_dominated = []
@@ -119,6 +123,7 @@ def find_dominated_solutions(solutions, index_to_check):
             indexes_of_dominated.append(index)
     return indexes_of_dominated
 
+
 def create_set_of_dominating_solutions(solutions):
     """
     Second step that finds all solutions that are dominated by specific solution
@@ -127,8 +132,9 @@ def create_set_of_dominating_solutions(solutions):
     """
     set_of_dominated = []
     for index in range(len(solutions)):
-        set_of_dominated.append(find_dominated_solutions(solutions,index))
+        set_of_dominated.append(find_dominated_solutions(solutions, index))
     return set_of_dominated
+
 
 def create_fronts(numbers_of_dominators, set_of_dominated):
     numbers_of_dominators = numbers_of_dominators.copy()
@@ -144,12 +150,12 @@ def create_fronts(numbers_of_dominators, set_of_dominated):
         fronts.append(front)
     return fronts
 
+
 def diversity_preservation(solutions, fronts):
     distances = []
     for front in fronts:
         distances.append(crowding_distance_assignment(solutions, front))
     return distances
-
 
 
 def crowding_distance_assignment(solutions, front):
@@ -172,19 +178,17 @@ def crowding_distance_assignment(solutions, front):
     fmin = [min(objectives[0], key=lambda x: x[1]), min(objectives[1], key=lambda x: x[1])]
 
     I[0] = 999999999999
-    I[l-1] = 999999999999
+    I[l - 1] = 999999999999
     for index, objective in enumerate(objectives):
         for m in objective:
-            for i in range(2, l-1):
-                #print((I[i+1]*m[1] - I[i-1] * m[1])/(fmax[index] - fmin[index]))
-                I[i] = I[i] + (I[i+1]*m[1] - I[i-1] * m[1])/(fmax[index][1] - fmin[index][1])
+            for i in range(2, l - 1):
+                # print((I[i+1]*m[1] - I[i-1] * m[1])/(fmax[index] - fmin[index]))
+                I[i] = I[i] + (I[i + 1] * m[1] - I[i - 1] * m[1]) / (fmax[index][1] - fmin[index][1])
     distances = []
     for i in range(len(I)):
         distances.append([objectives[0][i][0], I[i]])
     distances.sort(key=lambda pair: pair[1])
     return distances
-
-
 
 
 def multiobjective_optimalization(num_of_generations, num_of_solutions):
@@ -193,7 +197,8 @@ def multiobjective_optimalization(num_of_generations, num_of_solutions):
         offsprings = generate_offspring(solutions, 1)
         solutions.extend(offsprings)
         solutions_counted = [test_func(x) for x in solutions]
-        fronts = create_fronts(count_dominating_list(solutions_counted),create_set_of_dominating_solutions(solutions_counted))
+        fronts = create_fronts(count_dominating_list(solutions_counted),
+                               create_set_of_dominating_solutions(solutions_counted))
         distances = diversity_preservation(solutions, fronts)
         new_solutions = []
         for index in fronts[0]:
@@ -210,7 +215,7 @@ def multiobjective_optimalization(num_of_generations, num_of_solutions):
                 last_index = 0
         solutions = new_solutions
 
-    #result_points = [[test_func(x)] for x in solutions]
+    # result_points = [[test_func(x)] for x in solutions]
     plt.xlabel('Function 1 -(x**2)', fontsize=15)
     plt.ylabel('Function 2 -(x-2)**2', fontsize=15)
     plt.scatter([test_func1(x) for x in solutions], [test_func2(x) for x in solutions])
@@ -225,4 +230,4 @@ if normal_run:
     fc = AlgorithmGUI(root)
     root.config(menu=main_menu)
     root.mainloop()
-#multiobjective_optimalization(100, 40)
+# multiobjective_optimalization(100, 40)

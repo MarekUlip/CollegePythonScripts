@@ -1,1 +1,4 @@
-.idea/
+*
+!*.py
+!.gitignore
+!readme.md
