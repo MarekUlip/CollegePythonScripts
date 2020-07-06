@@ -1,10 +1,10 @@
-#About
+# About
 This repository contains scripts used during my studies at data analysis. 
 It works with clustering, clasification, decision trees, SVM, neural networks, regression and 
 ensamble methods. Some things were not implemented and simply 
 experimented with using sklearn library. <br>
 Each script was usually written during seminar and finished at home so the code quality could be better.
-#List of scripts
+# List of scripts
 1seminar - works with rule set generation <br>
 2seminar - works with clustering <br>
 4seminar - again clustering <br>
