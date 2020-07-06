@@ -1,6 +1,7 @@
 """
 Script that implements CFTree.
 """
+from copy import deepcopy
 from time import time
 
 import numpy as np
@@ -46,6 +47,8 @@ class CFTree:
                 break
             item = self.items.pop(0)
             self.index += 1
+            if self.index == 169:
+                print('s')
             # print(self.index)
 
     def get_last_leaf(self):
@@ -63,7 +66,6 @@ class CFTree:
 
     def replace_leaf_with_leaves(self, leaf, leaves):
         node = self.dummy
-        print('replacing')
         while node is not leaf:
             node = node.next
         leaves[0].next = leaves[1]
@@ -75,7 +77,7 @@ class CFTree:
             node.next.prev = leaves[1]
 
     def split_root(self, new_nodes):
-        new_root = CFNode(self.root_node.cf_entry, [], tree=self, is_leaf=False)
+        new_root = CFNode(deepcopy(self.root_node.cf_entry), None, tree=self, is_leaf=False)
         for node in new_nodes:
             node.parent = new_root
         new_root.childs.extend(new_nodes)
@@ -192,11 +194,13 @@ class CFPair:
 
 
 class CFNode:
-    def __init__(self, cf_entry: CFEntry = None, parent=None, tree: CFTree = None, is_leaf=True):
+    def __init__(self, cf_entry: CFEntry = None, parent=None, tree: CFTree = None, is_leaf=True, childs=None):
+        if childs is None:
+            childs = []
         self.cf_entry: CFEntry = cf_entry
-        self.childs: list = []
-        if self.cf_entry is not None and self.cf_entry.N != 0:
-            self.childs.append(self.cf_entry)
+        self.childs: list = childs
+        # if self.cf_entry is not None and self.cf_entry.N != 0:
+        #    self.childs.append(self.cf_entry)
         self.parent: CFNode = parent
         self.is_leaf = is_leaf
         if tree is not None:
@@ -207,6 +211,17 @@ class CFNode:
         self.tree = tree
 
     def split(self):
+        if self.is_leaf:
+            new_parents = self.split_leaf()
+        else:
+            # print('splitting node N is {}'. format(self.cf_entry.N))
+            new_parents = self.split_non_leaf()
+        if self.parent is None:
+            self.tree.split_root(new_parents)
+        else:
+            self.parent.split_node(self, new_parents)
+
+    def split_old(self):
         print('splitting')
         if self.is_leaf:
             best_pair = []
@@ -219,6 +234,10 @@ class CFNode:
                     if dist > best_max_dist:
                         best_max_dist = dist
                         best_pair = CFPair(child1, child2, index, index2)
+            new_parents = [CFNode(cf_entry=best_pair.pair[0], parent=self.parent, is_leaf=self.is_leaf, tree=self.tree,
+                                  childs=self.childs[best_pair.indexes[0]]),
+                           CFNode(cf_entry=best_pair.pair[1], parent=self.parent, is_leaf=self.is_leaf, tree=self.tree,
+                                  childs=self.childs[best_pair.indexes[1]])]
             """new_parents = [CFNode(cf_entry=best_pair.pair[0], is_leaf=self.is_leaf), CFNode(cf_entry=best_pair.pair[1],is_leaf=self.is_leaf)]
             for index, child in enumerate(self.childs):
                 if index in best_pair.indexes:
@@ -240,23 +259,88 @@ class CFNode:
                     if dist > best_max_dist:
                         best_max_dist = dist
                         best_pair = CFPair(child1.cf_entry, child2.cf_entry, index, index2)
-        new_parents = [CFNode(cf_entry=best_pair.pair[0], parent=self.parent, is_leaf=self.is_leaf, tree=self.tree),
-                       CFNode(cf_entry=best_pair.pair[1], parent=self.parent, is_leaf=self.is_leaf, tree=self.tree)]
+            new_parents = [CFNode(cf_entry=best_pair.pair[0], parent=self.parent, is_leaf=self.is_leaf, tree=self.tree,
+                                  childs=self.childs[best_pair.indexes[0]]),
+                           CFNode(cf_entry=best_pair.pair[1], parent=self.parent, is_leaf=self.is_leaf, tree=self.tree,
+                                  childs=self.childs[best_pair.indexes[1]])]
+        self.tree.num_of_entries -= len(self.childs)
         for index, child in enumerate(self.childs):
             if index in best_pair.indexes:
                 continue
-            distances = [item.count_distance(child) for item in best_pair.pair]
-            self.tree.num_of_entries -= len(self.childs)
-            # start = time()
-            new_parents[distances.index(min(distances))].cf_entry.insert_entry(child)
-            new_parents[distances.index(min(distances))].childs.append(child)
-            # print('inserting took {}'.format(time()-start))
+            if type(child) is CFNode:
+                distances = [item.count_distance(child.cf_entry) for item in best_pair.pair]
+                # start = time()
+                new_parents[distances.index(min(distances))].cf_entry.insert_entry(child.cf_entry)
+                new_parents[distances.index(min(distances))].childs.append(child)
+                # print('inserting took {}'.format(time()-start))
+            else:
+                distances = [item.count_distance(child) for item in best_pair.pair]
+                # start = time()
+                new_parents[distances.index(min(distances))].cf_entry.insert_entry(child)
+                new_parents[distances.index(min(distances))].childs.append(child)
+                # print('inserting took {}'.format(time()-start))
         if self.parent is None:
             self.tree.split_root(new_parents)
         else:
             self.parent.split_node(self, new_parents)
             # self.is_leaf:
             #   self.tree.replace_leaf_with_leaves(self,new_parents)
+
+    def split_leaf(self):
+        best_pair = []
+        best_max_dist = -1
+        for index, child1 in enumerate(self.childs):
+            for index2, child2 in enumerate(self.childs):
+                if index == index2:
+                    continue
+                dist = child1.count_distance(child2)
+                if dist > best_max_dist:
+                    best_max_dist = dist
+                    best_pair = CFPair(child1, child2, index, index2)
+        new_parents = [CFNode(cf_entry=best_pair.pair[0], parent=self.parent, is_leaf=self.is_leaf, tree=self.tree,
+                              childs=[deepcopy(self.childs[best_pair.indexes[0]])]),
+                       CFNode(cf_entry=best_pair.pair[1], parent=self.parent, is_leaf=self.is_leaf, tree=self.tree,
+                              childs=[deepcopy(self.childs[best_pair.indexes[1]])])]
+        self.tree.num_of_entries -= len(self.childs)
+        for index, child in enumerate(self.childs):
+            if index in best_pair.indexes:
+                continue
+            distances = [item.count_distance(child) for item in best_pair.pair]
+            # start = time()
+            new_parents[distances.index(min(distances))].cf_entry.insert_entry(child)
+            new_parents[distances.index(min(distances))].childs.append(child)
+            # print('inserting took {}'.format(time()-start))
+        return new_parents
+
+    def split_non_leaf(self):
+        best_pair = []
+        best_max_dist = -1
+        for index, child1 in enumerate(self.childs):
+            for index2, child2 in enumerate(self.childs):
+                if index == index2:
+                    continue
+                dist = child1.cf_entry.count_distance(child2.cf_entry)
+                if dist > best_max_dist:
+                    best_max_dist = dist
+                    best_pair = CFPair(child1.cf_entry, child2.cf_entry, index, index2)
+        new_parents = [
+            CFNode(cf_entry=deepcopy(best_pair.pair[0]), parent=self.parent, is_leaf=self.is_leaf, tree=self.tree,
+                   childs=[self.childs[best_pair.indexes[0]]]),
+            CFNode(cf_entry=deepcopy(best_pair.pair[1]), parent=self.parent, is_leaf=self.is_leaf, tree=self.tree,
+                   childs=[self.childs[best_pair.indexes[1]]])]
+        self.tree.num_of_entries -= len(self.childs)
+        for index, child in enumerate(self.childs):
+            start = time()
+            if index in best_pair.indexes:
+                continue
+            distances = [item.count_distance(child.cf_entry) for item in best_pair.pair]
+            # start = time()
+            dist_ind = distances.index(min(distances))
+            new_parents[dist_ind].cf_entry.insert_entry(child.cf_entry)
+            # print('cycle {} took {}'.format(index, time()-start))
+            new_parents[dist_ind].childs.append(child)
+            # print('inserting took {}'.format(time()-start))
+        return new_parents
 
     def split_node(self, node_to_split, new_nodes):
         self.childs.remove(node_to_split)
@@ -278,8 +362,6 @@ class CFNode:
             found_entry = self.childs[cf_index]
             if not self.is_leaf:
                 found_entry = found_entry.cf_entry
-        else:
-            print('compensating')
 
         if self.is_leaf:
             if found_entry is not None and self.is_insertable(found_entry, cfentry):
@@ -287,7 +369,7 @@ class CFNode:
             else:
                 self.childs.append(cfentry)
                 self.tree.num_of_entries += 1
-                # self.check_size_correctnes()
+                self.check_size_correctnes()
         else:
             self.childs[cf_index].insert_entry(cfentry)
 
@@ -303,18 +385,20 @@ class CFNode:
             self.childs.append(node)"""
 
     def check_size_correctnes(self):
-        pass
-        if self.is_leaf:
+        """if self.is_leaf:
             if len(self.childs) > self.tree.max_entries:
-                pass
+                print('max entries for leaf')
                 self.split()
         else:
             if len(self.childs) > self.tree.branching_factor:
                 pass
-                self.split()
+                self.split()"""
+        if len(self.childs) > self.tree.branching_factor:
+            # print('splitting')
+            self.split()
 
         if self.tree.num_of_entries > self.tree.max_num_of_entries:
-            pass
+            print('rebuilding tree')
             self.tree.rebuild_tree(self.tree.branching_factor, self.tree.threshold * 1.5, self.tree.max_entries, 500,
                                    self.tree.get_cf_entries_from_leaves())
 
@@ -346,7 +430,8 @@ class CFNode:
         return min_dist_index
 
 
-X, clusters = make_blobs(n_samples=10000, centers=250, cluster_std=0.70, random_state=0)
+name_modif = '-split'
+X, clusters = make_blobs(n_samples=200000, centers=6, cluster_std=0.70, random_state=0)
 birch = CFTree(50, 1.5, 50)
 start = time()
 birch.build_tree(X.tolist())
@@ -355,8 +440,10 @@ labels = birch.get_point_labels()
 print(len(set(labels)))
 plt.scatter(X[:, 0], X[:, 1], c=labels, cmap='rainbow', alpha=0.7, edgecolors='b')
 plt.show()
+# plt.savefig("birch{}.png".format(name_modif))
+# plt.clf()
 print('Reference')
-brc = Birch(branching_factor=50, n_clusters=None, threshold=0.5)
+brc = Birch(branching_factor=50, n_clusters=None, threshold=1.5)
 start = time()
 brc.fit(X)
 print(time() - start)
@@ -364,3 +451,4 @@ labels = brc.predict(X)
 print(len(set(labels)))
 plt.scatter(X[:, 0], X[:, 1], c=labels, cmap='rainbow', alpha=0.7, edgecolors='b')
 plt.show()
+# plt.savefig("birch-reference{}.png".format(name_modif))
