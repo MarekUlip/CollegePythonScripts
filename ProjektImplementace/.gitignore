@@ -2,4 +2,5 @@
 !*.py
 !.gitignore
 !readme.md
-!ProjektImplementace
+!*.csv
+!settings.txt
