@@ -1,10 +1,6 @@
+from collections import defaultdict
 from itertools import zip_longest, islice
 from time import time
-from pysuffixarray.core import SuffixArray
-
-
-
-from collections import defaultdict
 
 
 def sort_bucket(s, bucket, order):
@@ -23,6 +19,7 @@ def sort_bucket(s, bucket, order):
 
 def suffix_array_ManberMyers(s):
     return sort_bucket(s, range(len(s)), 1)
+
 
 def to_int_keys_best(l):
     """
@@ -77,18 +74,19 @@ def suffix_array_best(s):
         k <<= 1
     return line
 
+
 text = 'banana'
 with open('chr178.txt', 'r') as content_file:
-   text = content_file.read()[:10000000]
-#print(len(text))
-#print(sys.getsizeof(text))
+    text = content_file.read()[:10000000]
+# print(len(text))
+# print(sys.getsizeof(text))
 start = time()
 suffixt_array = suffix_array_ManberMyers(text)
-#for i in range(len(suffixt_array)):
+# for i in range(len(suffixt_array)):
 #    suffixt_array[i] +=1
-#print(suffixt_array)
+# print(suffixt_array)
 """suffix_array = suffix_array_best(text)
 print(suffixt_array)
 suffix_array = SuffixArray(text)
 print(suffixt_array)"""
-print("took {}".format(time()-start))
+print("took {}".format(time() - start))
