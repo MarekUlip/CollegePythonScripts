@@ -3,7 +3,7 @@ Repo containing most of the python scripts that I have written or modified durin
 Folders include algorithms from various fields mostly data science.
 
 # Folder description
-AlgorithmsForBioinformatics - Contains scripts implementing various data structures and algorithms used at bioniformatics <br>
+<b>AlgorithmsForBioinformatics</b> - Contains scripts implementing various data structures and algorithms used at bioniformatics <br>
 AplicatedAlgebra - Contains my project from applicated algebra which used SVD to deblur image blurred by gausian blur. It also contains unfinished project on jpeg compression. <br>
 DataAnalysisMethods1 - Contains implementations of basic algoritmhs used at data science (mostly clustering) also basic implementations from networks science. <br>
 DataAnalysisMethods2 - Contains implementations of advance networks science algorithms and models. Not very effictive because it cannot handle big networks (more than 10000 nodes - i used matrix instead of node list)<br>
